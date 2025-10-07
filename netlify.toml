@@ -1,14 +1,16 @@
-[build]
-  publish = "."
+# Netlify Configuration for Kypria Technologies
 
+[build]
+  # Inject CF_TOKEN during build
+  command = "sed -i 's/YOUR_CLOUDFLARE_TOKEN_HERE/'$CF_TOKEN'/g' index.html || echo 'Token injection skipped'"
+  publish = "."
+  
 [[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
   status = 200
 
-[[plugins]]
-  package = "@netlify/plugin-form-submissions"
-
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -18,6 +20,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
 
+# Cache static assets
 [[headers]]
   for = "/*.css"
   [headers.values]
