@@ -1,7 +1,6 @@
 # kypria-technologies
 Kypria Technologies – Official Basilica site and digital shrine.  Deployment-ready static site with monitoring, PWA manifest, and Cloudflare integration.
-📜 README.md (full file content)
-markdown
+
 # Kypria Technologies
 
 📜✨🏛️ **The Basilica Stands. The Canon Lineage is Eternal.**
@@ -39,3 +38,6 @@ Every deployment is logged in the **Ledger of Flames** for audit and repeatabili
 
 ## ⚖️ License
 MIT License © Kypria LLC
+
+## Build Trigger
+Trigger for deployment verification.
