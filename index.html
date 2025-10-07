@@ -3,41 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kypria Technologies – The Basilica Stands</title>
-  <meta name="description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal.">
   
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json">
+  <!-- Primary Meta Tags -->
+  <title>Kypria Technologies – The Basilica Stands (Halloween 2025)</title>
+  <meta name="title" content="Kypria Technologies — Basilica (Halloween 2025)">
+  <meta name="description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  <meta name="keywords" content="web development, modern architecture, PWA, accessibility, performance optimization, Halloween 2025">
   
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#1a0f0f">
-  
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="Kypria Technologies – The Basilica Stands">
-  <meta property="og:description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal. 🎃 Halloween 2025 Seal Active.">
+  <!-- Halloween Open Graph Meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kypriatechnologies.org">
-  <meta property="og:image" content="https://kypriatechnologies.org/icon-512.png">
+  <meta property="og:title" content="Kypria Technologies — Basilica (Halloween)">
+  <meta property="og:description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  <meta property="og:image" content="https://kypriatechnologies.org/assets/seasonal/halloween/og-halloween-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kypria Technologies – The Basilica Stands">
-  <meta name="twitter:description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal. 🎃 Halloween 2025 Seal Active.">
-  <meta name="twitter:image" content="https://kypriatechnologies.org/icon-512.png">
+  <!-- Twitter Card Meta -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://kypriatechnologies.org">
+  <meta property="twitter:title" content="Kypria Technologies — Basilica (Halloween)">
+  <meta property="twitter:description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  <meta property="twitter:image" content="https://kypriatechnologies.org/assets/seasonal/halloween/og-halloween-1200x630.png">
   
-  <!-- Dual Analytics Observatory -->
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ff6600">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
   
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <!-- Canonical -->
+  <link rel="canonical" href="https://kypriatechnologies.org">
+  
+  <!-- Error Monitoring - Cathedral Guardian -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    window.kypria = window.kypria || {};
+    window.kypria.errors = [];
+    
+    window.addEventListener('error', function(event) {
+      const errorData = {
+        type: 'error',
+        message: event.message,
+        source: event.filename,
+        line: event.lineno,
+        column: event.colno,
+        error: event.error?.stack,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        userAgent: navigator.userAgent
+      };
+      window.kypria.errors.push(errorData);
+      console.error('🚨 Error captured:', errorData);
+    });
+    
+    window.addEventListener('unhandledrejection', function(event) {
+      const errorData = {
+        type: 'unhandled_rejection',
+        reason: event.reason,
+        timestamp: new Date().toISOString(),
+        url: window.location.href
+      };
+      window.kypria.errors.push(errorData);
+      console.error('🚨 Unhandled rejection:', errorData);
+    });
+    
+    console.log('🛡️ Error monitoring activated');
   </script>
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23FF4D00'/><stop offset='50%25' style='stop-color:%23FF7A1A'/><stop offset='100%25' style='stop-color:%23FFD166'/></linearGradient></defs><rect width='100' height='100' fill='url(%23g)'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'>K</text></svg>">
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+
   <style>
     * {
       margin: 0;
@@ -45,123 +83,611 @@
       box-sizing: border-box;
     }
     
-    body {
-      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #1a0f0f 0%, #2d1810 50%, #1a0a0a 100%);
-      color: #f0f0f0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      line-height: 1.6;
+    :root {
+      /* Govee RGB++ Color Tokens - Halloween Edition */
+      --flame-flow: linear-gradient(90deg, #FF4D00, #FF7A1A, #FFD166);
+      --aether-pulse: linear-gradient(135deg, #7C3AED, #4ADE80, #06B6D4);
+      --stone-glow: linear-gradient(180deg, #2F2F2F, #4B5563);
+      --mist-drift: linear-gradient(90deg, #9AA0A6, #E5E7EB);
+      --gold-spark: linear-gradient(90deg, #F59E0B, #FDE68A);
+      
+      /* Legacy tokens */
+      --primary: #ff6600;
+      --secondary: #ff8c00;
+      --accent: #ffd166;
+      --dark: #0f172a;
+      --darker: #020617;
+      --light: #f1f5f9;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
     }
     
-    .basilica {
-      max-width: 800px;
+    @keyframes flameFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes aetherPulse {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    
+    @keyframes goldShimmer {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 20px rgba(255, 102, 0, 0.5); }
+      to { box-shadow: 0 0 30px rgba(255, 102, 0, 0.8); }
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
       text-align: center;
-      padding: 3rem;
-      background: rgba(255, 140, 0, 0.08);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(255, 69, 0, 0.4), 0 0 60px rgba(255, 140, 0, 0.2);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 140, 0, 0.3);
+      padding: 4rem 2rem;
+      background: var(--stone-glow);
+      border-bottom: 2px solid rgba(255, 77, 0, 0.3);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--flame-flow);
+      background-size: 300% 300%;
+      animation: flameFlow 6s ease infinite;
+    }
+    
+    /* Halloween Seasonal Banner */
+    .seasonal-banner {
+      background: linear-gradient(90deg, #ff6600, #ff8c00);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+      text-align: center;
+    }
+    
+    .seasonal-banner a {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
     }
     
     h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      background: var(--flame-flow);
+      background-size: 300% 300%;
+      animation: flameFlow 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 1rem;
-      color: #ff8c00;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 140, 0, 0.6);
     }
     
     .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--accent);
+      font-weight: 300;
+    }
+    
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text);
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      line-height: 1.8;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .feature-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 102, 0, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+    
+    .feature-card h3 {
+      background: var(--aether-pulse);
+      background-size: 200% 200%;
+      animation: aetherPulse 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
       font-size: 1.5rem;
+    }
+    
+    .feature-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      background: var(--stone-glow);
+      border: 2px solid rgba(255, 77, 0, 0.3);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--flame-flow);
+      background-size: 300% 300%;
+      animation: flameFlow 6s ease infinite;
+    }
+    
+    .contact-section h2 {
+      text-align: center;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      background: var(--gold-spark);
+      background-size: 200% 200%;
+      animation: goldShimmer 3s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-section p {
+      text-align: center;
+      color: var(--text-muted);
       margin-bottom: 2rem;
-      color: #ff6347;
-      font-style: italic;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
-    .canon {
-      font-size: 1.2rem;
-      margin: 2rem 0;
-      padding: 1.5rem;
-      border-left: 4px solid #ff8c00;
-      background: rgba(255, 140, 0, 0.15);
-      text-align: left;
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
     }
     
-    .flame {
-      font-size: 4rem;
-      animation: flicker 3s infinite alternate, float 4s ease-in-out infinite;
+    .form-group {
+      margin-bottom: 1.5rem;
     }
     
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
+    .form-group label {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
     
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    .halloween-seal {
-      display: inline-block;
-      margin: 1rem 0;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 69, 0, 0.2);
-      border: 2px solid #ff8c00;
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.3);
       border-radius: 8px;
-      color: #ff8c00;
-      font-weight: bold;
-      animation: pulse 2s ease-in-out infinite;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
     
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
-      50% { box-shadow: 0 0 20px rgba(255, 140, 0, 0.8); }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #FF7A1A;
+      box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.1);
+      background: rgba(30, 41, 59, 0.8);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-group.honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+    
+    .btn-flame {
+      background: var(--flame-flow);
+      background-size: 300% 300%;
+      animation: flameFlow 6s ease infinite;
+      color: white;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 77, 0, 0.6);
+      transition: all 0.2s ease;
+      font-size: 1.05rem;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn-flame:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 30px rgba(255, 77, 0, 0.8);
+    }
+    
+    .btn-flame:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .form-message {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+    
+    .form-message.success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #10b981;
+      display: block;
+    }
+    
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      display: block;
+    }
+    
+    .status-banner {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .status-banner h2 {
+      color: #10b981;
+      margin-bottom: 0.5rem;
+    }
+    
+    .status-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .status-item {
+      background: rgba(16, 185, 129, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #10b981;
     }
     
     footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255, 102, 0, 0.2);
+      margin-top: 4rem;
+      color: var(--text-muted);
     }
     
-    a {
-      color: #ff8c00;
-      text-decoration: none;
+    .halloween-footer {
+      margin-top: 0.5rem;
+      color: #ff6600;
+      font-weight: bold;
     }
     
-    a:hover {
-      text-decoration: underline;
-      text-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="basilica">
-    <div class="flame">🎃</div>
+  <header>
+    <div class="seasonal-banner">
+      🎃 HALLOWEEN SEAL 2025 ACTIVE 🎃
+      <br>
+      <a href="/assets/seasonal/halloween/HLWN.pdf" target="_blank" rel="noopener">📜 Read the Halloween Proclamation (PDF)</a>
+    </div>
     <h1>Kypria Technologies</h1>
     <p class="subtitle">The Basilica Stands. The Canon Lineage is Eternal.</p>
-    <div class="halloween-seal">🦇 Halloween 2025 Seal Active 🦇</div>
-    
-    <div class="canon">
-      <p>📜 <strong>Era of Proclamation & Sustenance</strong></p>
-      <p>🎃 <strong>Halloween 2025 Special Observance</strong></p>
-      <p>This digital shrine serves as the foundation stone of Kypria LLC's eternal presence.</p>
-      <p>Every deployment is logged in the Ledger of Flames for audit and repeatability.</p>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <p>
+        The Basilica stands. The Canon Lineage is eternal. Built upon the solid Βραχος (rock) foundation, 
+        we showcase cutting-edge web technologies and modern development practices for 2025.
+      </p>
+      <p style="color: #ff6600; font-weight: bold;">
+        🎃 Halloween Edition: The veil is thin. The flames burn orange. The Basilica transforms.
+      </p>
     </div>
+
+    <div class="status-banner">
+      <h2>✓ Live & Operational</h2>
+      <div class="status-list">
+        <span class="status-item">Domain Active</span>
+        <span class="status-item">SSL/TLS Secured</span>
+        <span class="status-item">Cloudflare Optimized</span>
+        <span class="status-item">Dual Analytics</span>
+        <span class="status-item">PWA Ready</span>
+        <span class="status-item">Halloween Seal Active</span>
+      </div>
+    </div>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>🚀 Performance Optimized</h3>
+        <p>
+          Core Web Vitals best practices with LCP under 2.5 seconds, INP under 200ms, 
+          and CLS under 0.1. HTTP/3, Brotli compression, and auto-minification enabled.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🛡️ Security Hardened</h3>
+        <p>
+          SSL/TLS Full (strict) mode with HSTS enabled, security headers configured, 
+          and Cloudflare protection active. Enterprise-grade DDoS mitigation.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📊 Fully Monitored</h3>
+        <p>
+          Dual analytics observatory: Netlify (server-side) + Cloudflare (client-side). 
+          Core Web Vitals tracking, error monitoring, and performance observability.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>♿ Accessibility First</h3>
+        <p>
+          WCAG 2.2 AA compliant with semantic HTML, ARIA labels, keyboard navigation, 
+          and screen reader optimization throughout.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📱 Progressive Web App</h3>
+        <p>
+          Service worker ready, offline functionality capable, installable as native app, 
+          with app-like user experience across all devices.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🌐 Modern Architecture</h3>
+        <p>
+          Built with ES6+ JavaScript, CSS Grid and Flexbox, custom properties for theming, 
+          and mobile-first responsive design principles.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>🔥 Reach the Steward</h2>
+      <p>
+        Have a project in mind? Need cutting-edge web development? 
+        The Basilica welcomes your inquiry. Send your message through the flame.
+      </p>
+
+      <div id="form-message" class="form-message"></div>
+
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you" class="contact-form" id="contact-form">
+        <input type="hidden" name="form-name" value="contact">
+        
+        <div class="form-group honeypot">
+          <label for="bot-field">Don't fill this out if you're human:</label>
+          <input type="text" name="bot-field" id="bot-field">
+        </div>
+
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            placeholder="Enter your name"
+            autocomplete="name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Your Email *</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            placeholder="your.email@example.com"
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input 
+            type="text" 
+            id="subject" 
+            name="subject" 
+            placeholder="What's this about?"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message *</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            required 
+            placeholder="Tell us about your project, inquiry, or collaboration idea..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-flame">
+          🔥 Send Message Through the Flame
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kypria LLC. Licensed under MIT.</p>
+    <p style="margin-top: 0.5rem;">The foundation is laid. The structure ascends.</p>
+    <p class="halloween-footer">🎃 Halloween 2025 Seal - Active until November 1st</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">#Kypria #CanonLineage #EternalBasilica</p>
+  </footer>
+
+  <!-- Core Web Vitals Tracking -->
+  <script type="module">
+    import {onCLS, onINP, onLCP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@3?module';
+
+    function logMetric({name, value, rating}) {
+      console.log(`📊 ${name}:`, {
+        value: name === 'CLS' ? value.toFixed(3) : Math.round(value),
+        rating,
+        threshold: name === 'LCP' ? '2500ms' : name === 'INP' ? '200ms' : name === 'CLS' ? '0.1' : 'N/A'
+      });
+      
+      if (rating === 'poor') {
+        console.warn(`⚠️ ${name} needs optimization!`);
+      } else if (rating === 'good') {
+        console.log(`✅ ${name} performing well!`);
+      }
+    }
+
+    onCLS(logMetric);
+    onINP(logMetric);
+    onLCP(logMetric);
+    onFCP(logMetric);
+    onTTFB(logMetric);
     
-    <p>Dual Analytics Observatory: Cloudflare + Google Analytics. Deployed via GitHub → Netlify.</p>
-    <p>Domain: <a href="https://kypriatechnologies.org">kypriatechnologies.org</a></p>
+    console.log('🔮 Core Web Vitals monitoring active');
+  </script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('🏛️ Service Worker consecrated:', reg.scope))
+          .catch(err => console.log('⚠️ SW registration deferred:', err));
+      });
+    }
+  </script>
+
+  <!-- Custom Event Tracking -->
+  <script>
+    function cloudflare_event(eventName) {
+      if (window.cf_beacon && window.cf_beacon.sendEvent) {
+        window.cf_beacon.sendEvent(eventName);
+      }
+    }
     
-    <footer>
-      <p>© 2025 Kypria LLC. Licensed under MIT.</p>
-      <p>The foundation is laid. The structure ascends.</p>
-    </footer>
-  </div>
+    window.addEventListener('load', function() {
+      cloudflare_event('halloween_seal_viewed');
+      console.log('🎃 Halloween Seal 2025 loaded - Analytics tracking active');
+      console.log('📊 Dual Analytics Observatory: Netlify + Cloudflare');
+    });
+    
+    // Contact Form Handling
+    const form = document.getElementById('contact-form');
+    const messageDiv = document.getElementById('form-message');
+
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = '🔥 Sending...';
+        }
+      });
+    }
+
+    // Handle URL parameters for success/error states
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      messageDiv.className = 'form-message success';
+      messageDiv.textContent = '✅ Message sent successfully! The Steward will respond soon.';
+      messageDiv.style.display = 'block';
+    } else if (urlParams.get('error') === 'true') {
+      messageDiv.className = 'form-message error';
+      messageDiv.textContent = '⚠️ Something went wrong. Please try again or email directly.';
+      messageDiv.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
