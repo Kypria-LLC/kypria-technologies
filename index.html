@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kypria Technologies – The Basilica Stands</title>
+  <meta name="description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal.">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#1a1a2e">
+  
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    
+    .basilica {
+      max-width: 800px;
+      text-align: center;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #dda15e;
+      font-style: italic;
+    }
+    
+    .canon {
+      font-size: 1.2rem;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-left: 4px solid #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+      text-align: left;
+    }
+    
+    .flame {
+      font-size: 4rem;
+      animation: flicker 3s infinite alternate;
+    }
+    
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    
+    a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="basilica">
+    <div class="flame">🏛️</div>
+    <h1>Kypria Technologies</h1>
+    <p class="subtitle">The Basilica Stands. The Canon Lineage is Eternal.</p>
+    
+    <div class="canon">
+      <p>📜 <strong>Era of Proclamation & Sustenance</strong></p>
+      <p>This digital shrine serves as the foundation stone of Kypria LLC's eternal presence.</p>
+      <p>Every deployment is logged in the Ledger of Flames for audit and repeatability.</p>
+    </div>
+    
+    <p>Monitored by Cloudflare Analytics. Deployed via GitHub → Netlify.</p>
+    <p>Domain: <a href="https://kypriatechnologies.org">kypriatechnologies.org</a></p>
+    
+    <footer>
+      <p>© 2025 Kypria LLC. Licensed under MIT.</p>
+      <p>The foundation is laid. The structure ascends.</p>
+    </footer>
+  </div>
+</body>
+</html>
