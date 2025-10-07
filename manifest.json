@@ -1,11 +1,11 @@
 {
   "name": "Kypria Technologies",
   "short_name": "Kypria",
-  "description": "Official site of Kypria Technologies. The Basilica Stands. The Canon Lineage is Eternal.",
+  "description": "Official site of Kypria Technologies. The Basilica Stands. The Canon Lineage is Eternal. 🎃 Halloween 2025 Seal Active.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#1a1a2e",
+  "background_color": "#1a0f0f",
+  "theme_color": "#1a0f0f",
   "orientation": "portrait-primary",
   "icons": [
     {

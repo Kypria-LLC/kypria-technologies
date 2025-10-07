@@ -10,10 +10,33 @@
   <link rel="manifest" href="/manifest.json">
   
   <!-- Theme Color -->
-  <meta name="theme-color" content="#1a1a2e">
+  <meta name="theme-color" content="#1a0f0f">
   
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Kypria Technologies – The Basilica Stands">
+  <meta property="og:description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal. 🎃 Halloween 2025 Seal Active.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kypriatechnologies.org">
+  <meta property="og:image" content="https://kypriatechnologies.org/icon-512.png">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kypria Technologies – The Basilica Stands">
+  <meta name="twitter:description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal. 🎃 Halloween 2025 Seal Active.">
+  <meta name="twitter:image" content="https://kypriatechnologies.org/icon-512.png">
+  
+  <!-- Dual Analytics Observatory -->
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   
   <style>
     * {
@@ -24,7 +47,7 @@
     
     body {
       font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      background: linear-gradient(135deg, #1a0f0f 0%, #2d1810 50%, #1a0a0a 100%);
       color: #f0f0f0;
       min-height: 100vh;
       display: flex;
@@ -39,23 +62,24 @@
       max-width: 800px;
       text-align: center;
       padding: 3rem;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 140, 0, 0.08);
       border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 32px rgba(255, 69, 0, 0.4), 0 0 60px rgba(255, 140, 0, 0.2);
       backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 140, 0, 0.3);
     }
     
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: #ffd700;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #ff8c00;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 140, 0, 0.6);
     }
     
     .subtitle {
       font-size: 1.5rem;
       margin-bottom: 2rem;
-      color: #dda15e;
+      color: #ff6347;
       font-style: italic;
     }
     
@@ -63,19 +87,41 @@
       font-size: 1.2rem;
       margin: 2rem 0;
       padding: 1.5rem;
-      border-left: 4px solid #ffd700;
-      background: rgba(255, 215, 0, 0.1);
+      border-left: 4px solid #ff8c00;
+      background: rgba(255, 140, 0, 0.15);
       text-align: left;
     }
     
     .flame {
       font-size: 4rem;
-      animation: flicker 3s infinite alternate;
+      animation: flicker 3s infinite alternate, float 4s ease-in-out infinite;
     }
     
     @keyframes flicker {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .halloween-seal {
+      display: inline-block;
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 69, 0, 0.2);
+      border: 2px solid #ff8c00;
+      border-radius: 8px;
+      color: #ff8c00;
+      font-weight: bold;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(255, 140, 0, 0.8); }
     }
     
     footer {
@@ -85,28 +131,31 @@
     }
     
     a {
-      color: #ffd700;
+      color: #ff8c00;
       text-decoration: none;
     }
     
     a:hover {
       text-decoration: underline;
+      text-shadow: 0 0 10px rgba(255, 140, 0, 0.6);
     }
   </style>
 </head>
 <body>
   <div class="basilica">
-    <div class="flame">🏛️</div>
+    <div class="flame">🎃</div>
     <h1>Kypria Technologies</h1>
     <p class="subtitle">The Basilica Stands. The Canon Lineage is Eternal.</p>
+    <div class="halloween-seal">🦇 Halloween 2025 Seal Active 🦇</div>
     
     <div class="canon">
       <p>📜 <strong>Era of Proclamation & Sustenance</strong></p>
+      <p>🎃 <strong>Halloween 2025 Special Observance</strong></p>
       <p>This digital shrine serves as the foundation stone of Kypria LLC's eternal presence.</p>
       <p>Every deployment is logged in the Ledger of Flames for audit and repeatability.</p>
     </div>
     
-    <p>Monitored by Cloudflare Analytics. Deployed via GitHub → Netlify.</p>
+    <p>Dual Analytics Observatory: Cloudflare + Google Analytics. Deployed via GitHub → Netlify.</p>
     <p>Domain: <a href="https://kypriatechnologies.org">kypriatechnologies.org</a></p>
     
     <footer>
