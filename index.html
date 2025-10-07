@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kypria Technologies – The Basilica Stands</title>
-  <meta name="description" content="Official site of Kypria Technologies. The Canon Lineage is Eternal.">
+  <title>Kypria Technologies – The Basilica Stands (Halloween 2025)</title>
+  <meta name="description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  
+  <!-- Halloween Open Graph Meta -->
+  <meta property="og:title" content="Kypria Technologies — Basilica (Halloween)">
+  <meta property="og:description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  <meta property="og:url" content="https://kypriatechnologies.org/">
+  <meta property="og:image" content="https://kypriatechnologies.org/assets/seasonal/halloween/og-halloween-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kypria Technologies — Basilica (Halloween)">
+  <meta name="twitter:description" content="The Basilica dons its mask. The Crest burns with Halloween fire. Enter, if you dare.">
+  <meta name="twitter:image" content="https://kypriatechnologies.org/assets/seasonal/halloween/og-halloween-1200x630.png">
   
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
   
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#1a1a2e">
+  <!-- Halloween Theme Color -->
+  <meta name="theme-color" content="#ff6600">
   
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
@@ -45,17 +60,34 @@
       backdrop-filter: blur(10px);
     }
     
+    /* Halloween Seasonal Banner */
+    .seasonal-banner {
+      background: linear-gradient(90deg, #ff6600, #ff8c00);
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 20px rgba(255, 102, 0, 0.5); }
+      to { box-shadow: 0 0 30px rgba(255, 102, 0, 0.8); }
+    }
+    
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: #ffd700;
+      color: #ff6600;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     .subtitle {
       font-size: 1.5rem;
       margin-bottom: 2rem;
-      color: #dda15e;
+      color: #ffd166;
       font-style: italic;
     }
     
@@ -63,9 +95,15 @@
       font-size: 1.2rem;
       margin: 2rem 0;
       padding: 1.5rem;
-      border-left: 4px solid #ffd700;
-      background: rgba(255, 215, 0, 0.1);
+      border-left: 4px solid #ff6600;
+      background: rgba(255, 102, 0, 0.1);
       text-align: left;
+    }
+    
+    .canon .halloween-note {
+      margin-top: 1rem;
+      color: #ff6600;
+      font-weight: bold;
     }
     
     .flame {
@@ -84,8 +122,14 @@
       opacity: 0.7;
     }
     
+    .halloween-footer {
+      margin-top: 0.5rem;
+      color: #ff6600;
+      font-weight: bold;
+    }
+    
     a {
-      color: #ffd700;
+      color: #ff6600;
       text-decoration: none;
     }
     
@@ -96,6 +140,10 @@
 </head>
 <body>
   <div class="basilica">
+    <div class="seasonal-banner">
+      🎃 HALLOWEEN SEAL 2025 ACTIVE 🎃
+    </div>
+    
     <div class="flame">🏛️</div>
     <h1>Kypria Technologies</h1>
     <p class="subtitle">The Basilica Stands. The Canon Lineage is Eternal.</p>
@@ -104,15 +152,34 @@
       <p>📜 <strong>Era of Proclamation & Sustenance</strong></p>
       <p>This digital shrine serves as the foundation stone of Kypria LLC's eternal presence.</p>
       <p>Every deployment is logged in the Ledger of Flames for audit and repeatability.</p>
+      <p class="halloween-note">🎃 Halloween Edition: The veil is thin. The flames burn orange. The Basilica transforms.</p>
     </div>
     
-    <p>Monitored by Cloudflare Analytics. Deployed via GitHub → Netlify.</p>
+    <p>Monitored by Cloudflare Analytics & Netlify Analytics. Deployed via GitHub → Netlify.</p>
     <p>Domain: <a href="https://kypriatechnologies.org">kypriatechnologies.org</a></p>
     
     <footer>
       <p>© 2025 Kypria LLC. Licensed under MIT.</p>
       <p>The foundation is laid. The structure ascends.</p>
+      <p class="halloween-footer">🎃 Halloween 2025 Seal - Active until November 1st</p>
     </footer>
   </div>
+  
+  <!-- Custom Event Tracking -->
+  <script>
+    // Track seasonal engagement
+    function cloudflare_event(eventName) {
+      if (window.cf_beacon && window.cf_beacon.sendEvent) {
+        window.cf_beacon.sendEvent(eventName);
+      }
+    }
+    
+    // Track Halloween banner visibility
+    window.addEventListener('load', function() {
+      cloudflare_event('halloween_seal_viewed');
+      console.log('🎃 Halloween Seal 2025 loaded - Analytics tracking active');
+      console.log('📊 Dual Analytics Observatory: Netlify + Cloudflare');
+    });
+  </script>
 </body>
 </html>
