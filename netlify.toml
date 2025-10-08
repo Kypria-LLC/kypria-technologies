@@ -1,8 +1,7 @@
 # Netlify Configuration for Kypria Technologies
-
 [build]
-  # Inject CF_TOKEN during build
-  command = "sed -i 's/YOUR_CLOUDFLARE_TOKEN_HERE/'$CF_TOKEN'/g' index.html || echo 'Token injection skipped'"
+  # CF_TOKEN injection removed for security - tokens should not be injected into public files
+  # command = "sed -i 's/YOUR_CLOUDFLARE_TOKEN_HERE/'$CF_TOKEN'/g' index.html || echo 'Token injection skipped'"
   publish = "."
   
 [[redirects]]
