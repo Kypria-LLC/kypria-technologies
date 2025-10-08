@@ -65,629 +65,131 @@
       window.kypria.errors.push(errorData);
       console.error('🚨 Unhandled rejection:', errorData);
     });
-    
-    console.log('🛡️ Error monitoring activated');
   </script>
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23FF4D00'/><stop offset='50%25' style='stop-color:%23FF7A1A'/><stop offset='100%25' style='stop-color:%23FFD166'/></linearGradient></defs><rect width='100' height='100' fill='url(%23g)'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'>K</text></svg>">
-
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
-          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
-
+  <!-- Ritual Steward - Ceremonial Event Manager -->
+  <script>
+    // Initialize Ritual Steward namespace
+    window.kypria.ritualSteward = window.kypria.ritualSteward || {};
+    
+    // Ritual Event Manager
+    window.kypria.ritualSteward.eventManager = {
+      events: [],
+      
+      // Register a ceremonial event
+      registerEvent: function(eventName, eventData) {
+        const event = {
+          name: eventName,
+          data: eventData,
+          timestamp: new Date().toISOString(),
+          sealed: false
+        };
+        this.events.push(event);
+        console.log('🔥 Ritual event registered:', eventName, event);
+        return event;
+      },
+      
+      // Ceremonial trigger method
+      triggerCeremony: function(ceremonyType) {
+        console.log('🎃 Initiating ceremony:', ceremonyType);
+        
+        const ceremony = {
+          type: ceremonyType,
+          initiated: new Date().toISOString(),
+          status: 'active'
+        };
+        
+        // Apply Seal magiko transformation
+        document.body.classList.add('seal-magiko');
+        document.body.setAttribute('data-ceremony', ceremonyType);
+        
+        // Trigger custom event
+        const customEvent = new CustomEvent('ritual-ceremony', {
+          detail: ceremony
+        });
+        window.dispatchEvent(customEvent);
+        
+        console.log('✨ Ceremony active - Seal transformation applied');
+        return ceremony;
+      },
+      
+      // Complete the ceremony
+      completeCeremony: function() {
+        document.body.classList.remove('seal-magiko');
+        document.body.removeAttribute('data-ceremony');
+        console.log('🌙 Ceremony completed - Seal released');
+      }
+    };
+    
+    console.log('🏛️ Ritual Steward initialized - Ceremonial systems ready');
+  </script>
+  
+  <!-- Seal Magiko Transformation Styles -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    :root {
-      /* Govee RGB++ Color Tokens - Halloween Edition */
-      --flame-flow: linear-gradient(90deg, #FF4D00, #FF7A1A, #FFD166);
-      --aether-pulse: linear-gradient(135deg, #7C3AED, #4ADE80, #06B6D4);
-      --stone-glow: linear-gradient(180deg, #2F2F2F, #4B5563);
-      --mist-drift: linear-gradient(90deg, #9AA0A6, #E5E7EB);
-      --gold-spark: linear-gradient(90deg, #F59E0B, #FDE68A);
-      
-      /* Legacy tokens */
-      --primary: #ff6600;
-      --secondary: #ff8c00;
-      --accent: #ffd166;
-      --dark: #0f172a;
-      --darker: #020617;
-      --light: #f1f5f9;
-      --text: #e2e8f0;
-      --text-muted: #94a3b8;
-    }
-    
-    @keyframes flameFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    @keyframes aetherPulse {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-    
-    @keyframes goldShimmer {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-    
-    @keyframes glow {
-      from { box-shadow: 0 0 20px rgba(255, 102, 0, 0.5); }
-      to { box-shadow: 0 0 30px rgba(255, 102, 0, 0.8); }
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    
-    header {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--stone-glow);
-      border-bottom: 2px solid rgba(255, 77, 0, 0.3);
-      margin-bottom: 3rem;
+    /* Base Seal Magiko transformation class */
+    .seal-magiko {
+      transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
       position: relative;
-      overflow: hidden;
     }
     
-    header::before {
+    /* Ceremonial glow effect */
+    .seal-magiko::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--flame-flow);
-      background-size: 300% 300%;
-      animation: flameFlow 6s ease infinite;
-    }
-    
-    /* Halloween Seasonal Banner */
-    .seasonal-banner {
-      background: linear-gradient(90deg, #ff6600, #ff8c00);
-      color: white;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-      font-weight: bold;
-      box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
-      animation: glow 2s ease-in-out infinite alternate;
-      text-align: center;
-    }
-    
-    .seasonal-banner a {
-      color: white;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-    
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      background: var(--flame-flow);
-      background-size: 300% 300%;
-      animation: flameFlow 8s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-    }
-    
-    .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: var(--accent);
-      font-weight: 300;
-    }
-    
-    .hero {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text);
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      line-height: 1.8;
-    }
-    
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-    
-    .feature-card {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(255, 102, 0, 0.2);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-    }
-    
-    .feature-card h3 {
-      background: var(--aether-pulse);
-      background-size: 200% 200%;
-      animation: aetherPulse 8s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-    
-    .feature-card p {
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
-    /* Contact Section */
-    .contact-section {
-      background: var(--stone-glow);
-      border: 2px solid rgba(255, 77, 0, 0.3);
-      border-radius: 16px;
-      padding: 3rem 2rem;
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--flame-flow);
-      background-size: 300% 300%;
-      animation: flameFlow 6s ease infinite;
-    }
-    
-    .contact-section h2 {
-      text-align: center;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      background: var(--gold-spark);
-      background-size: 200% 200%;
-      animation: goldShimmer 3s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-    }
-    
-    .contact-section p {
-      text-align: center;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-      display: block;
-      color: var(--text);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-    
-    .form-group input,
-    .form-group textarea {
       width: 100%;
-      padding: 0.875rem 1rem;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      border-radius: 8px;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 1rem;
-      transition: all 0.3s ease;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9999;
+      animation: sealPulse 3s ease-in-out infinite;
     }
     
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #FF7A1A;
-      box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.1);
-      background: rgba(30, 41, 59, 0.8);
-    }
-    
-    .form-group textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
-    .form-group.honeypot {
-      position: absolute;
-      left: -9999px;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-    }
-    
-    .btn-flame {
-      background: var(--flame-flow);
-      background-size: 300% 300%;
-      animation: flameFlow 6s ease infinite;
-      color: white;
-      font-weight: 700;
-      padding: 14px 32px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 77, 0, 0.6);
-      transition: all 0.2s ease;
-      font-size: 1.05rem;
-      width: 100%;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .btn-flame:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 30px rgba(255, 77, 0, 0.8);
-    }
-    
-    .btn-flame:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    
-    .form-message {
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      font-weight: 600;
-      display: none;
-    }
-    
-    .form-message.success {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid rgba(16, 185, 129, 0.5);
-      color: #10b981;
-      display: block;
-    }
-    
-    .form-message.error {
-      background: rgba(239, 68, 68, 0.2);
-      border: 1px solid rgba(239, 68, 68, 0.5);
-      color: #ef4444;
-      display: block;
-    }
-    
-    .status-banner {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    
-    .status-banner h2 {
-      color: #10b981;
-      margin-bottom: 0.5rem;
-    }
-    
-    .status-list {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .status-item {
-      background: rgba(16, 185, 129, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      color: #10b981;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(255, 102, 0, 0.2);
-      margin-top: 4rem;
-      color: var(--text-muted);
-    }
-    
-    .halloween-footer {
-      margin-top: 0.5rem;
-      color: #ff6600;
-      font-weight: bold;
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        padding: 1rem;
+    /* Seal pulse animation */
+    @keyframes sealPulse {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
       }
-      
-      header {
-        padding: 2rem 1rem;
+      50% {
+        opacity: 0.6;
+        transform: scale(1.05);
       }
-      
-      .features {
-        grid-template-columns: 1fr;
-      }
+    }
+    
+    /* Transformation effects during ceremony */
+    .seal-magiko[data-ceremony="halloween"] {
+      filter: hue-rotate(15deg) brightness(1.1);
+    }
+    
+    .seal-magiko[data-ceremony="basilica"] {
+      box-shadow: 0 0 50px rgba(255, 102, 0, 0.3);
+    }
+    
+    /* Text elements transform during ceremony */
+    .seal-magiko h1,
+    .seal-magiko h2,
+    .seal-magiko h3 {
+      text-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+      transition: text-shadow 0.6s ease;
+    }
+    
+    /* Interactive elements glow */
+    .seal-magiko button,
+    .seal-magiko a {
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .seal-magiko button:hover,
+    .seal-magiko a:hover {
+      box-shadow: 0 0 25px rgba(255, 102, 0, 0.6);
     }
   </style>
+  
 </head>
 <body>
-  <header>
-    <div class="seasonal-banner">
-      🎃 HALLOWEEN SEAL 2025 ACTIVE 🎃
-      <br>
-      <a href="/assets/seasonal/halloween/HLWN.pdf" target="_blank" rel="noopener">📜 Read the Halloween Proclamation (PDF)</a>
-    </div>
-    <h1>Kypria Technologies</h1>
-    <p class="subtitle">The Basilica Stands. The Canon Lineage is Eternal.</p>
-  </header>
-
-  <main class="container">
-    <div class="hero">
-      <p>
-        The Basilica stands. The Canon Lineage is eternal. Built upon the solid Βραχος (rock) foundation, 
-        we showcase cutting-edge web technologies and modern development practices for 2025.
-      </p>
-      <p style="color: #ff6600; font-weight: bold;">
-        🎃 Halloween Edition: The veil is thin. The flames burn orange. The Basilica transforms.
-      </p>
-    </div>
-
-    <div class="status-banner">
-      <h2>✓ Live & Operational</h2>
-      <div class="status-list">
-        <span class="status-item">Domain Active</span>
-        <span class="status-item">SSL/TLS Secured</span>
-        <span class="status-item">Cloudflare Optimized</span>
-        <span class="status-item">Dual Analytics</span>
-        <span class="status-item">PWA Ready</span>
-        <span class="status-item">Halloween Seal Active</span>
-      </div>
-    </div>
-
-    <section class="features">
-      <div class="feature-card">
-        <h3>🚀 Performance Optimized</h3>
-        <p>
-          Core Web Vitals best practices with LCP under 2.5 seconds, INP under 200ms, 
-          and CLS under 0.1. HTTP/3, Brotli compression, and auto-minification enabled.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>🛡️ Security Hardened</h3>
-        <p>
-          SSL/TLS Full (strict) mode with HSTS enabled, security headers configured, 
-          and Cloudflare protection active. Enterprise-grade DDoS mitigation.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>📊 Fully Monitored</h3>
-        <p>
-          Dual analytics observatory: Netlify (server-side) + Cloudflare (client-side). 
-          Core Web Vitals tracking, error monitoring, and performance observability.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>♿ Accessibility First</h3>
-        <p>
-          WCAG 2.2 AA compliant with semantic HTML, ARIA labels, keyboard navigation, 
-          and screen reader optimization throughout.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>📱 Progressive Web App</h3>
-        <p>
-          Service worker ready, offline functionality capable, installable as native app, 
-          with app-like user experience across all devices.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <h3>🌐 Modern Architecture</h3>
-        <p>
-          Built with ES6+ JavaScript, CSS Grid and Flexbox, custom properties for theming, 
-          and mobile-first responsive design principles.
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <h2>🔥 Reach the Steward</h2>
-      <p>
-        Have a project in mind? Need cutting-edge web development? 
-        The Basilica welcomes your inquiry. Send your message through the flame.
-      </p>
-
-      <div id="form-message" class="form-message"></div>
-
-      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you" class="contact-form" id="contact-form">
-        <input type="hidden" name="form-name" value="contact">
-        
-        <div class="form-group honeypot">
-          <label for="bot-field">Don't fill this out if you're human:</label>
-          <input type="text" name="bot-field" id="bot-field">
-        </div>
-
-        <div class="form-group">
-          <label for="name">Your Name *</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required 
-            placeholder="Enter your name"
-            autocomplete="name"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="email">Your Email *</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            required 
-            placeholder="your.email@example.com"
-            autocomplete="email"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input 
-            type="text" 
-            id="subject" 
-            name="subject" 
-            placeholder="What's this about?"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="message">Your Message *</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            required 
-            placeholder="Tell us about your project, inquiry, or collaboration idea..."
-          ></textarea>
-        </div>
-
-        <button type="submit" class="btn-flame">
-          🔥 Send Message Through the Flame
-        </button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Kypria LLC. Licensed under MIT.</p>
-    <p style="margin-top: 0.5rem;">The foundation is laid. The structure ascends.</p>
-    <p class="halloween-footer">🎃 Halloween 2025 Seal - Active until November 1st</p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem;">#Kypria #CanonLineage #EternalBasilica</p>
-  </footer>
-
-  <!-- Core Web Vitals Tracking -->
-  <script type="module">
-    import {onCLS, onINP, onLCP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@3?module';
-
-    function logMetric({name, value, rating}) {
-      console.log(`📊 ${name}:`, {
-        value: name === 'CLS' ? value.toFixed(3) : Math.round(value),
-        rating,
-        threshold: name === 'LCP' ? '2500ms' : name === 'INP' ? '200ms' : name === 'CLS' ? '0.1' : 'N/A'
-      });
-      
-      if (rating === 'poor') {
-        console.warn(`⚠️ ${name} needs optimization!`);
-      } else if (rating === 'good') {
-        console.log(`✅ ${name} performing well!`);
-      }
-    }
-
-    onCLS(logMetric);
-    onINP(logMetric);
-    onLCP(logMetric);
-    onFCP(logMetric);
-    onTTFB(logMetric);
-    
-    console.log('🔮 Core Web Vitals monitoring active');
-  </script>
-
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('🏛️ Service Worker consecrated:', reg.scope))
-          .catch(err => console.log('⚠️ SW registration deferred:', err));
-      });
-    }
-  </script>
-
-  <!-- Custom Event Tracking -->
-  <script>
-    function cloudflare_event(eventName) {
-      if (window.cf_beacon && window.cf_beacon.sendEvent) {
-        window.cf_beacon.sendEvent(eventName);
-      }
-    }
-    
-    window.addEventListener('load', function() {
-      cloudflare_event('halloween_seal_viewed');
-      console.log('🎃 Halloween Seal 2025 loaded - Analytics tracking active');
-      console.log('📊 Dual Analytics Observatory: Netlify + Cloudflare');
-    });
-    
-    // Contact Form Handling
-    const form = document.getElementById('contact-form');
-    const messageDiv = document.getElementById('form-message');
-
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = '🔥 Sending...';
-        }
-      });
-    }
-
-    // Handle URL parameters for success/error states
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-      messageDiv.className = 'form-message success';
-      messageDiv.textContent = '✅ Message sent successfully! The Steward will respond soon.';
-      messageDiv.style.display = 'block';
-    } else if (urlParams.get('error') === 'true') {
-      messageDiv.className = 'form-message error';
-      messageDiv.textContent = '⚠️ Something went wrong. Please try again or email directly.';
-      messageDiv.style.display = 'block';
-    }
-  </script>
+  <!-- Page content continues here -->
 </body>
 </html>
