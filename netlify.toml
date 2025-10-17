@@ -1,25 +1,30 @@
-# Netlify Configuration for Kypria Technologies
+# Kypria Technologies – Basilica Netlify Configuration
+# Version 2.0 – Hardened & Modernized
+
 [build]
-  # CF_TOKEN injection removed for security - tokens should not be injected into public files
-  # command = "sed -i 's/YOUR_CLOUDFLARE_TOKEN_HERE/'$CF_TOKEN'/g' index.html || echo 'Token injection skipped'"
   publish = "."
-  
+  # If you later add a build step (Astro, Hugo, etc.), set it here:
+  # command = "npm run build"
+
+# 🔀 Redirects
 [[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
   status = 200
+  force = true
 
-# Security headers
+# 🛡️ Global Security Headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.netlify.com"
 
-# Cache static assets
+# 🎨 Cache Busting & Performance
 [[headers]]
   for = "/*.css"
   [headers.values]
@@ -44,3 +49,15 @@
   for = "/*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# 📜 Default HTML caching (shorter, to allow updates)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=600, must-revalidate"
+
+# 🔮 Future‑proof: Service Worker / PWA
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
