@@ -1,9 +1,12 @@
-# Kypria Technologies – Basilica Netlify Configuration
+# ═══════════════════════════════════════════════════════════════
+# 🔥 Kypria Technologies – Basilica Netlify Configuration 🔥
 # Version 2.0 – Hardened & Modernized
+# Every deploy henceforth resonates not only as code, but as ritual.
+# ═══════════════════════════════════════════════════════════════
 
 [build]
-  publish = "."
-  # If you later add a build step (Astro, Hugo, etc.), set it here:
+  publish = "."  # ✅ Serve from root directory where index.html lives
+  # Optional: If you adopt Astro, Hugo, or another static generator:
   # command = "npm run build"
 
 # 🔀 Redirects
@@ -22,7 +25,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connec..."
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.netlify.com"
 
 # 🎨 Cache Busting & Performance
 [[headers]]
