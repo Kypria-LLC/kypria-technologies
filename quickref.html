@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Reference - Kypria Technologies</title>
+    <meta name="description" content="Quick reference card for rapid deployment">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0f0f 0%, #2d1810 50%, #1a0f0f 100%);
+            background-attachment: fixed;
+            color: #f5e6d3;
+            font-family: 'Courier New', 'Monaco', monospace;
+            line-height: 1.6;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .flame-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(0deg, 
+                rgba(255, 102, 0, 0.3) 0%, 
+                transparent 100%);
+            pointer-events: none;
+            animation: flicker 2s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #ff6600;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.6);
+            position: relative;
+            z-index: 1;
+            font-family: 'Courier New', monospace;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ff6600;
+            padding-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: #ffcc66;
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.8);
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 102, 0, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 102, 0, 1); }
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #ff9944;
+            font-style: italic;
+        }
+        
+        .ascii-pumpkin {
+            color: #ff6600;
+            font-size: 0.8rem;
+            line-height: 1.2;
+            white-space: pre;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        nav {
+            background: rgba(255, 102, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ff6600;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #ffcc66;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff6600;
+            display: inline-block;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 102, 0, 0.3);
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
+        }
+        
+        h2 {
+            color: #ff9944;
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+            border-left: 5px solid #ff6600;
+            padding-left: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        h3 {
+            color: #ffbb77;
+            font-size: 1.2rem;
+            margin: 15px 0 10px 0;
+        }
+        
+        .cmd-block {
+            background: #000;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #ff6600;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .cmd-block code {
+            color: #00ff00;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+        
+        .info-card {
+            background: rgba(255, 102, 0, 0.15);
+            border: 2px solid #ff6600;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning-card {
+            background: rgba(255, 0, 0, 0.15);
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success-card {
+            background: rgba(0, 255, 0, 0.15);
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            border: 1px solid #ff6600;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background: rgba(255, 102, 0, 0.3);
+            color: #ffcc66;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: rgba(255, 102, 0, 0.05);
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        ul li:before {
+            content: "►";
+            position: absolute;
+            left: 5px;
+            color: #ff6600;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: rgba(255, 102, 0, 0.3);
+            color: #ffcc66;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid #ff6600;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 102, 0, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid #ff6600;
+            color: #ff9944;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 6px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .flame-bg {
+                display: none;
+            }
+            
+            .container {
+                border: 2px solid black;
+                box-shadow: none;
+            }
+            
+            nav, .back-link {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flame-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="ascii-pumpkin">    ___
+   /   \
+  | o o |
+  |  >  |
+   \___/
+  🎃 🎃</div>
+            <h1>⚡ QUICK REFERENCE CARD ⚡</h1>
+            <p class="subtitle">The 5-Minute Deployment Protocol</p>
+        </header>
+        
+        <nav>
+            <a href="index.html">🏠 Home</a>
+            <a href="codex.html">📜 Codex</a>
+            <a href="themes.html">🎨 Themes</a>
+            <a href="walkthrough.html">🔥 Walkthrough</a>
+            <a href="quickref.html">⚡ Quick Ref</a>
+        </nav>
+        
+        <main>
+            <section>
+                <h2>🚀 THE 5-MINUTE UPDATE PROCESS</h2>
+                
+                <h3>✅ Step 1: Pre-Flight</h3>
+                <div class="cmd-block">
+<code># Backup DNS state
+dig kypriatechnologies.org > backup.txt
+
+# Verify site is working
+curl -I https://kypriatechnologies.org</code>
+                </div>
+                
+                <h3>⚙️ Step 2: Make Changes</h3>
+                <div class="cmd-block">
+<code># Pull latest
+cd ~/kypria-technologies
+git pull origin main
+
+# Edit files
+nano index.html
+
+# Test locally
+python3 -m http.server 8000
+# Visit: http://localhost:8000
+# Press Ctrl+C when done</code>
+                </div>
+                
+                <h3>🔥 Step 3: Deploy</h3>
+                <div class="cmd-block">
+<code># Stage and commit
+git add .
+git commit -m "feat: Add [your enhancement]"
+
+# Push
+git push origin main
+
+# Wait 2-3 minutes for Netlify build</code>
+                </div>
+                
+                <h3>✅ Step 4: Verify</h3>
+                <div class="cmd-block">
+<code># Hard refresh browser
+# Windows/Linux: Ctrl + Shift + R
+# Mac: Cmd + Shift + R
+
+# Visit site
+open https://kypriatechnologies.org</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🚨 EMERGENCY ROLLBACK</h2>
+                
+                <div class="warning-card">
+                    <h3>Via Git</h3>
+                    <div class="cmd-block">
+<code># Revert last commit
+git revert HEAD
+git push origin main</code>
+                    </div>
+                    
+                    <h3>Via Netlify</h3>
+                    <ul>
+                        <li>Visit: app.netlify.com/sites/kypria-technologies/deploys</li>
+                        <li>Find last working deploy</li>
+                        <li>Click "..." → "Publish deploy"</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🔗 CRITICAL URLS</h2>
+                
+                <table>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>URL</th>
+                    </tr>
+                    <tr>
+                        <td><strong>GitHub Repo</strong></td>
+                        <td><a href="https://github.com/Kypria-LLC/kypria-technologies" style="color: #66ff66;">Repository</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Netlify</strong></td>
+                        <td><a href="https://app.netlify.com/sites/kypria-technologies/deploys" style="color: #66ff66;">Dashboard</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloudflare</strong></td>
+                        <td><a href="https://dash.cloudflare.com/d738369b5c464ef1fcbd5c9c33517822/kypriatechnologies.org/dns/records" style="color: #66ff66;">DNS</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Live Site</strong></td>
+                        <td><a href="https://kypriatechnologies.org" style="color: #66ff66;">kypriatechnologies.org</a></td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>🛡️ GOLDEN RULES</h2>
+                
+                <div class="success-card">
+                    <ul>
+                        <li><strong>ALWAYS</strong> test locally first</li>
+                        <li><strong>NEVER</strong> edit Cloudflare DNS without reason</li>
+                        <li><strong>WAIT</strong> 2-3 minutes after push for CDN</li>
+                        <li><strong>HARD REFRESH</strong> browser (Ctrl+Shift+R)</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>✅ SAFE TO CHANGE</h2>
+                <div class="info-card">
+                    <ul>
+                        <li>HTML/CSS/JS files</li>
+                        <li>Images and assets</li>
+                        <li>Content updates</li>
+                        <li>README.md</li>
+                        <li>manifest.json</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>❌ DANGEROUS TO TOUCH</h2>
+                <div class="warning-card">
+                    <ul>
+                        <li>Cloudflare DNS records</li>
+                        <li>Netlify site name</li>
+                        <li>Deleting Netlify site</li>
+                        <li>Conflicting DNS entries</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🎨 THEME QUICK-ADD</h2>
+                
+                <h3>Halloween Example</h3>
+                <div class="cmd-block">
+<code>&lt;!-- In &lt;head&gt; --&gt;
+&lt;style&gt;
+body.halloween-mode {
+    background: linear-gradient(135deg, 
+        #1a0f0f 0%, #2d1810 50%, #1a0f0f 100%);
+}
+&lt;/style&gt;
+
+&lt;!-- Before &lt;/body&gt; --&gt;
+&lt;script&gt;
+function initHalloween() {
+    document.body.classList.add('halloween-mode');
+    console.log('🎃 Halloween activated!');
+}
+
+// Auto-activate in October
+if (new Date().getMonth() === 9) {
+    window.addEventListener('DOMContentLoaded', 
+        initHalloween);
+}
+&lt;/script&gt;</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🐛 TROUBLESHOOTING</h2>
+                
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>Theme doesn't show</td>
+                        <td>Check console (F12), verify month logic</td>
+                    </tr>
+                    <tr>
+                        <td>Old content shows</td>
+                        <td>Hard refresh: Ctrl+Shift+R</td>
+                    </tr>
+                    <tr>
+                        <td>Build fails</td>
+                        <td>Check Netlify logs for errors</td>
+                    </tr>
+                    <tr>
+                        <td>DNS breaks</td>
+                        <td>Restore to: kypria-technologies.netlify.app</td>
+                    </tr>
+                    <tr>
+                        <td>Animations lag</td>
+                        <td>Reduce particle count in loops</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>📊 MONTH CODES (JavaScript)</h2>
+                
+                <table>
+                    <tr>
+                        <th>Month</th>
+                        <th>Code</th>
+                        <th>Theme</th>
+                    </tr>
+                    <tr>
+                        <td>January</td>
+                        <td>0</td>
+                        <td>🎆 New Year</td>
+                    </tr>
+                    <tr>
+                        <td>February</td>
+                        <td>1</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>March</td>
+                        <td>2</td>
+                        <td rowspan="3">🌸 Spring</td>
+                    </tr>
+                    <tr>
+                        <td>April</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>May</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>June</td>
+                        <td>5</td>
+                        <td rowspan="3">☀️ Summer</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>August</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>September</td>
+                        <td>8</td>
+                        <td>🍂 Autumn</td>
+                    </tr>
+                    <tr>
+                        <td>October</td>
+                        <td>9</td>
+                        <td>🎃 Halloween</td>
+                    </tr>
+                    <tr>
+                        <td>November</td>
+                        <td>10</td>
+                        <td>🍂 Autumn</td>
+                    </tr>
+                    <tr>
+                        <td>December</td>
+                        <td>11</td>
+                        <td>🎄 Christmas</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>⚡ COMMON COMMANDS</h2>
+                
+                <h3>Git Essentials</h3>
+                <div class="cmd-block">
+<code># Check current branch
+git branch
+
+# See recent commits
+git log --oneline -5
+
+# View changes
+git status
+git diff
+
+# Undo local changes
+git checkout -- index.html
+
+# Create new branch
+git checkout -b feature/new-theme</code>
+                </div>
+                
+                <h3>Local Testing</h3>
+                <div class="cmd-block">
+<code># Python server
+python3 -m http.server 8000
+
+# Node.js server
+npx http-server -p 8000
+
+# PHP server
+php -S localhost:8000
+
+# Then visit: http://localhost:8000</code>
+                </div>
+                
+                <h3>DNS Verification</h3>
+                <div class="cmd-block">
+<code># Check DNS resolution
+dig kypriatechnologies.org
+dig www.kypriatechnologies.org
+
+# Check via Cloudflare DNS
+dig @1.1.1.1 kypriatechnologies.org
+
+# Check headers
+curl -I https://kypriatechnologies.org</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>📅 DEPLOYMENT CHECKLIST</h2>
+                
+                <div class="info-card">
+                    <p><strong>Before pushing:</strong></p>
+                    <ul>
+                        <li>☐ Tested locally</li>
+                        <li>☐ No console errors</li>
+                        <li>☐ Mobile view checked</li>
+                        <li>☐ Animations smooth</li>
+                        <li>☐ DNS backed up</li>
+                        <li>☐ Commit message clear</li>
+                    </ul>
+                    
+                    <p style="margin-top: 15px;"><strong>After pushing:</strong></p>
+                    <ul>
+                        <li>☐ Netlify build succeeds</li>
+                        <li>☐ Wait 2-3 minutes</li>
+                        <li>☐ Hard refresh browser</li>
+                        <li>☐ Verify on mobile</li>
+                        <li>☐ Check console for errors</li>
+                        <li>☐ Test all links</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🔥 COMMIT MESSAGE PATTERNS</h2>
+                
+                <div class="cmd-block">
+<code># New features
+git commit -m "feat: Add Christmas theme"
+
+# Bug fixes
+git commit -m "fix: Correct snowflake animation"
+
+# Documentation
+git commit -m "docs: Update deployment guide"
+
+# Visual changes
+git commit -m "style: Enhance Halloween colors"
+
+# Maintenance
+git commit -m "chore: Clean up unused files"
+
+# Performance
+git commit -m "perf: Optimize animation loop"</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🎯 KEY METRICS</h2>
+                
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Target</th>
+                        <th>How to Check</th>
+                    </tr>
+                    <tr>
+                        <td>Build Time</td>
+                        <td>&lt; 60 sec</td>
+                        <td>Netlify dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Page Load</td>
+                        <td>&lt; 3 sec</td>
+                        <td>Browser Network tab</td>
+                    </tr>
+                    <tr>
+                        <td>Animation FPS</td>
+                        <td>60 fps</td>
+                        <td>Browser Performance tab</td>
+                    </tr>
+                    <tr>
+                        <td>DNS Propagation</td>
+                        <td>&lt; 30 min</td>
+                        <td>whatsmydns.net</td>
+                    </tr>
+                    <tr>
+                        <td>CDN Propagation</td>
+                        <td>2-3 min</td>
+                        <td>Hard refresh test</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>📞 EMERGENCY CONTACTS</h2>
+                
+                <div class="warning-card">
+                    <p><strong>If everything breaks:</strong></p>
+                    <ul>
+                        <li><strong>Cloudflare Support:</strong> dash.cloudflare.com/support</li>
+                        <li><strong>Netlify Support:</strong> netlify.com/support</li>
+                        <li><strong>GitHub Status:</strong> githubstatus.com</li>
+                        <li><strong>Full Codex:</strong> <a href="codex.html" style="color: #ffcc66;">codex.html</a></li>
+                        <li><strong>Detailed Walkthrough:</strong> <a href="walkthrough.html" style="color: #ffcc66;">walkthrough.html</a></li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>💾 BACKUP COMMANDS</h2>
+                
+                <div class="cmd-block">
+<code># Quick DNS backup
+dig kypriatechnologies.org > dns_$(date +%Y%m%d).txt
+
+# Backup entire repo
+tar -czf kypria_backup_$(date +%Y%m%d).tar.gz \
+    ~/kypria-technologies/
+
+# Export Git history
+git log --all --pretty=format:"%h %ad %s" \
+    --date=short > git_history.txt
+
+# Save current state as tag
+git tag -a v1.0-stable -m "Stable release"
+git push origin v1.0-stable</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🎓 REMEMBER</h2>
+                
+                <div class="success-card">
+                    <p style="font-size: 1.1rem; color: #ffcc66; text-align: center; font-weight: bold;">
+                        📜 Test locally first<br>
+                        ⚙️ Commit with clear messages<br>
+                        🔥 Verify after deployment<br>
+                        <br>
+                        <strong style="font-size: 1.2rem;">The Basilica Stands Eternal</strong>
+                    </p>
+                </div>
+            </section>
+            
+            <a href="index.html" class="back-link">⬅ Back to Basilica Home</a>
+        </main>
+        
+        <footer>
+            <p>🔥 <strong>The Basilica Stands. The Canon Lineage is Eternal.</strong> 🔥</p>
+            <p>© 2025 Kypria LLC • Quick Reference v1.0 • Print-Friendly • Halloween 2025 Edition</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">💾 Tip: Press Ctrl+P to print this reference card</p>
+        </footer>
+    </div>
+</body>
+</html>
