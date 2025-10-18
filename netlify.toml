@@ -1,33 +1,68 @@
 # ═══════════════════════════════════════════════════════════════
-# 🔥 Kypria Technologies – Basilica Netlify Configuration 🔥
-# Version 2.0 – Hardened & Modernized
+# 🔥 KYPRIA TECHNOLOGIES – BASILICA NETLIFY CONFIGURATION 🔥
+# Version 3.0 – ΟΓΚΩΔΗ (Massive, Monumental, Expansive)
 # Every deploy henceforth resonates not only as code, but as ritual.
 # ═══════════════════════════════════════════════════════════════
 
 [build]
-  publish = "public"  # ✅ Serve from /public folder where index.html lives
-  # Optional: If you adopt Astro, Hugo, or another static generator:
+  publish = "."   # ✅ Serve from repo root where index.html lives
+  # If you later adopt a static generator (Astro, Hugo, etc.):
   # command = "npm run build"
 
-# 🔀 Redirects
+# ═══════════════════════════════════════════════════════════════
+# 🔀 Redirects & Canonical Paths
+# ═══════════════════════════════════════════════════════════════
 [[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
   status = 200
   force = true
 
-# 🛡️ Global Security Headers
+[[redirects]]
+  from = "/old/*"
+  to = "/new/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://kypriatechnologies.org/*"
+  to = "https://kypriatechnologies.org/:splat"
+  status = 301
+  force = true
+
+# ═══════════════════════════════════════════════════════════════
+# 🛡️ Global Security Headers – The Six Guardians + Allies
+# ═══════════════════════════════════════════════════════════════
 [[headers]]
   for = "/*"
   [headers.values]
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://api.netlify.com"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = """
+      default-src 'self';
+      img-src 'self' data: https:;
+      script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://cdn.jsdelivr.net;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' data: https://fonts.gstatic.com;
+      connect-src 'self' https://api.netlify.com https://analytics.example.com;
+      object-src 'none';
+      base-uri 'self';
+      frame-ancestors 'none';
+      form-action 'self';
+      upgrade-insecure-requests;
+    """
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), fullscreen=(self)"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Expect-CT = "max-age=86400, enforce"
+    Server = "Basilica/3.0"   # Optional: cloak Netlify’s default server header
 
-# 🎨 Cache Busting & Performance
+# ═══════════════════════════════════════════════════════════════
+# 🎨 Asset Caching & Performance
+# ═══════════════════════════════════════════════════════════════
 [[headers]]
   for = "/*.css"
   [headers.values]
@@ -53,6 +88,21 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # 📜 Default HTML caching (shorter, to allow updates)
 [[headers]]
   for = "/*.html"
@@ -64,3 +114,18 @@
   for = "/manifest.json"
   [headers.values]
     Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# ═══════════════════════════════════════════════════════════════
+# 🌐 SEO & Social Meta Reinforcement (optional headers)
+# ═══════════════════════════════════════════════════════════════
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Link = "</favicon.ico>; rel=icon; type=image/x-icon"
+    X-UA-Compatible = "IE=edge"
+    Vary = "Accept-Encoding"
