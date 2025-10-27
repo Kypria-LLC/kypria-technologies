@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <path d="M50 15 C30 15 20 30 20 45 C20 65 40 80 50 85 C60 80 80 65 80 45 C80 30 70 15 50 15 Z" fill="url(#roseGrad)" stroke="#a8325a" stroke-width="2"/>
+  <path d="M50 25 C45 20 35 20 35 30 C35 35 40 40 50 45 C60 40 65 35 65 30 C65 20 55 20 50 25 Z" fill="#ffc0cb" opacity="0.7"/>
+  <path d="M50 85 L50 95" stroke="#2d5f3f" stroke-width="3"/>
+  <path d="M45 90 L50 85 L55 90" stroke="#2d5f3f" stroke-width="2" fill="none"/>
+</svg>
