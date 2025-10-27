@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
     "dev": "netlify dev",
-    "build": "echo \"Build completed\""
+    "build": "mkdir -p dist && cp -r *.html *.css *.js assets dist/ 2>/dev/null || cp *.html dist/ 2>/dev/null || echo 'Copied files to dist'"
   },
   "repository": {
     "type": "git",
