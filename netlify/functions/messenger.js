@@ -1,7 +1,16 @@
-// netlify/functions/messenger.js
-exports.handler = async function(event, context) {
+exports.handler = async (event) => {
+  const params = event.queryStringParameters;
+  if (
+    params['hub.mode'] === 'subscribe' &&
+    params['hub.verify_token'] === 'ZEUS_THUNDER_2025'
+  ) {
+    return {
+      statusCode: 200,
+      body: params['hub.challenge']
+    };
+  }
   return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Hello from Zeus Messenger!" })
+    statusCode: 403,
+    body: 'Forbidden'
   };
 };
