@@ -32,15 +32,15 @@ NC='\033[0m' # No Color
 # ═══════════════════════════════════════════════════════════════
 
 log_info() {
-    echo -e "${BLUE}ℹ${NC} $*"
+    echo -e "${BLUE}ℹ${NC} $*" >&2
 }
 
 log_success() {
-    echo -e "${GREEN}✓${NC} $*"
+    echo -e "${GREEN}✓${NC} $*" >&2
 }
 
 log_warning() {
-    echo -e "${YELLOW}⚠${NC} $*"
+    echo -e "${YELLOW}⚠${NC} $*" >&2
 }
 
 log_error() {
@@ -108,21 +108,42 @@ acquire_m2m_token() {
     fi
     
     local response
+    # Use jq to construct JSON payload safely
+    local payload
+    payload=$(jq -n \
+        --arg client_id "$AUTH0_CLIENT_ID" \
+        --arg client_secret "$AUTH0_CLIENT_SECRET" \
+        --arg audience "$AUTH0_AUDIENCE" \
+        '{
+            client_id: $client_id,
+            client_secret: $client_secret,
+            audience: $audience,
+            grant_type: "client_credentials"
+        }')
+    
     response=$(curl -s -X POST "https://${AUTH0_DOMAIN}/oauth/token" \
         -H "Content-Type: application/json" \
-        -d "{
-            \"client_id\":\"${AUTH0_CLIENT_ID}\",
-            \"client_secret\":\"${AUTH0_CLIENT_SECRET}\",
-            \"audience\":\"${AUTH0_AUDIENCE}\",
-            \"grant_type\":\"client_credentials\"
-        }")
+        -d "$payload")
     
     local token
     token=$(echo "$response" | jq -r '.access_token // empty')
     
     if [ -z "$token" ]; then
-        log_error "Failed to obtain access token. Response:"
-        echo "$response" >&2
+        log_error "Failed to obtain access token." >&2
+        
+        # Try to extract error details from response
+        local error
+        local error_desc
+        error=$(echo "$response" | jq -r '.error // "unknown"')
+        error_desc=$(echo "$response" | jq -r '.error_description // "No description provided"')
+        
+        if [ "$error" != "unknown" ]; then
+            log_error "Error: $error" >&2
+            log_error "Description: $error_desc" >&2
+        else
+            log_error "Full response:" >&2
+            echo "$response" >&2
+        fi
         return 1
     fi
     
