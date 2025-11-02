@@ -484,8 +484,14 @@ echo "  ✓ Configuration files created"
 
 echo "🚫 Phase 8: Updating .gitignore..."
 
+# Create .gitignore if it doesn't exist
+if [ ! -f .gitignore ]; then
+  touch .gitignore
+  echo "  ℹ  Created .gitignore file"
+fi
+
 # Add Trinity Stack specific ignores if not already present
-if ! grep -q "# Trinity Stack" .gitignore; then
+if ! grep -q "# Trinity Stack" .gitignore 2>/dev/null; then
   cat >> .gitignore << 'EOF'
 
 # Trinity Stack
