@@ -111,3 +111,19 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Trinity Stack
+.env
+.env.local
+.env.production
+trinity-stack/secrets/
+*.key
+*.pem
+auth-tokens.json
+
+# Stripe
+stripe-cli/
+.stripe/
+
+# Auth0
+auth0-deploy-cli-extension/
