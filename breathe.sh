@@ -65,7 +65,7 @@ check_dependencies() {
     missing_deps+=("jq")
   fi
   
-  if [ ${#missing_deps[@]} -gt 0 ]; then
+  if [ "${#missing_deps[@]}" -gt 0 ]; then
     error "Missing required dependencies: ${missing_deps[*]}. Please install them and re-run."
   fi
 }
@@ -124,11 +124,11 @@ verify_trinity() {
   local trinity_urls=("$TRINITY_API_URL" "$TRINITY_AGENT_URL" "$TRINITY_RELEASE_URL")
   local trinity_status=0
   
-  for i in {0..2}; do
+  for i in 0 1 2; do
     local check_name="${trinity_checks[$i]}"
     local check_url="${trinity_urls[$i]}"
     
-    verbose_log "Trinity check ${i+1}/3: ${check_name} at ${check_url}"
+    verbose_log "Trinity check $((i+1))/3: ${check_name} at ${check_url}"
     
     if [ "$DRY_RUN" = "true" ]; then
       log "[DRY_RUN] Would verify ${check_name} at ${check_url}"
@@ -138,9 +138,9 @@ verify_trinity() {
     # Attempt verification (allow failures in non-critical checks)
     local resp
     if resp=$(curl -s -f -H "Authorization: Bearer ${token}" "${check_url}" 2>&1); then
-      verbose_log "✓ Trinity check ${i+1}/3 (${check_name}): PASSED"
+      verbose_log "✓ Trinity check $((i+1))/3 (${check_name}): PASSED"
     else
-      log "⚠ Trinity check ${i+1}/3 (${check_name}): SKIPPED (service unavailable)"
+      log "⚠ Trinity check $((i+1))/3 (${check_name}): SKIPPED (service unavailable)"
       trinity_status=1
     fi
   done
