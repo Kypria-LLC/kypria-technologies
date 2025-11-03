@@ -1,0 +1,45 @@
+{
+  "manifestVersion": "1.0.0",
+  "stackName": "Trinity Monetization Stack",
+  "deployedAt": "TBD",
+  "components": {
+    "stripe": {
+      "version": "18.5.0",
+      "endpoints": [
+        "/.netlify/functions/stripe-webhook"
+      ],
+      "webhooksConfigured": false
+    },
+    "auth0": {
+      "domain": "dev-tulns3uf2nt6jpcf.us.auth0.com",
+      "applicationConfigured": false
+    },
+    "netlify": {
+      "functions": [
+        "stripe-webhook",
+        "generate-voice-oracle",
+        "messenger"
+      ],
+      "environment": "production"
+    }
+  },
+  "environmentVariables": {
+    "required": [
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET",
+      "AUTH0_CLIENT_SECRET"
+    ],
+    "optional": [
+      "NODE_ENV",
+      "LOG_LEVEL"
+    ]
+  },
+  "checklist": {
+    "stripeProductsCreated": false,
+    "webhooksConfigured": false,
+    "auth0AppCreated": false,
+    "environmentVariablesSet": false,
+    "tested": false,
+    "deployed": false
+  }
+}

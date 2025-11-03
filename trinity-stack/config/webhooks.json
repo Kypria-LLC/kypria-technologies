@@ -1,0 +1,14 @@
+{
+  "stripe": {
+    "events": [
+      "checkout.session.completed",
+      "customer.subscription.created",
+      "customer.subscription.updated",
+      "customer.subscription.deleted",
+      "invoice.payment_succeeded",
+      "invoice.payment_failed"
+    ],
+    "endpoint": "/.netlify/functions/stripe-webhook",
+    "description": "Handles all Stripe payment events for the Trinity Stack"
+  }
+}
