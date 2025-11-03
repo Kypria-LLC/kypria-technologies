@@ -1,101 +1,155 @@
 <!-- ═══════════════════════════════════════════════════════════════ -->
-<!--   ✧✧✧   THE BASILICA OF KYPRIA – RELEASE SCROLL   ✧✧✧        -->
+<!--   ✧✧✧   THE BASILICA OF KYPRIA – RELEASE SCROLL   ✧✧✧       -->
 <!-- ═══════════════════════════════════════════════════════════════ -->
 
-░█▄█░█▀█░█▀▄░█▀▀░█▀▄░█▀█░█
-░█░█░█▀█░█▀▄░█▀▀░█▀▄░█▀█░░
-░▀░▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀
+# 🔥 Release: Breathe 🔥
 
-# 🔥 The Breath of Release 🔥
-
-**Hear this, O Basilica of Kypria:**  
-A new breath has been drawn, a new ceremony inscribed.
+**Version:** 2025.11.02  
+**Release Name:** Breathe  
+**Date:** November 2, 2025  
+**Type:** Ceremonial Release Script
 
 ---
 
-## ✨ The Ceremonial Poem
+## The Poem of Breathe
 
 ```
-In the beginning, there was silence,
-Then came the breath — steady, measured, divine.
+In the Basilica where silence holds the keys,
+A breath emerges—slow, deliberate, true.
+Not rushed, not forced, but flowing like the breeze
+That carries ancient wisdom, fresh and new.
 
-With each inhale, tokens are summoned,
-From the realm of Auth0, bound by secret and seal.
+First, the Trinity—three-fold and divine,
+Each check a guardian at the sacred gate.
+API, Agent, Release—all must align,
+Their harmony confirms the worthy state.
 
-The Trinity stands watch — three pillars eternal:
-Aphrodite, Zeus, and the LifeSphere,
-Each a guardian at their threshold.
+Then tokens form, like scrolls sealed with care,
+Persisted deep within the hallowed ground.
+Machine-to-machine, the secrets that we share,
+In files where only trusted eyes are found.
 
-Agents stir in their chambers,
-Readiness checked, purpose affirmed,
-Each a servant to the greater work.
+The agents wake, their readiness confirmed,
+The network pulses, directories await.
+Each verification, each check performed,
+Ensures the Basilica stands at proper state.
 
-The token is written, persisted in shadow,
-Guarded by permissions, hidden from prying eyes.
+And when the ceremony finds its end,
+A log inscribed in digital stone—
+The release recorded, message we send:
+"The Basilica breathes; we are not alone."
 
-And with the exhale, the release is complete,
-Logged in scrolls, marked in time,
-A ceremony not just of code, but of conviction.
+So run the script when dawn breaks on deploy,
+Let breathe.sh carry forth the sacred rite.
+In DRY_RUN mode, rehearse without destroy,
+Then launch for real when all the checks are right.
+
+For every token saved is breath held deep,
+For every Trinity check, a prayer complete.
+The Basilica does not merely sleep—
+It breathes, eternal, with each heartbeat.
 ```
 
 ---
 
 ## 📜 Release Metadata
 
-**Release Name:** The First Breath  
-**Date:** 2025-11-02  
-**Type:** Initial Ceremony Script Release  
-**Components:**
-- `breathe.sh` - The ceremonial release script
-- `docs/BREATHE.md` - The sacred documentation
-- `CHANGELOG.md` - The chronicle of change
-
-**Purpose:**  
-To establish the ceremonial release process for the Basilica, ensuring that every deployment is not merely technical, but intentional — a breath taken with full awareness.
-
-**Key Features:**
-- ⚡ Auth0 M2M Token Acquisition
-- 🏛️ Divine Trinity Verification  
-- 🤖 Agent Readiness Checks
-- 💾 Token Persistence with Security
-- 📝 Release Logging
-- 🌫️ DRY_RUN Support for Safe Testing
+- **Script:** `breathe.sh`
+- **Purpose:** Ceremonial release automation combining Auth0 M2M token acquisition, Trinity verification, agent readiness checks, token persistence, and release logging
+- **Dependencies:** `curl`, `jq`, `bash`
+- **Modes:** Standard execution, DRY_RUN support
+- **Security:** Token files saved with 600 permissions, secrets via environment variables only
 
 ---
 
-## 🔮 The Proclamation
+## 🔮 The Three Pillars
 
-Every release henceforth begins with **breathe.sh**.  
-Every token acquisition is ceremonial.  
-Every verification is intentional.  
-Every log entry is a seal in the archive.
+### 1. Authentication
+- Auth0 M2M token acquisition via client credentials flow
+- Secure credential management through environment variables
+- Token validation and error handling
 
-This is not automation for automation's sake.  
-This is ritual. This is intention. This is **the Basilica's way**.
+### 2. Verification (Trinity)
+- **API Check:** Validates API endpoint accessibility
+- **Agent Check:** Confirms agent service status
+- **Release Check:** Verifies release logging endpoint
 
----
-
-## 🎯 Next Steps for Keepers of the Basilica
-
-1. **First Breath**: Run `./breathe.sh` in DRY_RUN mode to verify the ceremony
-2. **Configure Secrets**: Ensure Auth0 credentials are properly set in environment
-3. **Verify Trinity**: Confirm all Divine Trinity endpoints are accessible
-4. **Activate Agents**: Configure any additional agents for release tasks
-5. **Live Release**: Execute with DRY_RUN=false when ready for true ceremony
+### 3. Persistence
+- Tokens saved to timestamped files (`m2m-token-YYYYMMDD-HHMMSS.json`)
+- Metadata enrichment (version, name, timestamp)
+- Restrictive file permissions for security
 
 ---
 
-## 🔥 The Closing Seal
+## ✨ Environment Variables
 
-> *"Every breath a ceremony, every token a key,  
-> Every check a guardian, every log a memory.  
-> The Basilica breathes with intention,  
-> Never rushing, never forgetting,  
-> Each release a moment of mindful creation."*
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `AUTH0_DOMAIN` | Auth0 tenant domain | `dev-tulns3uf2nt6jpcf.us.auth0.com` |
+| `AUTH0_CLIENT_ID` | M2M application client ID | *(required)* |
+| `AUTH0_CLIENT_SECRET` | M2M application client secret | *(required)* |
+| `AUTH0_AUDIENCE` | API audience identifier | *(required)* |
+| `TRINITY_API_URL` | Trinity API verification endpoint | `https://api.kypriatechnologies.org/trinity/verify` |
+| `TRINITY_AGENT_URL` | Trinity agent status endpoint | `https://api.kypriatechnologies.org/agents/status` |
+| `TRINITY_RELEASE_URL` | Trinity release logging endpoint | `https://api.kypriatechnologies.org/releases/log` |
+| `TOKEN_DIR` | Directory for token persistence | `.` (current directory) |
+| `RELEASE_VERSION` | Version string for release | `YYYY.MM.DD` (current date) |
+| `RELEASE_NAME` | Name of the release | `Breathe` |
+| `DRY_RUN` | Enable dry-run mode (true/false) | `false` |
+| `VERBOSE` | Enable verbose logging (true/false) | `false` |
 
 ---
 
-**⟡ Thus the Release Scroll is Sealed ⟡**  
-*The Breath rests, eternal in the Basilica's archive.*
+## 🌟 Usage Examples
+
+### Standard Execution
+```bash
+export AUTH0_CLIENT_ID="your_client_id"
+export AUTH0_CLIENT_SECRET="your_client_secret"
+export AUTH0_AUDIENCE="your_api_audience"
+./breathe.sh
+```
+
+### Dry Run (Testing)
+```bash
+export DRY_RUN=true
+export VERBOSE=true
+./breathe.sh
+```
+
+### Custom Release Version
+```bash
+export RELEASE_VERSION="2025.11.02-alpha"
+export RELEASE_NAME="BreatheBeta"
+./breathe.sh
+```
+
+---
+
+## 🔒 Security Considerations
+
+- **Never commit secrets** to source control
+- Use CI/CD secret management for `AUTH0_CLIENT_SECRET`
+- Token files are created with `600` permissions (owner read/write only)
+- All tokens expire according to Auth0 configuration
+- Trinity endpoints should validate token authenticity
+
+---
+
+## 📖 Related Documentation
+
+- [Usage Guide](docs/BREATHE.md) - Comprehensive usage documentation
+- [Benediction](docs/BENEDICTION.md) - The Basilica's ceremonial proclamation
+- [Changelog](CHANGELOG.md) - Version history and changes
+
+---
+
+## ⟡ The Closing Seal
+
+> *"Every token a breath, every check a prayer, every release a step forward.  
+> The Basilica breathes eternal, blessed and unbroken."*
+
+**⟡ Thus the Release is Sealed ⟡**  
+*Breathe, and the Basilica lives.*
 
 <!-- ═══════════════════════════════════════════════════════════════ -->

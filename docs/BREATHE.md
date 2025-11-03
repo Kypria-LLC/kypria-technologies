@@ -1,282 +1,287 @@
-# 🔥 BREATHE - The Basilica's Release Ceremony
+# 🔥 Breathe.sh - Usage Guide
 
-The `breathe.sh` script is the ceremonial release tool for the Basilica of Kypria. It orchestrates Auth0 M2M token acquisition, Trinity verification, agent readiness checks, and release logging — all with the option for safe dry-run testing.
+The **breathe.sh** script is the ceremonial release automation tool for the Basilica of Kypria. It orchestrates Auth0 M2M token acquisition, Trinity verification, agent readiness checks, token persistence, and release logging.
 
 ---
 
 ## 📋 Quick Start
 
 ### Prerequisites
+- `bash` (version 4.0 or higher recommended)
+- `curl` (for HTTP requests)
+- `jq` (for JSON parsing)
 
-- `bash` (version 4.0 or higher)
-- `curl` - for API requests
-- `jq` - for JSON parsing
+### Basic Usage
 
-Install on Ubuntu/Debian:
+1. **Set required environment variables:**
 ```bash
-sudo apt-get install curl jq
+export AUTH0_CLIENT_ID="your_m2m_client_id"
+export AUTH0_CLIENT_SECRET="your_m2m_client_secret"
+export AUTH0_AUDIENCE="your_api_audience"
 ```
 
-Install on macOS:
+2. **Run the script:**
 ```bash
-brew install curl jq
-```
-
----
-
-## 🔐 Environment Variables
-
-The script requires the following environment variables to be set:
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `AUTH0_DOMAIN` | Your Auth0 tenant domain | Yes | `dev-tulns3uf2nt6jpcf.us.auth0.com` |
-| `AUTH0_CLIENT_ID` | Auth0 M2M application client ID | Yes | _(none)_ |
-| `AUTH0_CLIENT_SECRET` | Auth0 M2M application client secret | Yes | _(none)_ |
-| `AUTH0_AUDIENCE` | Auth0 API identifier/audience | Yes | _(none)_ |
-| `DRY_RUN` | Enable dry-run mode (no actual changes) | No | `false` |
-| `TOKEN_FILE` | Path to save the acquired token | No | `.m2m-token-cache` |
-| `TRINITY_ENDPOINTS` | Comma-separated Trinity HTML files | No | `aphrodite.html,zeus.html,lifesphere.html` |
-
-### Setting Environment Variables
-
-**For a single run:**
-```bash
-export AUTH0_CLIENT_ID="your_client_id_here"
-export AUTH0_CLIENT_SECRET="your_client_secret_here"
-export AUTH0_AUDIENCE="your_api_identifier"
 ./breathe.sh
 ```
 
-**Using a .env file (recommended):**
-```bash
-# Create .env file (DO NOT commit to git!)
-cat > .env.local << 'EOF'
-export AUTH0_CLIENT_ID="your_client_id_here"
-export AUTH0_CLIENT_SECRET="your_client_secret_here"
-export AUTH0_AUDIENCE="your_api_identifier"
-EOF
-
-# Source it before running
-source .env.local
-./breathe.sh
-```
-
-**⚠️ Security Note:** Never commit secrets to version control. Add `.env.local` and similar files to `.gitignore`.
+3. **The script will:**
+   - Acquire an Auth0 M2M access token
+   - Perform Trinity verification (three-fold checks)
+   - Verify agent readiness
+   - Persist the token to a timestamped file
+   - Log the release to the Trinity endpoint
 
 ---
 
-## 🌫️ DRY_RUN Mode
+## 🔧 Environment Variables
 
-The `DRY_RUN` feature allows you to test the release ceremony without making actual changes.
+### Required Variables
 
-**Enable DRY_RUN:**
-```bash
-DRY_RUN=true ./breathe.sh
-```
+| Variable | Description |
+|----------|-------------|
+| `AUTH0_CLIENT_ID` | Your Auth0 M2M application's client ID |
+| `AUTH0_CLIENT_SECRET` | Your Auth0 M2M application's client secret |
+| `AUTH0_AUDIENCE` | The API audience/identifier for your Auth0 API |
 
-**What happens in DRY_RUN mode:**
-- ✅ All dependency checks are performed
-- ✅ Environment validation runs
-- ✅ Trinity verification proceeds
-- ✅ Agent readiness checks execute
-- 🌫️ Auth0 token request is **mocked** (no actual API call)
-- 🌫️ Token persistence is **simulated** (no file write)
-- ✅ All logging and output is shown
+### Optional Variables (with defaults)
 
-**Use DRY_RUN when:**
-- Testing the script for the first time
-- Verifying your environment configuration
-- Debugging issues before a live release
-- Demonstrating the ceremony flow
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `AUTH0_DOMAIN` | Your Auth0 tenant domain | `dev-tulns3uf2nt6jpcf.us.auth0.com` |
+| `TRINITY_API_URL` | Trinity API verification endpoint | `https://api.kypriatechnologies.org/trinity/verify` |
+| `TRINITY_AGENT_URL` | Trinity agent status endpoint | `https://api.kypriatechnologies.org/agents/status` |
+| `TRINITY_RELEASE_URL` | Trinity release logging endpoint | `https://api.kypriatechnologies.org/releases/log` |
+| `TOKEN_DIR` | Directory for saving token files | `.` (current directory) |
+| `RELEASE_VERSION` | Version identifier for this release | Current date in `YYYY.MM.DD` format |
+| `RELEASE_NAME` | Human-readable release name | `Breathe` |
+| `DRY_RUN` | Enable dry-run mode (`true`/`false`) | `false` |
+| `VERBOSE` | Enable verbose logging (`true`/`false`) | `false` |
 
 ---
 
-## 🚀 How to Run
+## 💡 Usage Examples
 
-### 1. Basic Execution
-
+### Example 1: Standard Production Release
 ```bash
-# Make sure the script is executable
-chmod +x breathe.sh
-
-# Run with environment variables set
-./breathe.sh
-```
-
-### 2. With DRY_RUN
-
-```bash
-# Test run without making changes
-DRY_RUN=true ./breathe.sh
-```
-
-### 3. Custom Token File Location
-
-```bash
-# Save token to a specific location
-TOKEN_FILE="/secure/path/to/token" ./breathe.sh
-```
-
-### 4. Full Example
-
-```bash
-# Complete example with all options
+#!/bin/bash
 export AUTH0_CLIENT_ID="abc123xyz"
-export AUTH0_CLIENT_SECRET="supersecret456"
-export AUTH0_AUDIENCE="https://api.kypria.tech"
-export DRY_RUN=false
-export TOKEN_FILE=".tokens/m2m-current"
+export AUTH0_CLIENT_SECRET="super_secret_value"
+export AUTH0_AUDIENCE="https://api.kypriatechnologies.org"
+export RELEASE_VERSION="2025.11.02"
+export RELEASE_NAME="November Release"
 
 ./breathe.sh
 ```
 
----
-
-## 📝 What the Script Does
-
-The ceremony follows these steps in order:
-
-1. **Dependency Check** - Verifies `curl` and `jq` are installed
-2. **Environment Validation** - Confirms all required variables are set
-3. **Release Logging** - Records ceremony start with timestamp
-4. **Trinity Verification** - Checks that Divine Trinity endpoints exist:
-   - `docs/divine-trinity/aphrodite.html`
-   - `docs/divine-trinity/zeus.html`
-   - `docs/divine-trinity/lifesphere.html`
-5. **Agent Readiness** - Scans `.github/agents/` for configured agents
-6. **Token Acquisition** - Requests Auth0 M2M access token
-7. **Token Persistence** - Saves token to file with secure permissions (600)
-8. **Ceremony Completion** - Logs success and displays final status
-
----
-
-## 🔍 Output Example
-
-```
-░█▄█░█▀█░█▀▄░█▀▀░█▀▄░█▀█░█
-░█░█░█▀█░█▀▄░█▀▀░█▀▄░█▀█░░
-░▀░▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀
-
-🔥 BREATHE - The Basilica's Release Ceremony 🔥
-
-ℹ Checking dependencies...
-✓ All dependencies present
-ℹ Validating environment configuration...
-✓ Environment validated
-
-═══════════════════════════════════════════════════════════════
-   RELEASE CEREMONY COMMENCED
-   Timestamp: 2025-11-02T16:45:00Z
-   Mode: LIVE
-═══════════════════════════════════════════════════════════════
-
-ℹ Verifying Divine Trinity endpoints...
-✓ Trinity endpoint verified: aphrodite.html
-✓ Trinity endpoint verified: zeus.html
-✓ Trinity endpoint verified: lifesphere.html
-✧ The Divine Trinity is complete (3/3)
-
-ℹ Checking agent readiness...
-✓ Found 1 agent(s) ready
-
-ℹ Acquiring Auth0 M2M token...
-✓ M2M token acquired
-ℹ Persisting token to .m2m-token-cache...
-✓ Token persisted securely
-
-═══════════════════════════════════════════════════════════════
-   ✨ RELEASE CEREMONY COMPLETE ✨
-   The breath has been taken. The Basilica stands ready.
-═══════════════════════════════════════════════════════════════
-
-✓ All checks passed. Breathe complete.
-```
-
----
-
-## 🎯 Next Steps for Agents
-
-After running `breathe.sh` successfully, the acquired token is available for use by automation agents and scripts.
-
-### For GitHub Actions
-
-```yaml
-- name: Run Release Ceremony
-  env:
-    AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
-    AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
-    AUTH0_AUDIENCE: ${{ secrets.AUTH0_AUDIENCE }}
-  run: ./breathe.sh
-
-- name: Use Acquired Token
-  run: |
-    TOKEN=$(cat .m2m-token-cache)
-    curl -H "Authorization: Bearer $TOKEN" https://api.example.com/endpoint
-```
-
-### For Local Development
-
+### Example 2: Dry Run for Testing
 ```bash
-# Run ceremony
+#!/bin/bash
+# Test the script without making actual API calls
+export DRY_RUN=true
+export VERBOSE=true
+export AUTH0_CLIENT_ID="test_client"
+export AUTH0_CLIENT_SECRET="test_secret"
+export AUTH0_AUDIENCE="test_audience"
+
 ./breathe.sh
-
-# Token is now available
-TOKEN=$(cat .m2m-token-cache)
-
-# Use in API calls
-curl -H "Authorization: Bearer $TOKEN" \
-  https://api.kypria.tech/protected-endpoint
 ```
 
-### For CI/CD Pipelines
+### Example 3: Custom Token Directory
+```bash
+#!/bin/bash
+export AUTH0_CLIENT_ID="abc123xyz"
+export AUTH0_CLIENT_SECRET="super_secret_value"
+export AUTH0_AUDIENCE="https://api.kypriatechnologies.org"
+export TOKEN_DIR="/var/tokens/kypria"
 
-1. Store Auth0 credentials as secrets in your CI/CD platform
-2. Run `breathe.sh` as an early step in your pipeline
-3. Subsequent steps can read the token from `TOKEN_FILE`
-4. Clean up the token file after use for security
+./breathe.sh
+```
+
+### Example 4: CI/CD Integration
+```bash
+#!/bin/bash
+# In your CI/CD pipeline (e.g., GitHub Actions, GitLab CI)
+# Secrets should be stored in your CI/CD secret management
+
+export AUTH0_CLIENT_ID="${CI_AUTH0_CLIENT_ID}"
+export AUTH0_CLIENT_SECRET="${CI_AUTH0_CLIENT_SECRET}"
+export AUTH0_AUDIENCE="${CI_AUTH0_AUDIENCE}"
+export RELEASE_VERSION="${CI_COMMIT_TAG:-$(date +%Y.%m.%d)}"
+export TOKEN_DIR="/tmp/tokens"
+
+./breathe.sh
+
+# The script outputs TOKEN_FILE location for downstream use
+# TOKEN_FILE=/tmp/tokens/m2m-token-20251102-165430.json
+```
+
+---
+
+## 🔍 What the Script Does
+
+### 1. **Dependency Checks**
+Verifies that `curl` and `jq` are installed and available.
+
+### 2. **Agent Readiness**
+- Checks that the token directory exists and is writable
+- Verifies network connectivity to Auth0 domain
+- Validates environment configuration
+
+### 3. **Auth0 Token Acquisition**
+- Requests an M2M access token using client credentials flow
+- Validates the response and extracts the access token
+- Returns error if token acquisition fails
+
+### 4. **Trinity Verification (Three-fold Checks)**
+Performs three verification checks:
+- **API Check**: Validates Trinity API endpoint
+- **Agent Check**: Confirms agent service status  
+- **Release Check**: Verifies release logging endpoint
+
+*Note: Trinity checks are non-fatal; the script continues if services are unavailable.*
+
+### 5. **Token Persistence**
+- Saves the token to a timestamped JSON file
+- Enriches with metadata (version, name, timestamp)
+- Sets restrictive permissions (600 - owner read/write only)
+
+### 6. **Release Logging**
+- Posts release information to Trinity release endpoint
+- Includes version, name, timestamp, and status
+- Non-fatal if the endpoint is unavailable
+
+---
+
+## 📤 Output
+
+### Standard Output
+The script outputs the token file location in a format suitable for CI/CD consumption:
+```
+TOKEN_FILE=/path/to/m2m-token-20251102-165430.json
+```
+
+### Log Output (stderr)
+All operational logs are written to stderr:
+```
+[2025-11-02 16:54:30] ════════════════════════════════════════════════════════════
+[2025-11-02 16:54:30]   🔥 Breathe.sh - The Ceremonial Release Script 🔥
+[2025-11-02 16:54:30]   Release: Breathe v2025.11.02
+[2025-11-02 16:54:30] ════════════════════════════════════════════════════════════
+[2025-11-02 16:54:30] Checking agent readiness...
+[2025-11-02 16:54:30] ✓ Agent readiness checks complete
+[2025-11-02 16:54:30] Acquiring Auth0 M2M token...
+[2025-11-02 16:54:31] Performing Trinity verification (three-fold checks)...
+[2025-11-02 16:54:32] ✓ Trinity verification complete: All three checks passed
+[2025-11-02 16:54:32] Persisting token to: ./m2m-token-20251102-165430.json
+[2025-11-02 16:54:32] ✓ Token persisted successfully
+[2025-11-02 16:54:32] Logging release: Breathe v2025.11.02
+[2025-11-02 16:54:33] ✓ Release logged successfully
+[2025-11-02 16:54:33] ════════════════════════════════════════════════════════════
+[2025-11-02 16:54:33] ✓ Breathe complete. The Basilica stands eternal.
+[2025-11-02 16:54:33] ════════════════════════════════════════════════════════════
+```
 
 ---
 
 ## 🛡️ Security Best Practices
 
-- **Never commit** Auth0 credentials to git
-- **Always use** environment variables or secrets management
-- **Restrict permissions** on token files (script sets `chmod 600`)
-- **Rotate secrets** regularly in Auth0 dashboard
-- **Use DRY_RUN** first to verify configuration
-- **Clean up** token files after use in CI/CD contexts
+1. **Never commit secrets** to source control
+2. Use environment variables or CI/CD secret management for `AUTH0_CLIENT_SECRET`
+3. Token files are automatically created with `600` permissions
+4. Regularly rotate Auth0 client secrets
+5. Limit token validity period in Auth0 configuration
+6. Store tokens in secure, ephemeral locations in CI/CD (e.g., `/tmp`)
+7. Delete token files after use when no longer needed
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "Missing required dependencies"
-- Install `curl` and `jq` using your package manager
+### Error: "jq is required but not installed"
+**Solution:** Install jq:
+```bash
+# Ubuntu/Debian
+sudo apt-get install jq
 
-### "Failed to obtain access token"
-- Verify Auth0 credentials are correct
-- Check that `AUTH0_AUDIENCE` matches your API identifier
-- Ensure the M2M application has proper grants in Auth0
+# macOS
+brew install jq
 
-### "Trinity verification incomplete"
-- Confirm `docs/divine-trinity/` directory exists
-- Check that Trinity HTML files are present
-- Verify file names match `TRINITY_ENDPOINTS` configuration
+# Alpine
+apk add jq
+```
 
-### "No agents configured"
-- This is informational only, not an error
-- Agents are optional; the ceremony will continue
+### Error: "Auth0 credentials incomplete"
+**Solution:** Ensure all required environment variables are set:
+```bash
+echo "AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}"
+echo "AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET:0:5}..." # Don't print full secret
+echo "AUTH0_AUDIENCE: ${AUTH0_AUDIENCE}"
+```
+
+### Error: "Failed to obtain access token"
+**Possible causes:**
+- Incorrect client ID or secret
+- Wrong audience value
+- Auth0 application not configured for client credentials grant
+- Network connectivity issues
+
+**Solution:** Check Auth0 application settings and verify credentials.
+
+### Warning: "Trinity check X/3: SKIPPED (service unavailable)"
+**Explanation:** Trinity verification endpoints are optional services. The script will continue even if they're unavailable. This is expected in development or when Trinity services aren't deployed.
 
 ---
 
-## 📚 Related Documentation
+## 🚀 Next Steps
 
-- [RELEASE.md](../RELEASE.md) - The ceremonial poem and release metadata
-- [CHANGELOG.md](../CHANGELOG.md) - History of changes
-- [scripts/get-auth0-token.sh](../scripts/get-auth0-token.sh) - Simpler token script (no ceremony)
+### Integration Ideas
+
+1. **GitHub Actions Workflow**
+   - Add breathe.sh to your deployment workflow
+   - Use the generated token for API authentication
+   - Store tokens as artifacts for debugging
+
+2. **Scheduled Token Refresh**
+   - Run breathe.sh on a cron schedule to maintain fresh tokens
+   - Use the token for automated monitoring or health checks
+
+3. **Multi-Environment Releases**
+   - Create environment-specific configuration
+   - Use different `RELEASE_NAME` values for staging/production
+   - Separate `TOKEN_DIR` per environment
+
+4. **Token Rotation**
+   - Implement a cleanup script to remove old token files
+   - Keep only the N most recent tokens
+   - Archive tokens for audit purposes
+
+### Customization
+
+The script is designed to be extensible. Consider:
+- Adding custom verification checks in the Trinity section
+- Integrating with your monitoring/observability platform
+- Sending notifications on successful releases
+- Customizing the release metadata schema
 
 ---
 
-**⟡ The Documentation is Complete ⟡**  
-*May your releases be ceremonial, intentional, and blessed.*
+## 📚 Related Resources
+
+- [RELEASE.md](../RELEASE.md) - Full release notes and ceremonial poem
+- [CHANGELOG.md](../CHANGELOG.md) - Version history
+- [scripts/get-auth0-token.sh](../scripts/get-auth0-token.sh) - Simpler token acquisition script
+- [Auth0 Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow) - Official Auth0 documentation
+
+---
+
+## 🙏 Support
+
+For issues, questions, or contributions:
+- Open an issue in the GitHub repository
+- Consult the Basilica documentation
+- Review existing scripts in the `scripts/` directory
+
+---
+
+**⟡ May your breathe.sh runs be swift and your tokens eternal ⟡**
