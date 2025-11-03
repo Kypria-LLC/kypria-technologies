@@ -61,6 +61,10 @@ web_modules/
 .env
 .env.*
 !.env.example
+
+# Auth0 M2M token cache (breathe.sh)
+.m2m-token-cache
+*-token-cache
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -111,3 +115,19 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Trinity Stack
+.env
+.env.local
+.env.production
+trinity-stack/secrets/
+*.key
+*.pem
+auth-tokens.json
+
+# Stripe
+stripe-cli/
+.stripe/
+
+# Auth0
+auth0-deploy-cli-extension/

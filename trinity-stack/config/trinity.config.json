@@ -1,0 +1,38 @@
+{
+  "name": "Trinity Monetization Stack",
+  "version": "1.0.0",
+  "basilica": "Kypria Technologies",
+  "features": {
+    "stripe": {
+      "enabled": true,
+      "mode": "test",
+      "webhookPath": "/.netlify/functions/stripe-webhook"
+    },
+    "auth0": {
+      "enabled": true,
+      "tokenCaching": true,
+      "tokenTTL": 3600
+    },
+    "monitoring": {
+      "enabled": true,
+      "logLevel": "info"
+    }
+  },
+  "tiers": {
+    "free": {
+      "name": "Seeker",
+      "dailyLimit": 10,
+      "features": ["basic_access"]
+    },
+    "premium": {
+      "name": "Oracle",
+      "dailyLimit": 100,
+      "features": ["basic_access", "premium_content", "custom_seals"]
+    },
+    "divine": {
+      "name": "Divine",
+      "dailyLimit": -1,
+      "features": ["all"]
+    }
+  }
+}
