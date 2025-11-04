@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Kypria-LLC/kypria-technologies#readme",
   "dependencies": {
     "aws-sdk": "^2.1691.0",
+    "axios": "^1.7.0",
     "stripe": "^18.5.0"
   },
   "devDependencies": {
