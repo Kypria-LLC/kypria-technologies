@@ -1,1 +1,4 @@
+# Netlify Functions - allow direct access
+/.netlify/functions/*  /.netlify/functions/:splat  200
+
 /privacy    /privacy.html    200
