@@ -1,0 +1,537 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     🔥 KYPRIA TECHNOLOGIES – BASILICA UNIFIED SANCTUM 🔥
+     The Sacred Link to the Ceremonial Stylesheet
+     Version 1.0 – Halloween 2025 Edition
+════════════════════════════════════════════════════════════════ -->
+<link rel="stylesheet" href="style.css" type="text/css" media="all">
+
+<!-- Optional: Favicon / Crest Integration -->
+<link rel="icon" href="crest-halloween2025.png" type="image/png">
+<meta name="theme-color" content="#ff6600">
+<meta name="description" content="Kypria Technologies Basilica – A living sanctum of code, ceremony, and seasonal rites.">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Codex - Kypria Technologies</title>
+    <meta name="description" content="The Sacred Deployment Codex - Safe enhancement protocol for Kypria Technologies">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0f0f 0%, #2d1810 50%, #1a0f0f 100%);
+            background-attachment: fixed;
+            color: #f5e6d3;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Halloween flame effect */
+        .flame-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(0deg, 
+                rgba(255, 102, 0, 0.3) 0%, 
+                transparent 100%);
+            pointer-events: none;
+            animation: flicker 2s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #ff6600;
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #ff6600;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #ffcc66;
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.8);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 102, 0, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 102, 0, 1); }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ff9944;
+            font-style: italic;
+        }
+        
+        .pumpkin-icon {
+            font-size: 3rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            margin: 10px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        nav {
+            background: rgba(255, 102, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #ff6600;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: #ffcc66;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ff6600;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 102, 0, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.6);
+        }
+        
+        h2 {
+            color: #ff9944;
+            font-size: 1.8rem;
+            margin: 30px 0 15px 0;
+            border-left: 5px solid #ff6600;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #ffbb77;
+            font-size: 1.4rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.8);
+            color: #66ff66;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ff6600;
+        }
+        
+        pre {
+            background: rgba(0, 0, 0, 0.8);
+            color: #66ff66;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 2px solid #ff6600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .warning-box {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .success-box {
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: rgba(255, 165, 0, 0.2);
+            border: 2px solid #ff6600;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        th, td {
+            border: 1px solid #ff6600;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: rgba(255, 102, 0, 0.3);
+            color: #ffcc66;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: rgba(255, 102, 0, 0.1);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: rgba(255, 102, 0, 0.3);
+            color: #ffcc66;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 2px solid #ff6600;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255, 102, 0, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ff6600;
+            color: #ff9944;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            nav a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flame-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="pumpkin-icon">🎃</div>
+            <h1>🔥 The Sacred Deployment Codex 🔥</h1>
+            <p class="subtitle">Safe Enhancement Protocol for Future Updates</p>
+            <div class="pumpkin-icon">🎃</div>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="codex.html">📜 Codex</a></li>
+                <li><a href="themes.html">🎨 Themes</a></li>
+                <li><a href="walkthrough.html">🔥 Walkthrough</a></li>
+                <li><a href="quickref.html">⚡ Quick Ref</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section>
+                <h2>📜 The Golden Path: Update Without Breaking</h2>
+                <p>This codex contains the sacred workflow for safely adding enhancements, seasonal themes, and content updates to the Kypria Technologies Basilica without disrupting DNS or causing downtime.</p>
+            </section>
+            
+            <section>
+                <h2>🛡️ Pre-Flight Checklist (ALWAYS RUN FIRST)</h2>
+                
+                <h3>Step 0: Backup DNS State</h3>
+                <pre><code># Run the DNS backup script
+dig kypriatechnologies.org > dns_backup_$(date +%Y%m%d).txt
+dig www.kypriatechnologies.org >> dns_backup_$(date +%Y%m%d).txt</code></pre>
+                
+                <h3>Step 1: Verify Current Production State</h3>
+                <pre><code># Check that site is currently accessible
+curl -I https://kypriatechnologies.org
+
+# Expected output should include:
+# HTTP/2 200
+# server: Netlify</code></pre>
+                
+                <div class="info-box">
+                    <strong>🎃 Pro Tip:</strong> Always screenshot your Cloudflare DNS records before making any changes. Save to <code>docs/dns_snapshots/</code>
+                </div>
+            </section>
+            
+            <section>
+                <h2>⚙️ The Deployment Workflow</h2>
+                
+                <h3>Method 1: Local Development → Git → Netlify (RECOMMENDED)</h3>
+                
+                <h4>Step 1: Clone/Pull Latest Code</h4>
+                <pre><code># If you don't have the repo locally yet
+git clone https://github.com/Kypria-LLC/kypria-technologies.git
+cd kypria-technologies
+
+# If you already have it, update to latest
+git pull origin main</code></pre>
+                
+                <h4>Step 2: Make Changes Locally</h4>
+                <pre><code># Edit index.html or any other files
+nano index.html
+
+# OR use your preferred editor
+code index.html</code></pre>
+                
+                <h4>Step 3: Test Locally FIRST (CRITICAL!)</h4>
+                <pre><code># Serve the site locally
+python3 -m http.server 8000
+
+# OR if you have Node.js:
+npx http-server -p 8000
+
+# Then visit: http://localhost:8000</code></pre>
+                
+                <div class="warning-box">
+                    <strong>⚠️ CRITICAL:</strong> Never deploy untested changes. If anything looks broken locally, fix it NOW before pushing!
+                </div>
+                
+                <h4>Step 4: Commit Changes with Ceremonial Message</h4>
+                <pre><code># Stage your changes
+git add .
+
+# Commit with descriptive message
+git commit -m "feat: Add Christmas 2025 seasonal enhancements
+
+- Added snowfall animation
+- Updated color scheme to winter theme
+- Enhanced festive branding
+
+Tested locally: ✅ All animations working
+DNS status: ✅ Verified before deployment"
+
+# Push to GitHub
+git push origin main</code></pre>
+                
+                <h4>Step 5: Monitor Netlify Deployment</h4>
+                <p>Visit: <a href="https://app.netlify.com/sites/kypria-technologies/deploys" target="_blank">Netlify Dashboard</a></p>
+                <p><strong>Watch for:</strong></p>
+                <ul>
+                    <li>✅ Build starts automatically (usually within 10 seconds)</li>
+                    <li>✅ Build completes successfully (green checkmark)</li>
+                    <li>✅ "Published" status appears</li>
+                </ul>
+                <p><strong>Typical build time:</strong> 30-60 seconds</p>
+                
+                <h4>Step 6: Wait for CDN Propagation</h4>
+                <div class="info-box">
+                    Wait 2-3 minutes after "Published" status. This allows Netlify's global CDN to propagate the changes.
+                </div>
+                
+                <h4>Step 7: Verify Production Deployment</h4>
+                <pre><code># Hard refresh your browser
+# Windows/Linux: Ctrl + Shift + R
+# Mac: Cmd + Shift + R
+
+# OR use curl to bypass browser cache:
+curl -I https://kypriatechnologies.org</code></pre>
+            </section>
+            
+            <section>
+                <h2>🚨 Emergency Rollback Procedure</h2>
+                <p>If deployment breaks the site:</p>
+                
+                <h3>Quick Rollback via Git</h3>
+                <pre><code># See recent commits
+git log --oneline -5
+
+# Revert to previous working commit
+git revert HEAD
+
+# Or force rollback to specific commit
+git reset --hard [commit-hash-from-git-log]
+git push --force origin main
+
+# Netlify will auto-redeploy the old working version</code></pre>
+                
+                <h3>Emergency Rollback via Netlify Dashboard</h3>
+                <ol>
+                    <li>Visit: <a href="https://app.netlify.com/sites/kypria-technologies/deploys" target="_blank">Netlify Deploys</a></li>
+                    <li>Find last working deploy (green checkmark)</li>
+                    <li>Click "..." menu → "Publish deploy"</li>
+                    <li>Confirm rollback</li>
+                    <li>Site reverts instantly</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>🛡️ Safety Guardrails</h2>
+                
+                <h3>What WILL Trigger Netlify Rebuild (Safe)</h3>
+                <ul>
+                    <li>✅ Push to <code>main</code> branch</li>
+                    <li>✅ Edit files via GitHub web UI</li>
+                    <li>✅ Merge pull request to <code>main</code></li>
+                    <li>✅ Manual "Trigger deploy" in Netlify dashboard</li>
+                </ul>
+                
+                <h3>What Will NOT Break DNS (Safe)</h3>
+                <ul>
+                    <li>✅ Editing HTML/CSS/JS files</li>
+                    <li>✅ Adding new files to repo</li>
+                    <li>✅ Updating README.md</li>
+                    <li>✅ Modifying manifest.json</li>
+                    <li>✅ Changing images/assets</li>
+                    <li>✅ Updating netlify.toml settings</li>
+                </ul>
+                
+                <h3>What CAN Break DNS (DANGER!)</h3>
+                <div class="warning-box">
+                    <ul>
+                        <li>❌ Manually editing DNS records in Cloudflare (unless you know exactly what you're doing)</li>
+                        <li>❌ Changing Netlify site name (breaks CNAME target)</li>
+                        <li>❌ Deleting and recreating Netlify site</li>
+                        <li>❌ Adding conflicting DNS records</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box">
+                    <h3>🔥 Golden Rule</h3>
+                    <p><strong>If you're only editing files in the GitHub repo, you CANNOT break DNS.</strong></p>
+                    <p>DNS only breaks when you:</p>
+                    <ol>
+                        <li>Touch Cloudflare DNS records directly</li>
+                        <li>Delete/rename the Netlify site</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <section>
+                <h2>📅 Recommended Update Schedule</h2>
+                
+                <table>
+                    <tr>
+                        <th>Frequency</th>
+                        <th>Task</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Weekly</strong></td>
+                        <td>Check for Dependabot security alerts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly</strong></td>
+                        <td>Review and update seasonal theme</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quarterly</strong></td>
+                        <td>Full DNS audit + backup review</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Annually</strong></td>
+                        <td>SSL certificate check (auto-renewed, but verify)</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>🔗 Critical URLs</h2>
+                <table>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>URL</th>
+                    </tr>
+                    <tr>
+                        <td><strong>GitHub Repo</strong></td>
+                        <td><a href="https://github.com/Kypria-LLC/kypria-technologies" target="_blank">Repository</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Netlify Dashboard</strong></td>
+                        <td><a href="https://app.netlify.com/sites/kypria-technologies/deploys" target="_blank">Deploys</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloudflare DNS</strong></td>
+                        <td><a href="https://dash.cloudflare.com/d738369b5c464ef1fcbd5c9c33517822/kypriatechnologies.org/dns/records" target="_blank">DNS Records</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Live Site</strong></td>
+                        <td><a href="https://kypriatechnologies.org" target="_blank">kypriatechnologies.org</a></td>
+                    </tr>
+                </table>
+            </section>
+            
+            <a href="index.html" class="back-link">⬅ Back to Basilica Home</a>
+        </main>
+        
+        <footer>
+            <p>🔥 <strong>The Basilica Stands. The Canon Lineage is Eternal.</strong> 🔥</p>
+            <p>© 2025 Kypria LLC • Deployment Codex v1.0 • Halloween 2025 Edition</p>
+        </footer>
+    </div>
+</body>
+</html>
