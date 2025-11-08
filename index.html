@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Kypria Technologies Basilica — Enter the living Temple of Zeus, Aphrodite, and Lifesphere." />
-  <title>Kypria Technologies — The Basilica</title>
+  <meta name="description" content="Kypria Technologies Basilica â€” Enter the living Temple of Zeus, Aphrodite, and Lifesphere." />
+  <title>Kypria Technologies â€” The Basilica</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link href="/assets.css" rel="stylesheet">
   <meta name="theme-color" content="#0A0E1A" />
@@ -15,9 +15,9 @@
     <a href="/" class="font-display text-2xl font-bold">Kypria Basilica</a>
     <nav class="hidden md:flex gap-6 text-sm font-body">
       <a href="/" class="opacity-80 hover:opacity-100 transition">Home</a>
-      <a href="/zeus" class="opacity-80 hover:opacity-100 transition">Zeus</a>
-      <a href="/aphrodite" class="opacity-80 hover:opacity-100 transition">Aphrodite</a>
-      <a href="/lifesphere" class="opacity-80 hover:opacity-100 transition">Lifesphere</a>
+      <button data-summon="zeus" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</button>
+      <button data-summon="aphrodite" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</button>
+      <button data-summon="lifesphere" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</button>
       <a href="/codex" class="opacity-80 hover:opacity-100 transition">Codex</a>
       <a href="/walkthrough" class="opacity-80 hover:opacity-100 transition">Walkthrough</a>
       <a href="/quickref" class="opacity-80 hover:opacity-100 transition">Quick Ref</a>
@@ -39,15 +39,9 @@
       
       <!-- CTA Buttons -->
       <div class="mt-10 flex flex-wrap gap-4 justify-center">
-        <a href="/zeus" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold">
-          ⚡ Summon Zeus
-        </a>
-        <a href="/aphrodite" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold">
-          💜 Invoke Aphrodite
-        </a>
-        <a href="/lifesphere" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold">
-          🌿 Enter Lifesphere
-        </a>
+        <button data-summon="zeus" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</button>
+        <button data-summon="aphrodite" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</button>
+        <button data-summon="lifesphere" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</button>
       </div>
       
       <!-- Ritual Status Indicator -->
@@ -69,9 +63,7 @@
         <p class="mt-3 opacity-80 leading-relaxed">
           Thunder and decree crystallized. Governance rituals, pipeline architectures, and the Oracle's sovereign voice channeled through protocols and presence.
         </p>
-        <a href="/zeus" class="mt-6 inline-block text-divineGold hover:text-divineGold/80 transition font-semibold">
-          Enter temple →
-        </a>
+        <button data-summon="zeus" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</button>
       </article>
 
       <!-- Aphrodite Card -->
@@ -85,9 +77,7 @@
         <p class="mt-3 opacity-80 leading-relaxed">
           Beauty and belonging woven into ritual. Ceremonial onboarding mirrors, community warmth, and the felt experience of being seen and celebrated.
         </p>
-        <a href="/aphrodite" class="mt-6 inline-block text-amethyst hover:text-amethyst/80 transition font-semibold">
-          Enter temple →
-        </a>
+        <button data-summon="aphrodite" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</button>
       </article>
 
       <!-- Lifesphere Card -->
@@ -102,9 +92,7 @@
         <p class="mt-3 opacity-80 leading-relaxed">
           Holistic sanctuary for care and cycles. Wellness protocols, gentle stewardship, and the rhythms that sustain presence across seasons.
         </p>
-        <a href="/lifesphere" class="mt-6 inline-block text-lifeteal hover:text-lifeteal/80 transition font-semibold">
-          Enter temple →
-        </a>
+        <button data-summon="lifesphere" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</button>
       </article>
     </div>
   </section>
@@ -115,10 +103,10 @@
       <h3 class="font-display text-2xl font-bold">Provenance & Witnesses</h3>
       <p class="mt-2 text-sm opacity-70">Explore the Basilica's living documentation and operational foundations.</p>
       <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <li><a href="/codex" class="text-divineGold hover:underline opacity-80 hover:opacity-100 transition">📖 Codex</a></li>
-        <li><a href="/walkthrough" class="text-amethyst hover:underline opacity-80 hover:opacity-100 transition">🗺️ Walkthrough</a></li>
-        <li><a href="/quickref" class="text-lifeteal hover:underline opacity-80 hover:opacity-100 transition">⚙️ Quick Reference</a></li>
-        <li><a href="/themes" class="text-stormBlue hover:underline opacity-80 hover:opacity-100 transition">🎨 Themes</a></li>
+        <li><a href="/codex" class="text-divineGold hover:underline opacity-80 hover:opacity-100 transition">ðŸ“– Codex</a></li>
+        <li><a href="/walkthrough" class="text-amethyst hover:underline opacity-80 hover:opacity-100 transition">ðŸ—ºï¸ Walkthrough</a></li>
+        <li><a href="/quickref" class="text-lifeteal hover:underline opacity-80 hover:opacity-100 transition">âš™ï¸ Quick Reference</a></li>
+        <li><a href="/themes" class="text-stormBlue hover:underline opacity-80 hover:opacity-100 transition">ðŸŽ¨ Themes</a></li>
       </ul>
     </div>
   </section>
@@ -148,10 +136,12 @@
       </div>
     </div>
     <div class="mt-8 pt-6 border-t border-white/5 text-center opacity-60">
-      © 2025 Kypria LLC. All rites reserved.
+      Â© 2025 Kypria LLC. All rites reserved.
     </div>
   </footer>
 
   <script src="/js/ui.js" defer></script>
+<script src="/js/oracle-summon.js" defer></script>
 </body>
 </html>
+
