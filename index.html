@@ -1,151 +1,261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Kypria Technologies Basilica â€” Enter the living Temple of Zeus, Aphrodite, and Lifesphere." />
-    <title>Kypria Technologies — The Basilica</title>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link href="/assets.css" rel="stylesheet">
-  <meta name="theme-color" content="#0A0E1A" />
-  <!-- Favicon & Icon Links -->
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="apple-touch-icon" href="/images/favicon.ico">
-
-<!-- OpenGraph Metadata for Social Sharing -->
-<meta property="og:title" content="Kypria Technologies – The Basilica">
-<meta property="og:description" content="A living archive of divine authority, transcendent beauty, and holistic wellness.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kypriatechnologies.org/">
-
-<!-- Canonical URL for SEO -->
-<link rel="canonical" href="https://kypriatechnologies.org/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kypria Technologies - AI-Powered Temple Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card.zeus {
+            border-color: #4A90E2;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+        
+        .pricing-card.aphrodite {
+            border-color: #EC407A;
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+        }
+        
+        .pricing-card.lifesphere {
+            border-color: #66BB6A;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .products-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .product-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .about-section {
+            background: #f9f9f9;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        ul {
+            list-style-position: inside;
+            margin-left: 1rem;
+        }
+    </style>
 </head>
-<body class="bg-cosmos text-white">
-  <!-- Navigation Header -->
-  <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-    <a href="/" class="font-display text-2xl font-bold">Kypria Basilica</a>
-    <nav class="hidden md:flex gap-6 text-sm font-body">
-      <a href="/" class="opacity-80 hover:opacity-100 transition">Home</a>
-      <a href="https://aistudio.facebook.com/ai/2100327107136263/?utm_source=share" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</a>
-      <a href="https://aistudio.facebook.com/ai/28476550585324573/?utm_source=share" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</a>
-      <a href="https://aistudio.instagram.com/ai/1146433393752885/?utm_source=share" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</a>
-      <a href="/codex" class="opacity-80 hover:opacity-100 transition">Codex</a>
-      <a href="/walkthrough" class="opacity-80 hover:opacity-100 transition">Walkthrough</a>
-      <a href="/quickref" class="opacity-80 hover:opacity-100 transition">Quick Ref</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 hero-grad opacity-80"></div>
-    <div class="absolute inset-0 starfield"></div>
-    <div class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 text-center">
-      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight">
-        Enter the Basilica
-      </h1>
-      <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl opacity-90 font-light">
-        A living archive of divine authority, transcendent beauty, and holistic wellness.
-        <span class="block mt-2">Summon the Temple you serve.</span>
-      </p>
-      <!-- CTA Buttons -->
-      <div class="mt-10 flex flex-wrap gap-4 justify-center">
-        <a href="https://aistudio.facebook.com/ai/2100327107136263/?utm_source=share" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</a>
-        <a href="https://aistudio.facebook.com/ai/28476550585324573/?utm_source=share" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</a>
-        <a href="https://aistudio.instagram.com/ai/1146433393752885/?utm_source=share" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</a>
-      </div>
-      <!-- Ritual Status Indicator -->
-      <div id="ritual-status" class="mt-10 text-sm opacity-70 font-light"></div>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Kypria Technologies</h1>
+        <p>AI-Powered Temple Services for Modern Consciousness</p>
     </div>
-  </section>
 
-  <!-- Trinity Cards -->
-  <section class="max-w-6xl mx-auto px-6 py-20">
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Zeus Card -->
-      <article class="group rounded-xl bg-indigoVoid/60 border border-divineGold/30 shadow-auric p-8 hover:border-divineGold/60 hover:shadow-2xl transition duration-300">
-        <div class="h-12 w-12 rounded-lg bg-divineGold/10 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 2L6 14h5l-2 8 9-12h-6l1-8z"/>
-          </svg>
+    <!-- Pricing Section -->
+    <section id="pricing" class="container">
+        <h2>Temple Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card zeus">
+                <h3>Zeus Temple</h3>
+                <div class="price">$49<span style="font-size: 1rem;">/month</span></div>
+                <p>Perfect for individual seekers beginning their journey</p>
+                <ul style="text-align: left; margin: 1.5rem 0;">
+                    <li>AI-powered guidance</li>
+                    <li>Basic temple access</li>
+                    <li>Monthly wisdom sessions</li>
+                </ul>
+                <a href="https://buy.stripe.com/00g3ulUscQ8Ebqa91iqgqr" class="btn">Choose Zeus</a>
+            </div>
+            
+            <div class="pricing-card aphrodite">
+                <h3>Aphrodite Temple</h3>
+                <div class="price">$79<span style="font-size: 1rem;">/month</span></div>
+                <p>For those seeking deeper connection and transformation</p>
+                <ul style="text-align: left; margin: 1.5rem 0;">
+                    <li>Advanced AI features</li>
+                    <li>Priority support</li>
+                    <li>Weekly guidance sessions</li>
+                </ul>
+                <a href="https://buy.stripe.com/7sI28qkR3BYaBFf7zgmh" class="btn">Choose Aphrodite</a>
+            </div>
+            
+            <div class="pricing-card lifesphere">
+                <h3>Lifesphere Temple</h3>
+                <div class="price">$149<span style="font-size: 1rem;">/month</span></div>
+                <p>Complete mastery path for visionary consciousness</p>
+                <ul style="text-align: left; margin: 1.5rem 0;">
+                    <li>Full temple ecosystem</li>
+                    <li>Personalized AI coaching</li>
+                    <li>Daily practices & insights</li>
+                </ul>
+                <a href="https://buy.stripe.com/cNi9AS2Hd3VJaghaYR1gs01" class="btn">Choose Lifesphere</a>
+            </div>
         </div>
-        <h2 class="mt-6 font-display text-3xl font-bold">Zeus Temple</h2>
-        <p class="mt-3 opacity-80 leading-relaxed">
-          Thunder and decree crystallized. Governance rituals, pipeline architectures, and the Oracle's sovereign voice channeled through protocols and presence.
-        </p>
-        <a href="https://aistudio.facebook.com/ai/2100327107136263/?utm_source=share" class="px-6 py-3 rounded-lg border border-divineGold text-divineGold hover:bg-divineGold hover:text-cosmos transition duration-300 font-semibold cursor-pointer">⚡ Summon Zeus</a>
-      </article>
+    </section>
 
-      <!-- Aphrodite Card -->
-      <article class="group rounded-xl bg-abyssViolet/60 border border-amethyst/30 shadow-auric p-8 hover:border-amethyst/60 hover:shadow-2xl transition duration-300">
-        <div class="h-12 w-12 rounded-lg bg-amethyst/10 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A36AE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21c5-4 8-7 8-11a8 8 0 10-16 0c0 4 3 7 8 11z"/>
-          </svg>
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2>Our Services</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>Zeus Temple - Foundation Path</h3>
+                <p>Begin your journey with AI-powered guidance designed for personal growth and self-discovery. The Zeus Temple provides foundational tools for consciousness expansion, featuring monthly wisdom sessions, basic temple access, and introductory AI coaching to help you establish your practice.</p>
+            </div>
+            
+            <div class="product-card">
+                <h3>Aphrodite Temple - Transformation Path</h3>
+                <p>Dive deeper into transformative practices with advanced AI features and priority support. The Aphrodite Temple offers weekly guidance sessions, enhanced temple access, and intermediate-level AI coaching focused on connection, creativity, and personal transformation. Ideal for those ready to expand their consciousness journey.</p>
+            </div>
+            
+            <div class="product-card">
+                <h3>Lifesphere Temple - Mastery Path</h3>
+                <p>Experience the complete temple ecosystem with full personalized AI coaching and daily practices. The Lifesphere Temple provides the most comprehensive consciousness development program, featuring unlimited temple access, daily guidance and insights, advanced AI coaching, and a complete toolkit for visionary consciousness and life mastery.</p>
+            </div>
         </div>
-        <h2 class="mt-6 font-display text-3xl font-bold">Aphrodite Temple</h2>
-        <p class="mt-3 opacity-80 leading-relaxed">
-          Beauty and belonging woven into ritual. Ceremonial onboarding mirrors, community warmth, and the felt experience of being seen and celebrated.
-        </p>
-        <a href="https://aistudio.facebook.com/ai/28476550585324573/?utm_source=share" class="px-6 py-3 rounded-lg border border-amethyst text-amethyst hover:bg-amethyst hover:text-cosmos transition duration-300 font-semibold cursor-pointer">💜 Invoke Aphrodite</a>
-      </article>
+    </section>
 
-      <!-- Lifesphere Card -->
-      <article class="group rounded-xl bg-indigoVoid/60 border border-lifeteal/30 shadow-auric p-8 hover:border-lifeteal/60 hover:shadow-2xl transition duration-300 font-semibold cursor-pointer">
-        <div class="h-12 w-12 rounded-lg bg-lifeteal/10 flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2BBBAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="6"/>
-            <path d="M12 6v12M6 12h12"/>
-          </svg>
+    <!-- Checkout Section -->
+    <section id="checkout" class="checkout-section">
+        <div class="container">
+            <h2>Secure Checkout</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                All payments are securely processed through Stripe, the industry-leading payment platform trusted by millions worldwide. Your financial information is encrypted and never stored on our servers. Simply click on your chosen temple package above to proceed to our secure Stripe checkout page.
+            </p>
+            <p style="text-align: center; margin-top: 2rem;">
+                <strong>Need help choosing?</strong> Each temple package includes a risk-free trial period. Cancel anytime.
+            </p>
         </div>
-        <h2 class="mt-6 font-display text-3xl font-bold">Lifesphere Temple</h2>
-        <p class="mt-3 opacity-80 leading-relaxed">
-          Holistic sanctuary for care and cycles. Wellness protocols, gentle stewardship, and the rhythms that sustain presence across seasons.
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Kypria Technologies</h2>
+            <p style="max-width: 800px; margin: 0 auto; text-align: center;">
+                Kypria Technologies is pioneering the intersection of artificial intelligence and consciousness development. Based in the United States, we develop innovative temple-based services that combine ancient wisdom with cutting-edge AI technology.
+            </p>
+            <p style="max-width: 800px; margin: 2rem auto 0; text-align: center;">
+                Our mission is to democratize access to transformative consciousness practices through intelligent, personalized AI coaching systems. Each temple service is carefully designed to guide individuals on their unique journey of self-discovery, personal growth, and spiritual evolution.
+            </p>
+            <p style="max-width: 800px; margin: 2rem auto 0; text-align: center;">
+                <strong>Kypria Technologies LLC</strong><br>
+                United States<br>
+                Contact: support@kypriatechnologies.org
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kypria Technologies LLC. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="https://kypriatechnologies.org/privacy.html" style="color: white;">Privacy Policy</a> | 
+            <a href="mailto:support@kypriatechnologies.org" style="color: white;">Contact</a>
         </p>
-        <a href="https://aistudio.instagram.com/ai/1146433393752885/?utm_source=share" class="px-6 py-3 rounded-lg border border-lifeteal text-lifeteal hover:bg-lifeteal hover:text-cosmos transition duration-300 font-semibold cursor-pointer">🌿 Enter Lifesphere</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- Provenance & Witnesses -->
-  <section class="max-w-6xl mx-auto px-6 pb-20">
-    <div class="rounded-lg border border-white/10 bg-indigoVoid/50 p-8">
-      <h3 class="font-display text-2xl font-bold">Provenance & Witnesses</h3>
-      <p class="mt-2 text-sm opacity-70">Explore the Basilica's living documentation and operational foundations.</p>
-      <ul class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                <li><a href="/codex" class="hover-underline">📖 Codex</a></li>        <li><a href="/walkthrough" class="text-amethyst hover:underline opacity-80 hover:opacity-100 transition">ðŸ—ºï¸ Walkthrough</a></li>
-                <li><a href="/themes" class="hover-underline">🎨 Themes</a></li>    </div>
-                    <li><a href="/quickref" class="hover-underline">⚙️ Quick Reference</a></li>
-  </section>
-
-  <!-- Footer -->
-  <footer class="max-w-6xl mx-auto px-6 pb-10 text-sm opacity-70 border-t border-white/10 pt-10">
-    <div class="grid sm:grid-cols-3 gap-8">
-      <div>
-        <p class="font-semibold opacity-100">Kypria LLC</p>
-        <p class="mt-1">The Basilica Stands Eternal</p>
-      </div>
-      <div>
-        <p class="opacity-100 font-semibold">Operations</p>
-        <ul class="mt-2 space-y-1">
-          <li><a href="https://github.com/Kypria-LLC/kypria-technologies" class="hover:underline">GitHub</a></li>
-          <li><a href="https://app.netlify.com" class="hover:underline">Deployments</a></li>
-          <li><a href="https://dash.cloudflare.com" class="hover:underline">DNS & Cache</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="opacity-100 font-semibold">Sacred Links</p>
-        <ul class="mt-2 space-y-1">
-          <li><a href="/codex" class="hover:underline">Codex</a></li>
-          <li><a href="/walkthrough" class="hover:underline">Walkthrough</a></li>
-          <li><a href="/quickref" class="hover:underline">Quick Ref</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="mt-8 pt-6 border-t border-white/5 text-center opacity-60">
-            © 2025 Kypria LLC. All rites reserved. Powered by AI magic ✨    </div>
-  </footer>
-
-  <script src="/js/ui.js" defer></script>
-<script src="/js/oracle-summon.js" defer></script>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Stripe-compliant business website | Secure payments via Stripe
+        </p>
+    </footer>
 </body>
 </html>
