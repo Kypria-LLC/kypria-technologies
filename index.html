@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kypria Technologies - AI-Powered Temple Services</title>
+    <title>Kypria Temples - Sacred Subscriptions</title>
     <style>
         * {
             margin: 0;
@@ -12,250 +12,233 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #cbd5e1;
             line-height: 1.6;
-            color: #333;
-        }
-        
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px;
         }
         
-        section {
-            padding: 3rem 0;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        header {
             text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid #475569;
         }
         
-        .pricing-grid {
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.2em;
+        }
+        
+        .temples-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
         }
         
-        .pricing-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 2rem;
+        .temple-card {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .pricing-card:hover {
+        .temple-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
         }
         
-        .pricing-card.zeus {
-            border-color: #4A90E2;
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        .temple-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
         }
         
-        .pricing-card.aphrodite {
-            border-color: #EC407A;
-            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+        .temple-name {
+            color: #fbbf24;
+            font-size: 1.8em;
+            margin-bottom: 15px;
         }
         
-        .pricing-card.lifesphere {
-            border-color: #66BB6A;
-            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        .temple-description {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        
+        .temple-features {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .temple-features li {
+            color: #94a3b8;
+            margin-bottom: 8px;
+            font-size: 0.9em;
         }
         
         .price {
-            font-size: 2.5rem;
+            font-size: 2em;
+            color: #ec4899;
             font-weight: bold;
-            margin: 1rem 0;
+            margin: 20px 0;
         }
         
-        .btn {
+        .join-button {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: #667eea;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
             color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
-        .btn:hover {
-            background: #5568d3;
-        }
-        
-        .products-grid {
-            display: grid;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .product-card {
-            background: #f9f9f9;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-        
-        .product-card h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-        
-        .checkout-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        .join-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.4);
         }
         
         .about-section {
-            background: #f9f9f9;
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .about-section h2 {
+            color: #fbbf24;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .about-section p {
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 15px;
+            font-size: 1.05em;
         }
         
         footer {
-            background: #333;
-            color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 30px 20px;
+            border-top: 2px solid #475569;
+            color: #64748b;
+            margin-top: 60px;
         }
         
-        ul {
-            list-style-position: inside;
-            margin-left: 1rem;
+        footer a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .temples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .temple-card {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Kypria Technologies</h1>
-        <p>AI-Powered Temple Services for Modern Consciousness</p>
+    <div class="container">
+        <header>
+            <h1>🏛️ Kypria Temples</h1>
+            <p class="subtitle">Choose Your Path to Wisdom & Growth</p>
+        </header>
+        
+        <div class="temples-grid">
+            <!-- Zeus Temple -->
+            <div class="temple-card">
+                <div class="temple-icon">⚡</div>
+                <h2 class="temple-name">Zeus Temple</h2>
+                <p class="temple-description">Experience the power of lightning and divine authority. Perfect for leadership wisdom and strategic thinking.</p>
+                <ul class="temple-features">
+                    <li>Leadership insights & strategies</li>
+                    <li>Power dynamics mastery</li>
+                    <li>Decision-making frameworks</li>
+                    <li>Executive presence development</li>
+                </ul>
+                <div class="price">$49/month</div>
+                <a href="https://buy.stripe.com/cN0aGOdlR68J7Tzd8r" target="_blank" class="join-button">⚡ Join Zeus Temple</a>
+            </div>
+            
+            <!-- Aphrodite Temple -->
+            <div class="temple-card">
+                <div class="temple-icon">💖</div>
+                <h2 class="temple-name">Aphrodite Temple</h2>
+                <p class="temple-description">Embrace love, beauty, and connection. For deeper relationships and transformative personal growth.</p>
+                <ul class="temple-features">
+                    <li>Relationship wisdom & healing</li>
+                    <li>Emotional intelligence training</li>
+                    <li>Self-love & confidence building</li>
+                    <li>Authentic connection practices</li>
+                </ul>
+                <div class="price">$79/month</div>
+                <a href="https://buy.stripe.com/eVapekd0Kz6e1h2gdYa" target="_blank" class="join-button">💖 Join Aphrodite Temple</a>
+            </div>
+            
+            <!-- Lifesphere Temple -->
+            <div class="temple-card">
+                <div class="temple-icon">🌍</div>
+                <h2 class="temple-name">Lifesphere Temple</h2>
+                <p class="temple-description">Holistic wisdom for global consciousness and complete life mastery. The ultimate transformation.</p>
+                <ul class="temple-features">
+                    <li>Complete life integration system</li>
+                    <li>Global consciousness expansion</li>
+                    <li>Advanced spiritual practices</li>
+                    <li>Personal transformation coaching</li>
+                </ul>
+                <div class="price">$149/month</div>
+                <a href="https://buy.stripe.com/3cS28qcdhk1Y7Tzg8a" target="_blank" class="join-button">🌍 Join Lifesphere Temple</a>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2>About Kypria LLC</h2>
+            <p>Kypria Technologies provides sacred digital spaces for personal growth, wisdom, and transformation. Our temple subscriptions offer curated content, community access, and personalized guidance aligned with timeless mythological archetypes.</p>
+            <p>Each temple membership includes exclusive resources, monthly guidance, community access, and continuous support on your journey of growth and self-discovery.</p>
+            <p><strong>Cancel anytime.</strong> No commitments. Just transformation.</p>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 Kypria LLC. All rights reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a></p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Powered by <a href="https://stripe.com" target="_blank">Stripe</a></p>
+        </footer>
     </div>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="container">
-        <h2>Temple Pricing</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card zeus">
-                <h3>Zeus Temple</h3>
-                <div class="price">$49<span style="font-size: 1rem;">/month</span></div>
-                <p>Perfect for individual seekers beginning their journey</p>
-                <ul style="text-align: left; margin: 1.5rem 0;">
-                    <li>AI-powered guidance</li>
-                    <li>Basic temple access</li>
-                    <li>Monthly wisdom sessions</li>
-                </ul>
-                <a href="https://buy.stripe.com/5w2dEw9ob1NB9kl4gg" class="btn">Choose Zeus</a>
-            </div>
-            
-            <div class="pricing-card aphrodite">
-                <h3>Aphrodite Temple</h3>
-                <div class="price">$79<span style="font-size: 1rem;">/month</span></div>
-                <p>For those seeking deeper connection and transformation</p>
-                <ul style="text-align: left; margin: 1.5rem 0;">
-                    <li>Advanced AI features</li>
-                    <li>Priority support</li>
-                    <li>Weekly guidance sessions</li>
-                </ul>
-                <a href="https://buy.stripe.com/7sY28q4P12RF3f71gs0h" class="btn">Choose Aphrodite</a>
-            </div>
-            
-            <div class="pricing-card lifesphere">
-                <h3>Lifesphere Temple</h3>
-                <div class="price">$149<span style="font-size: 1rem;">/month</span></div>
-                <p>Complete mastery path for visionary consciousness</p>
-                <ul style="text-align: left; margin: 1.5rem 0;">
-                    <li>Full temple ecosystem</li>
-                    <li>Personalized AI coaching</li>
-                    <li>Daily practices & insights</li>
-                </ul>
-                <a href="https://buy.stripe.com/cNi9AS2Hd3VJaghaYR1gs01" class="btn">Choose Lifesphere</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="container">
-        <h2>Our Services</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <h3>Zeus Temple - Foundation Path</h3>
-                <p>Begin your journey with AI-powered guidance designed for personal growth and self-discovery. The Zeus Temple provides foundational tools for consciousness expansion, featuring monthly wisdom sessions, basic temple access, and introductory AI coaching to help you establish your practice.</p>
-            </div>
-            
-            <div class="product-card">
-                <h3>Aphrodite Temple - Transformation Path</h3>
-                <p>Dive deeper into transformative practices with advanced AI features and priority support. The Aphrodite Temple offers weekly guidance sessions, enhanced temple access, and intermediate-level AI coaching focused on connection, creativity, and personal transformation. Ideal for those ready to expand their consciousness journey.</p>
-            </div>
-            
-            <div class="product-card">
-                <h3>Lifesphere Temple - Mastery Path</h3>
-                <p>Experience the complete temple ecosystem with full personalized AI coaching and daily practices. The Lifesphere Temple provides the most comprehensive consciousness development program, featuring unlimited temple access, daily guidance and insights, advanced AI coaching, and a complete toolkit for visionary consciousness and life mastery.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Checkout Section -->
-    <section id="checkout" class="checkout-section">
-        <div class="container">
-            <h2>Secure Checkout</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-                All payments are securely processed through Stripe, the industry-leading payment platform trusted by millions worldwide. Your financial information is encrypted and never stored on our servers. Simply click on your chosen temple package above to proceed to our secure Stripe checkout page.
-            </p>
-            <p style="text-align: center; margin-top: 2rem;">
-                <strong>Need help choosing?</strong> Each temple package includes a risk-free trial period. Cancel anytime.
-            </p>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>About Kypria Technologies</h2>
-            <p style="max-width: 800px; margin: 0 auto; text-align: center;">
-                Kypria Technologies is pioneering the intersection of artificial intelligence and consciousness development. Based in the United States, we develop innovative temple-based services that combine ancient wisdom with cutting-edge AI technology.
-            </p>
-            <p style="max-width: 800px; margin: 2rem auto 0; text-align: center;">
-                Our mission is to democratize access to transformative consciousness practices through intelligent, personalized AI coaching systems. Each temple service is carefully designed to guide individuals on their unique journey of self-discovery, personal growth, and spiritual evolution.
-            </p>
-            <p style="max-width: 800px; margin: 2rem auto 0; text-align: center;">
-                <strong>Kypria Technologies LLC</strong><br>
-                United States<br>
-                Contact: support@kypriatechnologies.org
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kypria Technologies LLC. All rights reserved.</p>
-        <p style="margin-top: 1rem;">
-            <a href="https://kypriatechnologies.org/privacy.html" style="color: white;">Privacy Policy</a> | 
-            <a href="mailto:support@kypriatechnologies.org" style="color: white;">Contact</a>
-        </p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-            Stripe-compliant business website | Secure payments via Stripe
-        </p>
-    </footer>
 </body>
 </html>
