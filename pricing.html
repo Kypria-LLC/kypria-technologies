@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Kypria Persona Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .logo {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #9ca3af;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .card {
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #7c3aed;
+        }
+        
+        .card.featured {
+            border-color: #7c3aed;
+            transform: scale(1.05);
+        }
+        
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .temple-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .temple-name {
+            font-size: 1.8em;
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 3em;
+            color: #fff;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 0.4em;
+            color: #9ca3af;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            color: #d1d5db;
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #7c3aed;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px 30px;
+            background: #7c3aed;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+        }
+        
+        .comparison-table {
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .comparison-table h2 {
+            color: #7c3aed;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+        }
+        
+        th {
+            background: rgba(124, 58, 237, 0.2);
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        .check {
+            color: #7c3aed;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            background: rgba(15, 15, 30, 0.8);
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #a78bfa;
+            text-decoration: underline;
+        }
+        
+        .footer-text {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .card.featured {
+                transform: scale(1);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏛️</div>
+            <h1>Choose Your Temple</h1>
+            <p class="subtitle">Unlock the power of persona generation for your creative projects</p>
+        </div>
+
+        <div class="pricing-cards">
+            <!-- Zeus Temple -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="temple-icon">⚡</div>
+                    <h2 class="temple-name">Zeus Temple</h2>
+                    <div class="price">$49<span>/month</span></div>
+                </div>
+                <ul class="features">
+                    <li>1,000 generations per month</li>
+                    <li>Personal & commercial use</li>
+                    <li>Full persona ownership</li>
+                    <li>Core archetypes & traits</li>
+                    <li>Export in JSON/CSV</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_28obKVfqUdhL1QQ144" class="cta-button">Choose Zeus Temple</a>
+            </div>
+
+            <!-- Aphrodite Temple (Featured) -->
+            <div class="card featured">
+                <div class="card-header">
+                    <div class="temple-icon">💖</div>
+                    <h2 class="temple-name">Aphrodite Temple</h2>
+                    <div class="price">$79<span>/month</span></div>
+                </div>
+                <ul class="features">
+                    <li>5,000 generations per month</li>
+                    <li>Everything in Zeus Temple</li>
+                    <li>Advanced relationship mapping</li>
+                    <li>Emotional depth scoring</li>
+                    <li>Custom trait weighting</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_14k29f8YsbZD2UUeUV" class="cta-button">Choose Aphrodite Temple</a>
+            </div>
+
+            <!-- Lifesphere Temple -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="temple-icon">🌍</div>
+                    <h2 class="temple-name">Lifesphere Temple</h2>
+                    <div class="price">$149<span>/month</span></div>
+                </div>
+                <ul class="features">
+                    <li>Unlimited generations</li>
+                    <li>Everything in Aphrodite Temple</li>
+                    <li>Full API access (100 req/min)</li>
+                    <li>Team collaboration tools</li>
+                    <li>White-label client deliverables</li>
+                    <li>Dedicated account manager</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_14k01701M0lf8fedQS" class="cta-button">Choose Lifesphere Temple</a>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h2>Feature Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Zeus Temple</th>
+                        <th>Aphrodite Temple</th>
+                        <th>Lifesphere Temple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monthly Generations</td>
+                        <td>1,000</td>
+                        <td>5,000</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Commercial Use</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Output Ownership</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Core Archetypes</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Relationship Mapping</td>
+                        <td>—</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Emotional Depth Scoring</td>
+                        <td>—</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Team Collaboration</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>White-Label Output</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td>Email</td>
+                        <td>Priority</td>
+                        <td>Dedicated Manager</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="mailto:contact@kypriatechnologies.org">Contact</a>
+                <a href="/">Home</a>
+            </div>
+            <p class="footer-text">&copy; 2025 Kypria Technologies. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
