@@ -1,7 +1,7 @@
-﻿{
+{
   "name": "kypria-technologies-basilica",
   "version": "1.0.0",
-  "description": "The Basilica — A mythic, modern portal for Kypria Technologies",
+  "description": "The Basilica - A mythic, modern portal for Kypria Technologies",
   "scripts": {
     "dev": "tailwindcss -i ./css/theme.css -o ./dist/assets.css --watch",
     "build": "tailwindcss -i ./css/theme.css -o ./dist/assets.css --minify && node scripts/copy.js",
@@ -20,6 +20,7 @@
     "tailwindcss": "^3.4.13"
   },
   "dependencies": {
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "aws-sdk": "^2.1691.0"
   }
 }
