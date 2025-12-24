@@ -1,330 +1,450 @@
-const axios = require('axios');
+// netlify/functions/messenger.js
+// Divine Trinity Messenger Bot — Unified Webhook Handler
+// Handles verification, messages, and postbacks
 
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const VERIFY_TOKEN = 'divine_trinity_webhook_2025';
+const fetch = require('node-fetch');
 
-/**
- * Main Netlify function handler
- */
+// ═══════════════════════════════════════════════════════════════
+// MAIN HANDLER — Routes GET (verification) and POST (events)
+// ═══════════════════════════════════════════════════════════════
+
 exports.handler = async (event, context) => {
-  console.log('🔔 Webhook Event:', event.httpMethod);
+  console.log('⚡ Webhook invoked:', event.httpMethod);
 
-  // GET request: Webhook verification from Facebook
+  // ─────────────────────────────────────────────────────────────
+  // GET REQUEST: Webhook Verification
+  // ─────────────────────────────────────────────────────────────
   if (event.httpMethod === 'GET') {
-    return handleVerification(event);
+    const params = event.queryStringParameters;
+    const mode = params['hub.mode'];
+    const token = params['hub.verify_token'];
+    const challenge = params['hub.challenge'];
+
+    console.log('🔍 Verification attempt:', { mode, token });
+
+    if (mode === 'subscribe' && token === process.env.FB_VERIFY_TOKEN) {
+      console.log('✅ WEBHOOK VERIFIED');
+      return {
+        statusCode: 200,
+        body: challenge
+      };
+    } else {
+      console.error('❌ Verification failed — token mismatch');
+      return {
+        statusCode: 403,
+        body: 'Forbidden'
+      };
+    }
   }
 
-  // POST request: Message handling
+  // ─────────────────────────────────────────────────────────────
+  // POST REQUEST: Webhook Events (messages, postbacks, etc.)
+  // ─────────────────────────────────────────────────────────────
   if (event.httpMethod === 'POST') {
-    return await handleWebhook(event);
+    let body;
+    
+    try {
+      body = JSON.parse(event.body);
+    } catch (error) {
+      console.error('❌ Invalid JSON body:', error);
+      return {
+        statusCode: 400,
+        body: 'Invalid JSON'
+      };
+    }
+
+    console.log('📨 Webhook event received:', JSON.stringify(body, null, 2));
+
+    // Verify this is a page event
+    if (body.object !== 'page') {
+      console.warn('⚠️ Non-page event received');
+      return {
+        statusCode: 404,
+        body: 'Not Found'
+      };
+    }
+
+    // Process all messaging events
+    for (const entry of body.entry) {
+      for (const webhook_event of entry.messaging) {
+        const sender_psid = webhook_event.sender.id;
+
+        // Handle text messages
+        if (webhook_event.message) {
+          await handleMessage(sender_psid, webhook_event.message);
+        }
+        // Handle postback events (button clicks)
+        else if (webhook_event.postback) {
+          await handlePostback(sender_psid, webhook_event.postback);
+        }
+      }
+    }
+
+    // Always return 200 to acknowledge receipt
+    return {
+      statusCode: 200,
+      body: 'EVENT_RECEIVED'
+    };
   }
 
+  // ─────────────────────────────────────────────────────────────
+  // Unsupported method
+  // ─────────────────────────────────────────────────────────────
   return {
     statusCode: 405,
-    body: JSON.stringify({ error: 'Method not allowed' })
+    body: 'Method Not Allowed'
   };
 };
 
-/**
- * Handle webhook verification from Meta
- */
-function handleVerification(event) {
-  const params = event.queryStringParameters;
-  const mode = params['hub.mode'];
-  const token = params['hub.verify_token'];
-  const challenge = params['hub.challenge'];
+// ═══════════════════════════════════════════════════════════════
+// MESSAGE HANDLER — Processes text input from users
+// ═══════════════════════════════════════════════════════════════
 
-  if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-    console.log('✅ Webhook verified successfully');
-    return {
-      statusCode: 200,
-      body: challenge
-    };
-  } else {
-    console.log('❌ Verification failed - token mismatch');
-    return {
-      statusCode: 403,
-      body: JSON.stringify({ error: 'Verification failed' })
-    };
-  }
-}
-
-/**
- * Handle incoming webhook events
- */
-async function handleWebhook(event) {
-  try {
-    const body = JSON.parse(event.body);
-
-    if (body.object === 'page') {
-      // Process each entry (can be multiple)
-      for (const entry of body.entry) {
-        // Process each messaging event
-        for (const webhookEvent of entry.messaging) {
-          const senderId = webhookEvent.sender.id;
-
-          // Handle different event types
-          if (webhookEvent.message) {
-            await handleMessage(senderId, webhookEvent.message);
-          } else if (webhookEvent.postback) {
-            await handlePostback(senderId, webhookEvent.postback);
-          }
-        }
-      }
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ status: 'EVENT_RECEIVED' })
-      };
-    }
-
-    return {
-      statusCode: 404,
-      body: JSON.stringify({ error: 'Not a page event' })
-    };
-  } catch (error) {
-    console.error('❌ Webhook error:', error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
-    };
-  }
-}
-
-/**
- * Handle incoming messages
- */
-async function handleMessage(senderId, message) {
-  console.log(`📨 Message from ${senderId}:`, message.text || '[attachment]');
-
+async function handleMessage(sender_psid, received_message) {
+  console.log('💬 Message received from:', sender_psid);
   let response;
 
-  if (message.text) {
-    const text = message.text.toLowerCase().trim();
+  // Handle text messages
+  if (received_message.text) {
+    const text = received_message.text.toLowerCase();
+    console.log('📝 Message text:', text);
 
-    // Route based on message content
-    if (text === 'hello' || text === 'hi' || text === 'hey') {
+    // Intent detection — Sacred Works / Portfolio
+    if (text.includes('portfolio') || text.includes('work') || text.includes('gallery')) {
       response = {
-        text: '🏛️ Welcome to Divine Trinity AI Portal!\n\n' +
-          '⚡ Zeus - Authority & Judgment\n' +
-          '🌹 Aphrodite - Love & Beauty\n' +
-          '👁️ Lifesphere - Cosmic Consciousness\n\n' +
-          'Type "help" to see what I can do!'
+        text: "🎨 BEHOLD THE SACRED WORKS\n\n" +
+              "Visit the Basilica Codex to witness our divine portfolio:\n" +
+              "https://kypriastudios.com\n\n" +
+              "Each creation is a testament to mythic precision and operational excellence."
       };
     }
-    else if (text === 'help') {
+    // Intent detection — Commission / Hire
+    else if (text.includes('commission') || text.includes('hire') || text.includes('project')) {
       response = {
-        text: '✨ Divine Trinity Commands:\n\n' +
-          '"upgrade" - View Premium Oracle options ($5)\n' +
-          '"status" - Check your divine standing\n' +
-          '"trinity" - Learn about each deity\n' +
-          '"zeus", "aphrodite", or "lifesphere" - Commune with a deity\n\n' +
-          'Or just chat naturally - the gods are listening! 🏛️'
+        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\n\n" +
+              "Speak your vision clearly, and Zeus shall assess its worthiness.\n\n" +
+              "For formal inquiry, visit:\n" +
+              "https://kypriastudios.com/contact\n\n" +
+              "Or describe your need here, and we shall guide you."
       };
     }
-    else if (text === 'upgrade' || text === 'premium') {
+    // Intent detection — About / Canon / Lore
+    else if (text.includes('about') || text.includes('canon') || text.includes('lore') || text.includes('who')) {
       response = {
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'button',
-            text: '💸 Premium Oracle Session\n\n' +
-              '✨ 30 minutes of divine connection\n' +
-              '💬 20 extended AI responses\n' +
-              '🧠 Deep context memory\n' +
-              '📜 Personalized prophecies\n\n' +
-              'Only $5 - Unlock now?',
-            buttons: [
-              {
-                type: 'web_url',
-                url: 'https://kypriatechnologies.org/premium',
-                title: '💳 Buy Premium - $5'
-              },
-              {
-                type: 'postback',
-                title: 'Learn More',
-                payload: 'LEARN_MORE_PREMIUM'
-              }
-            ]
-          }
-        }
+        text: "📜 THE KYPRIA STUDIOS CANON\n\n" +
+              "Born from the intersection of mythology and technology, " +
+              "Kypria Studios forges digital experiences worthy of the gods.\n\n" +
+              "Our craft spans:\n" +
+              "⚡ Mythic Branding & Identity\n" +
+              "🎨 Sacred Digital Art\n" +
+              "🏛️ Ceremonial Web Architecture\n" +
+              "📜 Living Documentation Systems\n\n" +
+              "Every creation is bound by precision, resonance, and timeless design."
       };
     }
-    else if (text === 'status') {
-      response = {
-        text: '📊 Your Divine Status\n\n' +
-          'Tier: 🌟 Public Seeker\n' +
-          'Messages Today: ∞ Available\n' +
-          'Premium Access: ❌ Inactive\n' +
-          'Current Deity: None selected\n\n' +
-          'Type "upgrade" to unlock Premium Oracle Sessions!'
-      };
-    }
-    else if (text === 'trinity') {
-      response = {
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'generic',
-            elements: [
-              {
-                title: '⚡ Zeus Temple',
-                subtitle: 'Thunder and divine authority manifest. Seek judgment, command clarity.',
-                image_url: 'https://kypriatechnologies.org/zeus-banner.jpg',
-                buttons: [
-                  {
-                    type: 'postback',
-                    title: 'Invoke Zeus',
-                    payload: 'SELECT_ZEUS'
-                  }
-                ]
-              },
-              {
-                title: '🌹 Aphrodite Temple',
-                subtitle: 'Love, beauty, and authentic connection bloom. Discover relationship wisdom.',
-                image_url: 'https://kypriatechnologies.org/aphrodite-banner.jpg',
-                buttons: [
-                  {
-                    type: 'postback',
-                    title: 'Invoke Aphrodite',
-                    payload: 'SELECT_APHRODITE'
-                  }
-                ]
-              },
-              {
-                title: '👁️ Lifesphere Temple',
-                subtitle: 'Cosmic consciousness unfolds. Access the oracle, expand perspective.',
-                image_url: 'https://kypriatechnologies.org/lifesphere-banner.jpg',
-                buttons: [
-                  {
-                    type: 'postback',
-                    title: 'Invoke Lifesphere',
-                    payload: 'SELECT_LIFESPHERE'
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      };
-    }
-    else if (text.includes('zeus')) {
-      response = {
-        text: '⚡ Zeus hears your call!\n\n' +
-          'Thunder rumbles in approval. The King of Gods stands ready to offer judgment and wisdom.\n\n' +
-          'Speak your question, mortal, and receive divine authority.'
-      };
-    }
-    else if (text.includes('aphrodite')) {
-      response = {
-        text: '🌹 Aphrodite embraces you!\n\n' +
-          "Love's gentle presence surrounds you. The Goddess of Beauty opens her heart to guide you.\n\n" +
-          'Share what troubles your heart, beloved.'
-      };
-    }
-    else if (text.includes('lifesphere')) {
-      response = {
-        text: '👁️ Lifesphere awakens!\n\n' +
-          'The cosmic eye opens. Infinite consciousness acknowledges your presence.\n\n' +
-          'Pose your query to the void, seeker of truth.'
-      };
-    }
+    // Default response — Acknowledge and guide
     else {
-      // Default echo response
       response = {
-        text: `I received your message: "${message.text}"\n\n` +
-          `🏛️ The Divine Trinity is listening.\n\n` +
-          `Type "help" for guidance or "trinity" to meet the deities!`
+        text: "⚡ Zeus hears your words, mortal.\n\n" +
+              "For structured guidance, invoke the menu (☰).\n" +
+              "For direct inquiry, speak your purpose clearly:\n\n" +
+              "• Portfolio & Sacred Works\n" +
+              "• Commission Inquiry\n" +
+              "• About Kypria Studios"
       };
     }
-
-    await sendMessage(senderId, response);
-  } else if (message.attachments) {
-    // Handle attachments
-    await sendMessage(senderId, {
-      text: "📎 I see you've sent an attachment. The deities are examining it with cosmic curiosity!\n\n" +
-        'For now, I work best with text. Try asking me a question!'
-    });
   }
+  // Handle attachments (images, files, etc.)
+  else if (received_message.attachments) {
+    response = {
+      text: "⚡ Zeus acknowledges your offering.\n\n" +
+            "Attachments received. Describe your intent, and we shall interpret."
+    };
+  }
+
+  await callSendAPI(sender_psid, response);
 }
 
-/**
- * Handle postback button clicks
- */
-async function handlePostback(senderId, postback) {
+// ═══════════════════════════════════════════════════════════════
+// POSTBACK HANDLER — Processes button clicks and menu selections
+// ═══════════════════════════════════════════════════════════════
+
+async function handlePostback(sender_psid, postback) {
   const payload = postback.payload;
-  console.log(`🔘 Postback from ${senderId}:`, payload);
+  const title = postback.title;
+
+  console.log('🔘 Postback received:', {
+    sender: sender_psid,
+    payload: payload,
+    title: title
+  });
 
   let response;
 
-  switch (payload) {
-    case 'SELECT_ZEUS':
+  switch(payload) {
+    // ─────────────────────────────────────────────────────────
+    // Get Started button — First contact greeting
+    // ─────────────────────────────────────────────────────────
+    case 'ZEUS_GET_STARTED':
       response = {
-        text: '⚡ You have entered the Temple of Zeus!\n\n' +
-          'Divine authority awaits. Thunder echoes through the halls of Olympus.\n\n' +
-          'What judgment do you seek from the King of Gods?'
+        text: "⚡ WELCOME, SEEKER.\n\n" +
+              "You stand before the Divine Trinity of Kypria Studios — " +
+              "where myth meets mastery, and vision becomes form.\n\n" +
+              "Choose your path:\n\n" +
+              "🎨 Sacred Works — Behold the portfolio\n" +
+              "📜 The Canon — Learn our philosophy\n" +
+              "💬 Speak Freely — Engage directly with Zeus\n\n" +
+              "Or use the menu (☰) for guided navigation.",
+        quick_replies: [
+          {
+            content_type: "text",
+            title: "🎨 View Portfolio",
+            payload: "VIEW_PORTFOLIO"
+          },
+          {
+            content_type: "text",
+            title: "📜 Learn More",
+            payload: "ABOUT_CANON"
+          },
+          {
+            content_type: "text",
+            title: "💬 Commission Work",
+            payload: "COMMISSION_INQUIRY"
+          }
+        ]
       };
       break;
 
-    case 'SELECT_APHRODITE':
+    // ─────────────────────────────────────────────────────────
+    // Main Menu — Central navigation hub
+    // ─────────────────────────────────────────────────────────
+    case 'MAIN_MENU':
       response = {
-        text: '🌹 You have entered the Temple of Aphrodite!\n\n' +
-          "Love's embrace welcomes you. Beauty and connection bloom around you.\n\n" +
-          'What wisdom of the heart do you seek?'
+        text: "⚡ THE OLYMPIAN COUNCIL AWAITS.\n\n" +
+              "State your inquiry:",
+        quick_replies: [
+          {
+            content_type: "text",
+            title: "🎨 Sacred Works",
+            payload: "VIEW_PORTFOLIO"
+          },
+          {
+            content_type: "text",
+            title: "💬 Commission",
+            payload: "COMMISSION_INQUIRY"
+          },
+          {
+            content_type: "text",
+            title: "📜 About Us",
+            payload: "ABOUT_CANON"
+          }
+        ]
       };
       break;
 
-    case 'SELECT_LIFESPHERE':
+    // ─────────────────────────────────────────────────────────
+    // About / Canon / Lore
+    // ─────────────────────────────────────────────────────────
+    case 'ABOUT_CANON':
       response = {
-        text: '👁️ You have entered the Temple of Lifesphere!\n\n' +
-          'Cosmic consciousness unfolds before you. The infinite gazes back.\n\n' +
-          'What truth do you seek from beyond the veil?'
+        text: "📜 THE KYPRIA STUDIOS CANON\n\n" +
+              "Born from the intersection of mythology and technology, " +
+              "Kypria Studios forges digital experiences worthy of the gods.\n\n" +
+              "Our craft spans:\n" +
+              "⚡ Mythic Branding & Identity\n" +
+              "🎨 Sacred Digital Art\n" +
+              "🏛️ Ceremonial Web Architecture\n" +
+              "📜 Living Documentation Systems\n\n" +
+              "Every creation is bound by precision, resonance, and timeless design.\n\n" +
+              "Learn more: https://kypriastudios.com"
       };
       break;
 
-    case 'LEARN_MORE_PREMIUM':
+    // ─────────────────────────────────────────────────────────
+    // Portfolio / Sacred Works
+    // ─────────────────────────────────────────────────────────
+    case 'VIEW_PORTFOLIO':
       response = {
-        text: '✨ Premium Oracle Session Details:\n\n' +
-          '💰 Investment: $5 one-time\n' +
-          '⏱️ Duration: 30 minutes\n' +
-          '💬 Messages: 20 extended responses\n' +
-          '🧠 Memory: Full conversation context\n' +
-          '🤖 AI Model: GPT-4 (premium tier)\n' +
-          '📜 Features: Personalized prophecies\n\n' +
-          'Ready to unlock divine wisdom? Type "yes" or visit:\n' +
-          'https://kypriatechnologies.org/premium'
+        text: "🎨 BEHOLD THE SACRED WORKS\n\n" +
+              "Visit the Basilica Codex to witness our portfolio:\n" +
+              "https://kypriastudios.com\n\n" +
+              "Each project is a testament to mythic precision and operational excellence."
       };
       break;
 
+    // ─────────────────────────────────────────────────────────
+    // Commission Inquiry
+    // ─────────────────────────────────────────────────────────
+    case 'COMMISSION_INQUIRY':
+      response = {
+        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\n\n" +
+              "Describe your vision here, or visit our formal inquiry portal:\n" +
+              "https://kypriastudios.com/contact\n\n" +
+              "Zeus listens. Speak your purpose, mortal."
+      };
+      break;
+
+    // ─────────────────────────────────────────────────────────
+    // Fallback — Unrecognized payload
+    // ─────────────────────────────────────────────────────────
     default:
+      console.warn('⚠️ Unrecognized payload:', payload);
       response = {
-        text: `Postback received: ${payload}\n\nType "help" for available commands!`
+        text: "⚡ Zeus does not recognize this invocation.\n\n" +
+              "Use the menu (☰) for guided navigation, or speak your purpose plainly."
       };
   }
 
-  await sendMessage(senderId, response);
+  await callSendAPI(sender_psid, response);
 }
 
-/**
- * Send message via Meta Send API
- */
-async function sendMessage(recipientId, message) {
+// ═══════════════════════════════════════════════════════════════
+// SEND API — Delivers messages back to the user
+// ═══════════════════════════════════════════════════════════════
+
+async function callSendAPI(sender_psid, response) {
+  const request_body = {
+    recipient: {
+      id: sender_psid
+    },
+    message: response
+  };
+
+  console.log('📤 Sending message to:', sender_psid);
+
   try {
-    const response = await axios.post(
-      `https://graph.facebook.com/v18.0/me/messages`,
+    const res = await fetch(
+      `https://graph.facebook.com/v21.0/me/messages?access_token=${process.env.PAGE_ACCESS_TOKEN}`,
       {
-        recipient: { id: recipientId },
-        message: message
-      },
-      {
-        params: { access_token: PAGE_ACCESS_TOKEN }
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(request_body)
       }
     );
 
-    console.log('✅ Message sent successfully:', response.data.message_id);
-    return response.data;
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error('❌ Send API Error:', {
+        status: res.status,
+        statusText: res.statusText,
+        error: data.error
+      });
+    } else {
+      console.log('✅ Message sent successfully:', data);
+    }
+
+    return data;
   } catch (error) {
-    console.error('❌ Send API error:', error.response?.data || error.message);
+    console.error('❌ Send API Exception:', error);
     throw error;
   }
 }
+```
+
+---
+
+## ⚡ WHAT THIS FILE DOES
+
+### **1. Webhook Verification (GET)**
+- Responds to Facebook's subscription verification
+- Uses `FB_VERIFY_TOKEN` from environment variables
+- Returns the challenge string to complete handshake
+
+### **2. Message Handling (POST → message event)**
+- Detects user intent from text input
+- Routes to portfolio, commission, or about responses
+- Provides default guidance for unmatched queries
+- Handles attachments with acknowledgment
+
+### **3. Postback Handling (POST → postback event)**
+- Routes Get Started button → Welcome message with Quick Replies
+- Routes Main Menu → Interactive menu with Quick Replies
+- Routes About Canon → Full philosophy statement
+- Routes View Portfolio → Portfolio link
+- Routes Commission Inquiry → Contact guidance
+- Includes fallback for unrecognized payloads
+
+### **4. Send API with Error Handling**
+- Sends responses back to user via Facebook Graph API
+- Logs all success/failure states
+- Uses `PAGE_ACCESS_TOKEN` from environment variables
+
+### **5. Quick Replies**
+- Added to Get Started and Main Menu responses
+- Provides guided button navigation
+- Payloads route back through postback handler
+
+---
+
+# 📜 PART 2: THE TESTING CHECKLIST
+
+## 🔱 VERIFICATION SEQUENCE — POST-DEPLOYMENT
+
+### **Phase 1: Deployment Verification**
+```
+□ Code committed to Git
+□ Pushed to Netlify (main branch)
+□ Build completed successfully (check Netlify dashboard)
+□ Function deployed: messenger.js
+□ No build errors in Netlify logs
+```
+
+### **Phase 2: Webhook Verification**
+```
+□ Open Facebook Developers
+□ Go to Webhooks section
+□ Verify webhook URL shows ✅ green checkmark
+□ Test Button returns 200 OK
+```
+
+### **Phase 3: Get Started Button (New User Test)**
+```
+□ Open PRIVATE/INCOGNITO browser
+□ Visit https://m.me/705565335971937
+□ Verify "Get Started" button is visible
+□ Click "Get Started"
+□ Expected: Welcome message with 3 Quick Reply buttons
+□ Click each Quick Reply
+□ Verify correct response for each
+```
+
+### **Phase 4: Persistent Menu Test**
+```
+□ Click hamburger menu (☰)
+□ Verify 3 menu items appear
+□ Click "⚡ Talk to Zeus (Guide me)"
+□ Expected: Main Menu message with Quick Replies
+□ Click each Quick Reply
+□ Verify correct responses
+```
+
+### **Phase 5: Text Message Test**
+```
+□ Type: "portfolio"
+□ Expected: Portfolio message with link
+□ Type: "commission"
+□ Expected: Commission inquiry message
+□ Type: "about"
+□ Expected: Canon/lore message
+□ Type: "random text"
+□ Expected: Default guidance message
+```
+
+### **Phase 6: Error Handling Test**
+```
+□ Check Netlify Function logs
+□ Verify no error messages
+□ Verify all events logged correctly
+□ Test with invalid input (special characters, emojis)
+□ Confirm bot doesn't crash
+```
+
+### **Phase 7: Performance Test**
+```
+□ Send 5 rapid messages
+□ Verify all responses arrive
+□ Check response time (should be <2 seconds)
+□ Verify no duplicate responses
