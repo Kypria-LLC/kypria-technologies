@@ -2,8 +2,7 @@
 
 [build]
   command = "echo 'Functions-only build'"
-  publish = "dist"
-
+publish = "."
     functions = "netlify/functions"
 
 # Redirect all routes to index.html for SPA compatibility
