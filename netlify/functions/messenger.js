@@ -2,8 +2,6 @@
 // Divine Trinity Messenger Bot — Unified Webhook Handler
 // Handles verification, messages, and postbacks
 
-const fetch = require('node-fetch');
-
 // ═══════════════════════════════════════════════════════════════
 // MAIN HANDLER — Routes GET (verification) and POST (events)
 // ═══════════════════════════════════════════════════════════════
@@ -42,7 +40,7 @@ exports.handler = async (event, context) => {
   // ─────────────────────────────────────────────────────────────
   if (event.httpMethod === 'POST') {
     let body;
-    
+
     try {
       body = JSON.parse(event.body);
     } catch (error) {
@@ -112,53 +110,53 @@ async function handleMessage(sender_psid, received_message) {
     // Intent detection — Sacred Works / Portfolio
     if (text.includes('portfolio') || text.includes('work') || text.includes('gallery')) {
       response = {
-        text: "🎨 BEHOLD THE SACRED WORKS\n\n" +
-              "Visit the Basilica Codex to witness our divine portfolio:\n" +
-              "https://kypriastudios.com\n\n" +
-              "Each creation is a testament to mythic precision and operational excellence."
+        text: "🎨 BEHOLD THE SACRED WORKS\\n\\n" +
+          "Visit the Basilica Codex to witness our divine portfolio:\\n" +
+          "https://kypriastudios.com\\n\\n" +
+          "Each creation is a testament to mythic precision and operational excellence."
       };
     }
     // Intent detection — Commission / Hire
     else if (text.includes('commission') || text.includes('hire') || text.includes('project')) {
       response = {
-        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\n\n" +
-              "Speak your vision clearly, and Zeus shall assess its worthiness.\n\n" +
-              "For formal inquiry, visit:\n" +
-              "https://kypriastudios.com/contact\n\n" +
-              "Or describe your need here, and we shall guide you."
+        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\\n\\n" +
+          "Speak your vision clearly, and Zeus shall assess its worthiness.\\n\\n" +
+          "For formal inquiry, visit:\\n" +
+          "https://kypriastudios.com/contact\\n\\n" +
+          "Or describe your need here, and we shall guide you."
       };
     }
     // Intent detection — About / Canon / Lore
     else if (text.includes('about') || text.includes('canon') || text.includes('lore') || text.includes('who')) {
       response = {
-        text: "📜 THE KYPRIA STUDIOS CANON\n\n" +
-              "Born from the intersection of mythology and technology, " +
-              "Kypria Studios forges digital experiences worthy of the gods.\n\n" +
-              "Our craft spans:\n" +
-              "⚡ Mythic Branding & Identity\n" +
-              "🎨 Sacred Digital Art\n" +
-              "🏛️ Ceremonial Web Architecture\n" +
-              "📜 Living Documentation Systems\n\n" +
-              "Every creation is bound by precision, resonance, and timeless design."
+        text: "📜 THE KYPRIA STUDIOS CANON\\n\\n" +
+          "Born from the intersection of mythology and technology, " +
+          "Kypria Studios forges digital experiences worthy of the gods.\\n\\n" +
+          "Our craft spans:\\n" +
+          "⚡ Mythic Branding & Identity\\n" +
+          "🎨 Sacred Digital Art\\n" +
+          "🏛️ Ceremonial Web Architecture\\n" +
+          "📜 Living Documentation Systems\\n\\n" +
+          "Every creation is bound by precision, resonance, and timeless design."
       };
     }
     // Default response — Acknowledge and guide
     else {
       response = {
-        text: "⚡ Zeus hears your words, mortal.\n\n" +
-              "For structured guidance, invoke the menu (☰).\n" +
-              "For direct inquiry, speak your purpose clearly:\n\n" +
-              "• Portfolio & Sacred Works\n" +
-              "• Commission Inquiry\n" +
-              "• About Kypria Studios"
+        text: "⚡ Zeus hears your words, mortal.\\n\\n" +
+          "For structured guidance, invoke the menu (☰).\\n" +
+          "For direct inquiry, speak your purpose clearly:\\n\\n" +
+          "• Portfolio & Sacred Works\\n" +
+          "• Commission Inquiry\\n" +
+          "• About Kypria Studios"
       };
     }
   }
   // Handle attachments (images, files, etc.)
   else if (received_message.attachments) {
     response = {
-      text: "⚡ Zeus acknowledges your offering.\n\n" +
-            "Attachments received. Describe your intent, and we shall interpret."
+      text: "⚡ Zeus acknowledges your offering.\\n\\n" +
+        "Attachments received. Describe your intent, and we shall interpret."
     };
   }
 
@@ -181,20 +179,20 @@ async function handlePostback(sender_psid, postback) {
 
   let response;
 
-  switch(payload) {
+  switch (payload) {
     // ─────────────────────────────────────────────────────────
     // Get Started button — First contact greeting
     // ─────────────────────────────────────────────────────────
     case 'ZEUS_GET_STARTED':
       response = {
-        text: "⚡ WELCOME, SEEKER.\n\n" +
-              "You stand before the Divine Trinity of Kypria Studios — " +
-              "where myth meets mastery, and vision becomes form.\n\n" +
-              "Choose your path:\n\n" +
-              "🎨 Sacred Works — Behold the portfolio\n" +
-              "📜 The Canon — Learn our philosophy\n" +
-              "💬 Speak Freely — Engage directly with Zeus\n\n" +
-              "Or use the menu (☰) for guided navigation.",
+        text: "⚡ WELCOME, SEEKER.\\n\\n" +
+          "You stand before the Divine Trinity of Kypria Studios — " +
+          "where myth meets mastery, and vision becomes form.\\n\\n" +
+          "Choose your path:\\n\\n" +
+          "🎨 Sacred Works — Behold the portfolio\\n" +
+          "📜 The Canon — Learn our philosophy\\n" +
+          "💬 Speak Freely — Engage directly with Zeus\\n\\n" +
+          "Or use the menu (☰) for guided navigation.",
         quick_replies: [
           {
             content_type: "text",
@@ -220,8 +218,8 @@ async function handlePostback(sender_psid, postback) {
     // ─────────────────────────────────────────────────────────
     case 'MAIN_MENU':
       response = {
-        text: "⚡ THE OLYMPIAN COUNCIL AWAITS.\n\n" +
-              "State your inquiry:",
+        text: "⚡ THE OLYMPIAN COUNCIL AWAITS.\\n\\n" +
+          "State your inquiry:",
         quick_replies: [
           {
             content_type: "text",
@@ -247,16 +245,16 @@ async function handlePostback(sender_psid, postback) {
     // ─────────────────────────────────────────────────────────
     case 'ABOUT_CANON':
       response = {
-        text: "📜 THE KYPRIA STUDIOS CANON\n\n" +
-              "Born from the intersection of mythology and technology, " +
-              "Kypria Studios forges digital experiences worthy of the gods.\n\n" +
-              "Our craft spans:\n" +
-              "⚡ Mythic Branding & Identity\n" +
-              "🎨 Sacred Digital Art\n" +
-              "🏛️ Ceremonial Web Architecture\n" +
-              "📜 Living Documentation Systems\n\n" +
-              "Every creation is bound by precision, resonance, and timeless design.\n\n" +
-              "Learn more: https://kypriastudios.com"
+        text: "📜 THE KYPRIA STUDIOS CANON\\n\\n" +
+          "Born from the intersection of mythology and technology, " +
+          "Kypria Studios forges digital experiences worthy of the gods.\\n\\n" +
+          "Our craft spans:\\n" +
+          "⚡ Mythic Branding & Identity\\n" +
+          "🎨 Sacred Digital Art\\n" +
+          "🏛️ Ceremonial Web Architecture\\n" +
+          "📜 Living Documentation Systems\\n\\n" +
+          "Every creation is bound by precision, resonance, and timeless design.\\n\\n" +
+          "Learn more: https://kypriastudios.com"
       };
       break;
 
@@ -265,10 +263,10 @@ async function handlePostback(sender_psid, postback) {
     // ─────────────────────────────────────────────────────────
     case 'VIEW_PORTFOLIO':
       response = {
-        text: "🎨 BEHOLD THE SACRED WORKS\n\n" +
-              "Visit the Basilica Codex to witness our portfolio:\n" +
-              "https://kypriastudios.com\n\n" +
-              "Each project is a testament to mythic precision and operational excellence."
+        text: "🎨 BEHOLD THE SACRED WORKS\\n\\n" +
+          "Visit the Basilica Codex to witness our portfolio:\\n" +
+          "https://kypriastudios.com\\n\\n" +
+          "Each project is a testament to mythic precision and operational excellence."
       };
       break;
 
@@ -277,10 +275,10 @@ async function handlePostback(sender_psid, postback) {
     // ─────────────────────────────────────────────────────────
     case 'COMMISSION_INQUIRY':
       response = {
-        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\n\n" +
-              "Describe your vision here, or visit our formal inquiry portal:\n" +
-              "https://kypriastudios.com/contact\n\n" +
-              "Zeus listens. Speak your purpose, mortal."
+        text: "⚡ TO COMMISSION THE DIVINE TRINITY:\\n\\n" +
+          "Describe your vision here, or visit our formal inquiry portal:\\n" +
+          "https://kypriastudios.com/contact\\n\\n" +
+          "Zeus listens. Speak your purpose, mortal."
       };
       break;
 
@@ -290,8 +288,8 @@ async function handlePostback(sender_psid, postback) {
     default:
       console.warn('⚠️ Unrecognized payload:', payload);
       response = {
-        text: "⚡ Zeus does not recognize this invocation.\n\n" +
-              "Use the menu (☰) for guided navigation, or speak your purpose plainly."
+        text: "⚡ Zeus does not recognize this invocation.\\n\\n" +
+          "Use the menu (☰) for guided navigation, or speak your purpose plainly."
       };
   }
 
@@ -342,109 +340,3 @@ async function callSendAPI(sender_psid, response) {
     throw error;
   }
 }
-```
-
----
-
-## ⚡ WHAT THIS FILE DOES
-
-### **1. Webhook Verification (GET)**
-- Responds to Facebook's subscription verification
-- Uses `FB_VERIFY_TOKEN` from environment variables
-- Returns the challenge string to complete handshake
-
-### **2. Message Handling (POST → message event)**
-- Detects user intent from text input
-- Routes to portfolio, commission, or about responses
-- Provides default guidance for unmatched queries
-- Handles attachments with acknowledgment
-
-### **3. Postback Handling (POST → postback event)**
-- Routes Get Started button → Welcome message with Quick Replies
-- Routes Main Menu → Interactive menu with Quick Replies
-- Routes About Canon → Full philosophy statement
-- Routes View Portfolio → Portfolio link
-- Routes Commission Inquiry → Contact guidance
-- Includes fallback for unrecognized payloads
-
-### **4. Send API with Error Handling**
-- Sends responses back to user via Facebook Graph API
-- Logs all success/failure states
-- Uses `PAGE_ACCESS_TOKEN` from environment variables
-
-### **5. Quick Replies**
-- Added to Get Started and Main Menu responses
-- Provides guided button navigation
-- Payloads route back through postback handler
-
----
-
-# 📜 PART 2: THE TESTING CHECKLIST
-
-## 🔱 VERIFICATION SEQUENCE — POST-DEPLOYMENT
-
-### **Phase 1: Deployment Verification**
-```
-□ Code committed to Git
-□ Pushed to Netlify (main branch)
-□ Build completed successfully (check Netlify dashboard)
-□ Function deployed: messenger.js
-□ No build errors in Netlify logs
-```
-
-### **Phase 2: Webhook Verification**
-```
-□ Open Facebook Developers
-□ Go to Webhooks section
-□ Verify webhook URL shows ✅ green checkmark
-□ Test Button returns 200 OK
-```
-
-### **Phase 3: Get Started Button (New User Test)**
-```
-□ Open PRIVATE/INCOGNITO browser
-□ Visit https://m.me/705565335971937
-□ Verify "Get Started" button is visible
-□ Click "Get Started"
-□ Expected: Welcome message with 3 Quick Reply buttons
-□ Click each Quick Reply
-□ Verify correct response for each
-```
-
-### **Phase 4: Persistent Menu Test**
-```
-□ Click hamburger menu (☰)
-□ Verify 3 menu items appear
-□ Click "⚡ Talk to Zeus (Guide me)"
-□ Expected: Main Menu message with Quick Replies
-□ Click each Quick Reply
-□ Verify correct responses
-```
-
-### **Phase 5: Text Message Test**
-```
-□ Type: "portfolio"
-□ Expected: Portfolio message with link
-□ Type: "commission"
-□ Expected: Commission inquiry message
-□ Type: "about"
-□ Expected: Canon/lore message
-□ Type: "random text"
-□ Expected: Default guidance message
-```
-
-### **Phase 6: Error Handling Test**
-```
-□ Check Netlify Function logs
-□ Verify no error messages
-□ Verify all events logged correctly
-□ Test with invalid input (special characters, emojis)
-□ Confirm bot doesn't crash
-```
-
-### **Phase 7: Performance Test**
-```
-□ Send 5 rapid messages
-□ Verify all responses arrive
-□ Check response time (should be <2 seconds)
-□ Verify no duplicate responses
