@@ -247,17 +247,39 @@
             const threadContent = document.getElementById('thread-content');
             threadContent.innerHTML = '';
             
-            // Example thread generation (replace with actual AI API)
-            const tweets = [
-                `🔮 ${topic} - A thread\n\nThe Oracle has spoken. Let us delve into the mysteries...`,
-                `1/ Every great journey begins with a single step into the unknown.\n\nThe path of ${topic} is no different.`,
-                `2/ In the halls of the Basilica, we've learned that true wisdom comes not from knowing all answers, but from asking the right questions.`,
-                `3/ ${topic} isn't just a concept—it's a living, breathing force that shapes our digital reality.`,
-                `4/ The ancients knew: "That which is measured improves."\n\nTrack your progress, honor your growth.`,
-                `5/ Remember: Rome wasn't built in a day, but every stone was laid with intention.`,
-                `6/ As you walk this path, know that the Basilica stands with you.\n\nYour journey is sacred.`,
-                `7/ 🏛️ Want to learn more? Visit the Basilica:\n\nhttps://kypriatechnologies.org\n\nWhere code meets ceremony.`
-            ];
+              // Claude API Integration
+    try {
+      const CLAUDE_API_KEY = 'sk-ant-api03-f8mO5vEVvIs0rGbm8guTR2vqhVCYN6mBVKOnIpcwuZcLJsO4qhuw9GQ391X67PsZdMq0POnW_7SpnF4P0DldlA--7qPQQAA';
+      const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
+      
+      const prompt = `Create a Twitter/X thread about "${topic}" with ${length} tweets.
+Tone: ${tone}.
+Format each tweet clearly numbered (1/, 2/, etc.) and ensure each tweet is under 280 characters.
+Make the thread engaging, valuable, and aligned with the mystical "Oracle" theme of Kypria Technologies.`;
+      
+      const response = await fetch(CLAUDE_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': CLAUDE_API_KEY,
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 2048,
+          messages: [{
+            role: 'user',
+            content: prompt
+          }]
+        })
+      });
+      
+      const data = await response.json();
+      const threadText = data.content[0].text;
+      
+      // Parse the response into individual tweets
+      const tweets = threadText.split(/\n+/).filter(t => t.trim().length > 0);
+
             
             // Display tweets
             tweets.slice(0, length).forEach((tweet, index) => {
@@ -278,6 +300,10 @@
                 threadContent.appendChild(tweetDiv);
             });
         }
+                } catch (error) {
+      console.error('Oracle consultation failed:', error);
+      threadContent.innerHTML = '<div class="text-red-400 p-4">The Oracle encountered an error. Please try again.</div>';
+    }
         
         // Copy individual tweet
         window.copyTweet = function(btn) {
