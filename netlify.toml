@@ -2,7 +2,7 @@
 
 [build]
   command = "npm run build
-    "  functions = "netlify/functions"
+     functions = "netlify/functions"
 
 # Redirect all routes to index.html for SPA compatibility
 
