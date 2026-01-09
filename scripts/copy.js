@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Files and directories to copy
-const srcFiles = ['index.html', 'js/ui.js'];
+const srcFiles = ['index.html', 'js/ui.js', 'thread-generator.html'];
 const srcDirs = ['assets', 'images'];
 
 // Ensure dist directory exists
