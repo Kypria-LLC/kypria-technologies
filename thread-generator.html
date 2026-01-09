@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ORACLE | Thread Generator | Kypria Technologies</title>
+    <meta name="description" content="Consult THE ORACLE - Generate divine social media threads with the wisdom of the Basilica">
+    
+    <!-- Tailwind CSS -->
+    <link href="./dist/assets.css" rel="stylesheet">
+    
+    <style>
+        .oracle-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5),
+                         0 0 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        .thread-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+        
+        .thread-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .prophecy-text {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #e8e8e8;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen text-white">
+    
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-6">
+        <nav class="flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold oracle-glow">⚡ THE BASILICA</a>
+            <div class="space-x-6">
+                <a href="index.html" class="hover:text-yellow-400 transition">Home</a>
+                <a href="codex.html" class="hover:text-yellow-400 transition">Codex</a>
+                <a href="pricing.html" class="hover:text-yellow-400 transition">Offerings</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Oracle Chamber -->
+    <main class="container mx-auto px-4 py-12">
+        
+        <!-- Oracle Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-6xl font-bold mb-4 oracle-glow">🔮 THE ORACLE</h1>
+            <p class="text-2xl text-yellow-400 mb-2">Thread Generator</p>
+            <p class="text-gray-300 max-w-2xl mx-auto">
+                Consult the ancient wisdom. The Oracle weaves threads of knowledge 
+                that resonate across the digital realm.
+            </p>
+        </div>
+
+        <!-- Thread Generation Form -->
+        <div class="max-w-4xl mx-auto mb-16">
+            <div class="thread-card rounded-lg p-8 shadow-2xl">
+                <h2 class="text-3xl font-bold mb-6 text-yellow-400">✨ Invoke the Oracle</h2>
+                
+                <form id="oracle-form" class="space-y-6">
+                    <!-- Topic Input -->
+                    <div>
+                        <label for="topic" class="block text-lg font-semibold mb-2">
+                            Sacred Topic
+                        </label>
+                        <input 
+                            type="text" 
+                            id="topic" 
+                            name="topic"
+                            placeholder="Enter your thread topic..." 
+                            class="w-full px-4 py-3 bg-gray-800 border-2 border-yellow-600 rounded-lg focus:outline-none focus:border-yellow-400 text-white placeholder-gray-500"
+                            required
+                        >
+                    </div>
+
+                    <!-- Thread Length -->
+                    <div>
+                        <label for="length" class="block text-lg font-semibold mb-2">
+                            Number of Verses (Tweets)
+                        </label>
+                        <select 
+                            id="length" 
+                            name="length"
+                            class="w-full px-4 py-3 bg-gray-800 border-2 border-yellow-600 rounded-lg focus:outline-none focus:border-yellow-400 text-white"
+                        >
+                            <option value="5">5 verses</option>
+                            <option value="7" selected>7 verses</option>
+                            <option value="10">10 verses</option>
+                            <option value="15">15 verses</option>
+                        </select>
+                    </div>
+
+                    <!-- Tone Selection -->
+                    <div>
+                        <label for="tone" class="block text-lg font-semibold mb-2">
+                            Oracle's Voice
+                        </label>
+                        <select 
+                            id="tone" 
+                            name="tone"
+                            class="w-full px-4 py-3 bg-gray-800 border-2 border-yellow-600 rounded-lg focus:outline-none focus:border-yellow-400 text-white"
+                        >
+                            <option value="professional">Professional & Authoritative</option>
+                            <option value="inspirational">Inspirational & Uplifting</option>
+                            <option value="educational">Educational & Informative</option>
+                            <option value="mystical" selected>Mystical & Prophetic</option>
+                            <option value="casual">Casual & Conversational</option>
+                        </select>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button 
+                        type="submit"
+                        class="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                    >
+                        🔮 Consult the Oracle
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Generated Thread Display -->
+        <div id="thread-result" class="max-w-4xl mx-auto hidden">
+            <div class="thread-card rounded-lg p-8 shadow-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-yellow-400">📜 The Prophecy</h2>
+                    <button 
+                        id="copy-thread"
+                        class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-lg transition flex items-center gap-2"
+                    >
+                        📋 Copy All
+                    </button>
+                </div>
+                
+                <div id="thread-content" class="space-y-4">
+                    <!-- Thread tweets will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Example Threads -->
+        <div class="max-w-4xl mx-auto mt-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-yellow-400">
+                ⚡ Divine Inspirations
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Example 1 -->
+                <div class="thread-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-3">🏛️ Building in Public</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        "The journey of creation is not meant to be walked in shadow..."
+                    </p>
+                    <button class="text-yellow-400 hover:text-yellow-300 text-sm">
+                        View Example →
+                    </button>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="thread-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-3">⚡ Tech Innovation</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        "In the digital basilica, every line of code is a prayer..."
+                    </p>
+                    <button class="text-yellow-400 hover:text-yellow-300 text-sm">
+                        View Example →
+                    </button>
+                </div>
+
+                <!-- Example 3 -->
+                <div class="thread-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-3">🌟 Founder Mindset</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        "The path of the builder is sacred, carved through doubt..."
+                    </p>
+                    <button class="text-yellow-400 hover:text-yellow-300 text-sm">
+                        View Example →
+                    </button>
+                </div>
+
+                <!-- Example 4 -->
+                <div class="thread-card rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-3">🔥 Product Launch</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        "Today, we breathe life into dreams made manifest..."
+                    </p>
+                    <button class="text-yellow-400 hover:text-yellow-300 text-sm">
+                        View Example →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-4 py-8 mt-16 border-t border-gray-700">
+        <div class="text-center text-gray-400">
+            <p class="mb-2">🏛️ Kypria Technologies - The Basilica</p>
+            <p class="text-sm">Where code meets ceremony | Built with divine intention</p>
+            <div class="mt-4 space-x-4">
+                <a href="privacy.html" class="hover:text-yellow-400 transition">Privacy</a>
+                <a href="codex.html" class="hover:text-yellow-400 transition">Codex</a>
+                <a href="mailto:contact@kypriatechnologies.org" class="hover:text-yellow-400 transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Oracle Form Submission
+        document.getElementById('oracle-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const topic = document.getElementById('topic').value;
+            const length = parseInt(document.getElementById('length').value);
+            const tone = document.getElementById('tone').value;
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '⚡ The Oracle is Consulting...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call (replace with actual API integration)
+            await generateThread(topic, length, tone);
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Show result
+            document.getElementById('thread-result').classList.remove('hidden');
+            document.getElementById('thread-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        
+        // Thread Generation Function
+        async function generateThread(topic, length, tone) {
+            const threadContent = document.getElementById('thread-content');
+            threadContent.innerHTML = '';
+            
+            // Example thread generation (replace with actual AI API)
+            const tweets = [
+                `🔮 ${topic} - A thread\n\nThe Oracle has spoken. Let us delve into the mysteries...`,
+                `1/ Every great journey begins with a single step into the unknown.\n\nThe path of ${topic} is no different.`,
+                `2/ In the halls of the Basilica, we've learned that true wisdom comes not from knowing all answers, but from asking the right questions.`,
+                `3/ ${topic} isn't just a concept—it's a living, breathing force that shapes our digital reality.`,
+                `4/ The ancients knew: "That which is measured improves."\n\nTrack your progress, honor your growth.`,
+                `5/ Remember: Rome wasn't built in a day, but every stone was laid with intention.`,
+                `6/ As you walk this path, know that the Basilica stands with you.\n\nYour journey is sacred.`,
+                `7/ 🏛️ Want to learn more? Visit the Basilica:\n\nhttps://kypriatechnologies.org\n\nWhere code meets ceremony.`
+            ];
+            
+            // Display tweets
+            tweets.slice(0, length).forEach((tweet, index) => {
+                const tweetDiv = document.createElement('div');
+                tweetDiv.className = 'bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-yellow-600 transition';
+                tweetDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-yellow-400 font-bold">Tweet ${index + 1}</span>
+                        <button onclick="copyTweet(this)" class="text-blue-400 hover:text-blue-300 text-sm">
+                            Copy
+                        </button>
+                    </div>
+                    <p class="prophecy-text whitespace-pre-wrap">${tweet}</p>
+                    <div class="mt-2 text-gray-500 text-sm">
+                        ${tweet.length} characters
+                    </div>
+                `;
+                threadContent.appendChild(tweetDiv);
+            });
+        }
+        
+        // Copy individual tweet
+        window.copyTweet = function(btn) {
+            const tweetText = btn.closest('.bg-gray-800').querySelector('.prophecy-text').textContent;
+            navigator.clipboard.writeText(tweetText).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        };
+        
+        // Copy all tweets
+        document.getElementById('copy-thread')?.addEventListener('click', function() {
+            const allTweets = Array.from(document.querySelectorAll('.prophecy-text'))
+                .map(el => el.textContent)
+                .join('\n\n');
+            
+            navigator.clipboard.writeText(allTweets).then(() => {
+                this.innerHTML = '✅ Copied!';
+                setTimeout(() => this.innerHTML = '📋 Copy All', 2000);
+            });
+        });
+    </script>
+</body>
+</html>
