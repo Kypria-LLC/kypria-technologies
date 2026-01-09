@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Oracle - AI Thread Generator | $15/mo</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero p {
+            font-size: 24px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+        }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); }
+        .card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+        .card-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        .price span { font-size: 24px; opacity: 0.7; }
+        .features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .features li:before {
+            content: '✓';
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: scale(1.02);
+        }
+        .btn-paypal {
+            background: #0070ba;
+            color: white;
+        }
+        .btn-paypal:hover { background: #005ea6; }
+        .social-proof {
+            text-align: center;
+            color: white;
+            margin: 40px 0;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .pricing-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🔮 The Oracle</h1>
+            <p>AI-Powered Thread Generator for Instagram & Meta Platforms</p>
+            <div>
+                <span class="badge">#Ad</span>
+                <span class="badge">#MetaAI</span>
+                <span class="badge">#Vibes</span>
+                <span class="badge">#Filmmaking</span>
+                <span class="badge">#AIWorkflow</span>
+            </div>
+        </div>
+
+        <div class="pricing-cards">
+            <div class="card">
+                <h2>Starter</h2>
+                <div class="price">$15<span>/mo</span></div>
+                <ul class="features">
+                    <li>10 AI-generated threads/day</li>
+                    <li>Instagram integration</li>
+                    <li>Basic templates</li>
+                    <li>24/7 support</li>
+                </ul>
+                <button class="btn btn-primary" onclick="initiateStripeCheckout()">Start with Stripe</button>
+                <button class="btn btn-paypal" onclick="initiatePayPal()">Pay with PayPal</button>
+            </div>
+
+            <div class="card featured">
+                <span class="card-badge">MOST POPULAR</span>
+                <h2>Pro</h2>
+                <div class="price">$49<span>/mo</span></div>
+                <ul class="features">
+                    <li>Unlimited threads</li>
+                    <li>All platforms (IG, Threads, FB)</li>
+                    <li>Premium templates</li>
+                    <li>Analytics dashboard</li>
+                    <li>Priority support</li>
+                    <li>API access</li>
+                </ul>
+                <button class="btn btn-primary" onclick="initiateStripeCheckout('pro')">Start with Stripe</button>
+                <button class="btn btn-paypal" onclick="initiatePayPal('pro')">Pay with PayPal</button>
+            </div>
+
+            <div class="card">
+                <h2>Enterprise</h2>
+                <div class="price">$2,497<span>/one-time</span></div>
+                <ul class="features">
+                    <li>Everything in Pro</li>
+                    <li>White-label solution</li>
+                    <li>Custom integrations</li>
+                    <li>Dedicated account manager</li>
+                    <li>Training & onboarding</li>
+                    <li>Lifetime updates</li>
+                </ul>
+                <button class="btn btn-primary" onclick="initiateStripeCheckout('enterprise')">Contact Sales</button>
+            </div>
+        </div>
+
+        <div class="social-proof">
+            <h2>Trusted by Content Creators Worldwide</h2>
+            <div class="testimonial">
+                <p>"The Oracle transformed my Instagram strategy. I'm generating viral threads in minutes!"</p>
+                <strong>- @CreatorName • 250K followers</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Stripe Integration
+        const stripe = Stripe('pk_live_51SNypMADK1uzxo0bVZQO2I...'); // Your live publishable key
+
+        async function initiateStripeCheckout(plan = 'starter') {
+            try {
+                const response = await fetch('/.netlify/functions/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan })
+                });
+                const session = await response.json();
+                await stripe.redirectToCheckout({ sessionId: session.sessionId });
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Payment initialization failed. Please try again.');
+            }
+        }
+
+        // PayPal Integration
+        function initiatePayPal(plan = 'starter') {
+            // PayPal Smart Payment Buttons would go here
+            window.location.href = 'https://www.paypal.com/ncp/payment/YOUR_PAYPAL_LINK';
+        }
+
+        // Track page views for Instagram/Threads campaigns
+        if (document.referrer.includes('instagram') || document.referrer.includes('threads')) {
+            console.log('Traffic from Meta platform detected');
+            // Send analytics event
+        }
+    </script>
+</body>
+</html>
