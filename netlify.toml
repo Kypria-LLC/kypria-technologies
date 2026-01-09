@@ -1,8 +1,7 @@
 # netlify.toml - Netlify deployment & build configuration for Basilica
 
 [build]
-  command = "echo 'functions-only build'"
-  functions = "netlify/functions"
+  command = "npm run build"  functions = "netlify/functions"
 
 # Redirect all routes to index.html for SPA compatibility
 
