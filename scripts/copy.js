@@ -2,44 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Files and directories to copy
-const srcFiles = [
-  'index.html',
-  'codex.html',
-  'oracle-pricing.html',
-  'pricing.html',
-  'privacy.html',
-  'quickref.html',
-  'thank-you.html',
-  'themes.html',
-  'thread-generator.html',
-  'walkthrough.html',
-  'js/ui.js',
-  'style.css',
-  'manifest.json',
-  'robots.txt',
-  'favicon.ico',
-  'apple-touch-icon.png',
-  'kypria-crest-golden.png',
-  'kypria-crest-og.png',
-  'messenger.js',
-  '_redirects'
-];
-const srcDirs = ['assets', 'images', 'favicon_io', 'css', 'js', 'docs'];
-
-// Ensure dist directory exists
-fs.mkdirSync('dist', { recursive: true });
-
-// Copy individual files
-srcFiles.forEach(f => {
-  if (fs.existsSync(f)) {
-    fs.copyFileSync(f, path.join('dist', path.basename(f)));
-    console.log(`\u2713 Copied ${f}`);
-  } else {
-    console.warn(`\u26A0 Skipped ${f} (not found)`);
-  }
-});
-
 // Recursive directory copy function
 const copyDir = (dir, dest) => {
   fs.mkdirSync(dest, { recursive: true });
@@ -54,12 +16,45 @@ const copyDir = (dir, dest) => {
   }
 };
 
+// Auto-discover files to copy (no manual list to maintain)
+const rootFiles = fs.readdirSync('.').filter(f => {
+  const stat = fs.lstatSync(f);
+  if (stat.isDirectory()) return false;
+  // Skip build/config/dev files that shouldn't be deployed
+  const skip = [
+    'package.json', 'package-lock.json',
+    'tailwind.config.js', 'postcss.config.js',
+    'netlify.toml', '.gitignore',
+    'CHANGELOG.md', 'README.md', 'RELEASE.md', 'SECURITY.md',
+    'LICENSE', 'pr-body.md',
+    'FINAL_COMMIT_ALL_TO_BASILICA_GATE.sh', 'breathe.sh',
+    'inject-head-tags.sh'
+  ];
+  if (skip.includes(f)) return false;
+  if (f.endsWith('.bak')) return false;
+  if (f.startsWith('.')) return false;
+  return true;
+});
+
+const srcDirs = ['assets', 'images', 'favicon_io', 'css', 'js', 'docs'];
+
+// Ensure dist directory exists
+fs.mkdirSync('dist', { recursive: true });
+
+// Copy individual root files (preserving flat structure)
+rootFiles.forEach(f => {
+  if (fs.existsSync(f)) {
+    fs.copyFileSync(f, path.join('dist', f));
+    console.log(`\u2713 Copied ${f}`);
+  }
+});
+
 // Copy directories
 srcDirs.forEach(d => {
   if (fs.existsSync(d)) {
     copyDir(d, path.join('dist', d));
-    console.log(`\u2713 Copied directory ${d}`);
+    console.log(`\u2713 Copied directory ${d}/`);
   }
 });
 
-console.log('\u2713 Build complete! Ready for deployment.');
+console.log(`\u2713 Build complete! ${rootFiles.length} files + ${srcDirs.length} directories copied.`);
