@@ -132,3 +132,10 @@ stripe-cli/
 
 # Auth0
 auth0-deploy-cli-extension/
+
+
+# One-time scaffolding scripts
+FINAL_COMMIT_ALL_TO_BASILICA_GATE.sh
+
+# Backup files
+*.bak
