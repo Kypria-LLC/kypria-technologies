@@ -1,4 +1,2 @@
-# Netlify Functions - allow direct access
-/.netlify/functions/*  /.netlify/functions/:splat  200
-
+# Clean URL redirects
 /privacy    /privacy.html    200
