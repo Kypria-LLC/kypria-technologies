@@ -1,6 +1,16 @@
+# Social Media Bots
 User-agent: facebookexternalhit
 Allow: /
+
 User-agent: Twitterbot
 Allow: /
+
+# Default Rule
 User-agent: *
+Allow: /
 Disallow: /test-page
+Disallow: /api/
+Disallow: /.netlify/
+
+# Sitemap
+Sitemap: https://kypriatechnologies.org/sitemap.xml
