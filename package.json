@@ -18,7 +18,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "tailwindcss": "^3.4.13",
-    "netlify-plugin-image-optim": "^1.4.0"
+        "netlify-plugin-image-optim": "^0.4.0"
   },
   "dependencies": {
     "axios": "^1.6.0",
