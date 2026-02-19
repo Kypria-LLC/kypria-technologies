@@ -41,3 +41,7 @@ functions = "netlify/functions"
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Image optimization plugin
+[[plugins]]
+package = "netlify-plugin-image-optim"
