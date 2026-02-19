@@ -4,12 +4,6 @@
 command = "npm run build"
 functions = "netlify/functions"
 
-# Redirect all routes to index.html for SPA compatibility
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
 [[redirects]]
   from = "/api/*"
