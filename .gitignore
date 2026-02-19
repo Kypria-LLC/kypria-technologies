@@ -1,4 +1,5 @@
 # OS
+*.bak
 .DS_Store
 Thumbs.db
 
