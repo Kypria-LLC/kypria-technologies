@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hub | Kypria Technologies</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Kypria AI Hub – Explore AI tools and resources. Choose a plan that fits your needs, from free community access to full premium AI support.">
+    <meta name="keywords" content="Kypria, AI Hub, artificial intelligence, pricing, Daily Oracle, premium AI">
+    <link rel="canonical" href="https://kypriatechnologies.org/ai-hub.html">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kypriatechnologies.org/ai-hub.html">
+    <meta property="og:title" content="AI Hub | Kypria Technologies">
+    <meta property="og:description" content="Kypria AI Hub – Explore AI tools and resources. Choose a plan that fits your needs.">
+    <meta property="og:image" content="https://kypriatechnologies.org/kypria-crest-og.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Hub | Kypria Technologies">
+    <meta name="twitter:description" content="Kypria AI Hub – Explore AI tools and resources. Choose a plan that fits your needs.">
+    <meta name="twitter:image" content="https://kypriatechnologies.org/kypria-crest-og.png">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+
+        .hero-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #9ca3af;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* ── Pricing Cards ── */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #7c3aed;
+        }
+
+        .card.featured {
+            border-color: #7c3aed;
+            transform: scale(1.05);
+        }
+
+        .card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .card-name {
+            font-size: 1.8em;
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 3em;
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 0.4em;
+            color: #9ca3af;
+        }
+
+        .price-free {
+            font-size: 2em;
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            color: #d1d5db;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: #7c3aed;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px 30px;
+            background: #7c3aed;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .cta-button.cta-outline {
+            background: transparent;
+            border: 2px solid #7c3aed;
+            color: #a78bfa;
+        }
+
+        .cta-button.cta-outline:hover {
+            background: rgba(124, 58, 237, 0.15);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: rgba(15, 15, 30, 0.8);
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #a78bfa;
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card.featured {
+                transform: scale(1);
+            }
+
+            .card.featured:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-icon">🤖</div>
+            <h1>Welcome to the AI Hub</h1>
+            <p>Explore cutting-edge AI tools and resources crafted by Kypria Technologies. Whether you're just getting started or ready for full AI integration, there's a plan for you.</p>
+        </section>
+
+        <!-- Pricing Tiers -->
+        <div class="pricing-cards">
+
+            <!-- Free -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🌱</div>
+                    <h2 class="card-name">Free</h2>
+                    <div class="price-free">$0<span style="font-size:0.5em;color:#9ca3af;"> / forever</span></div>
+                </div>
+                <ul class="features">
+                    <li>Access to community resources</li>
+                    <li>Latest AI news &amp; updates</li>
+                    <li>Basic guides and tutorials</li>
+                    <li>Community forum access</li>
+                </ul>
+                <a href="/" class="cta-button cta-outline">Get Started Free</a>
+            </div>
+
+            <!-- Daily Oracle (Featured) -->
+            <div class="card featured">
+                <div class="card-header">
+                    <div class="card-icon">🔮</div>
+                    <h2 class="card-name">Daily Oracle</h2>
+                    <div class="price">$15<span>/mo</span></div>
+                </div>
+                <ul class="features">
+                    <li>Daily AI-generated insights</li>
+                    <li>AI thread &amp; content generation</li>
+                    <li>Priority community support</li>
+                    <li>Exclusive Oracle newsletters</li>
+                    <li>Early access to new features</li>
+                </ul>
+                <a href="https://buy.stripe.com/fZu7sK2Hd3V32NPc2Vlgs8H" class="cta-button">Subscribe – $15/mo</a>
+            </div>
+
+            <!-- Premium -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <h2 class="card-name">Premium</h2>
+                    <div class="price">Custom<span> pricing</span></div>
+                </div>
+                <ul class="features">
+                    <li>Full AI feature support</li>
+                    <li>Tailored AI solutions</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom integrations &amp; API access</li>
+                    <li>White-label deliverables</li>
+                </ul>
+                <a href="mailto:contact@kypriatechnologies.org" class="cta-button">Contact Us</a>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="mailto:contact@kypriatechnologies.org">Contact</a>
+                <a href="/">Home</a>
+            </div>
+            <p class="footer-text">&copy; 2026 Kypria Technologies. All rights reserved.</p>
+        </div>
+
+    </div>
+</body>
+</html>
