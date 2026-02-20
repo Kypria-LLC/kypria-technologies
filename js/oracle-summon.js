@@ -43,10 +43,11 @@ class OracleSummoner {
         message: message
       });
 
-      const response = await fetch(
-        `${this.baseUrl}/oracle-invoke?${params}`,
-        { method: 'POST' }
-      );
+      const response = await fetch(`${this.baseUrl}/oracle-invoke?${params}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ archetype, customMessage }),
+      });
 
       const result = await response.json();
 

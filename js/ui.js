@@ -68,6 +68,7 @@
   
   if ('IntersectionObserver' in window) {
     const images = document.querySelectorAll('img[data-src]');
+    let remaining = images.length;
     const imageObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -75,6 +76,10 @@
           img.src = img.dataset.src;
           img.removeAttribute('data-src');
           observer.unobserve(img);
+          remaining--;
+          if (remaining === 0) {
+            observer.disconnect();
+          }
         }
       });
     });
