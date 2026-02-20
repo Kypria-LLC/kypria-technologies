@@ -3,6 +3,7 @@
   "short_name": "Kypria",
     "description": "Official site of Kypria Technologies. The Basilica Stands. The Canon Lineage is Eternal.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#1a0f0f",
   "theme_color": "#1a0f0f",
@@ -12,13 +13,19 @@
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "categories": ["business", "technology"],
