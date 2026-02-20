@@ -10,7 +10,10 @@ exports.handler = async (event) => {
   try {
     const { topic, length, tone } = JSON.parse(event.body);
     
-    const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY || 'sk-ant-api03-f8mO5vEVvIs0rGbm8guTR2vqhVCYN6mBVKOnIpcwuZcLJsO4qhuw9GQ391X67PsZdMq0POnW_7SpnF4P0DldlA--7qPQQAA';
+    const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
+    if (!CLAUDE_API_KEY) {
+      throw new Error('CLAUDE_API_KEY environment variable is not set');
+    }
     const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
     
     const prompt = `Create a Twitter/X thread about "${topic}" with ${length} tweets.\nTone: ${tone}.\nFormat each tweet clearly numbered (1/, 2/, etc.) and ensure each tweet is under 280 characters.\nMake the thread engaging, valuable, and aligned with the mystical "Oracle" theme of Kypria Technologies.`;
