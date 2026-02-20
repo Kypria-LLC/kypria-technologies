@@ -1,9 +1,12 @@
 // Oracle Stripe Checkout Integration - PRODUCTION READY
+// Uses Stripe Payment Links for reliable checkout (no serverless dependency)
+
 const stripe = Stripe('pk_live_51SNypMADK1uzxo0bVZQO2I');
 
 class OracleCheckout {
   constructor() {
-    this.priceId = 'price_1SndaLADK1uzxo0bXOpqrjMF'; // $15/month Pro tier
+    // Direct Stripe Payment Link - Daily Oracle Premium $15/month
+    this.paymentLink = 'https://buy.stripe.com/fZu7sK2Hd3V32NPc2Vlgs8H';
     this.baseUrl = '/.netlify/functions';
     this.initCheckout();
     this.checkSubscriptionStatus();
@@ -16,52 +19,25 @@ class OracleCheckout {
     }
   }
 
-  async redirectToCheckout() {
-    try {
-      const button = document.getElementById('checkout-button');
-      const originalText = button.innerHTML;
-      button.innerHTML = '⚡ Opening sacred gateway...';
+  redirectToCheckout() {
+    const button = document.getElementById('checkout-button');
+    if (button) {
+      button.innerHTML = '\u26a1 Opening sacred gateway...';
       button.disabled = true;
-
-      const response = await fetch(`${this.baseUrl}/create-checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          priceId: this.priceId,
-          successUrl: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-          cancelUrl: window.location.href,
-        })
-      });
-
-      if (!response.ok) throw new Error('Failed to create checkout session');
-
-      const { sessionId } = await response.json();
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        console.error('Checkout error:', error);
-        alert('Unable to start checkout. Please contact support.');
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }
-    } catch (err) {
-      console.error('Checkout failed:', err);
-      alert('An error occurred. Please try again.');
-      button.disabled = false;
     }
+    // Use direct Stripe Payment Link for reliable checkout
+    window.location.href = this.paymentLink;
   }
 
   async checkSubscriptionStatus() {
     const email = localStorage.getItem('userEmail');
     if (!email) return;
-
     try {
       const response = await fetch(`${this.baseUrl}/verify-subscription`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       });
-
       const data = await response.json();
       if (data.subscribed && data.tier === 'pro') {
         this.activateProFeatures();
@@ -74,15 +50,13 @@ class OracleCheckout {
   activateProFeatures() {
     const banner = document.querySelector('.oracle-upgrade-banner');
     if (banner) banner.style.display = 'none';
-
     const header = document.querySelector('.basilica-title');
     if (header) {
       const badge = document.createElement('span');
       badge.style.cssText = 'color: #d4af37; font-size: 0.5em; margin-left: 10px;';
-      badge.textContent = '⚜ PRO';
+      badge.textContent = '\u26dc PRO';
       header.appendChild(badge);
     }
-
     localStorage.setItem('oracleProTier', 'true');
   }
 }
