@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Deletion | Kypria Technologies</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 680px; margin: 60px auto; padding: 20px; color: #1a1a2e; line-height: 1.6; }
+    h1 { color: #16213e; border-bottom: 2px solid #0f3460; padding-bottom: 12px; }
+    .status-box { background: #f0f9ff; border: 1px solid #0284c7; border-radius: 8px; padding: 20px; margin: 24px 0; }
+    .code { font-family: monospace; background: #e2e8f0; padding: 4px 8px; border-radius: 4px; font-size: 0.9em; }
+    a { color: #0f3460; }
+    footer { margin-top: 40px; font-size: 0.85em; color: #64748b; }
+  </style>
+</head>
+<body>
+  <h1>Data Deletion Status</h1>
+
+  <div class="status-box" id="status">
+    <p><strong>Checking your deletion request&hellip;</strong></p>
+  </div>
+
+  <h2>Our Data Policy</h2>
+  <p>Kypria Technologies and the <strong>Zeus AI</strong> application do <strong>not</strong> store personal Facebook user data on our servers. When you use Facebook Login, only a temporary session token is used to authenticate — no profile data, posts, or personal information is retained after your session ends.</p>
+
+  <h2>What Was Deleted</h2>
+  <ul>
+    <li>Any temporary session tokens associated with your Facebook account</li>
+    <li>Any cached authentication state in our system</li>
+    <li>Any preferences linked to your Facebook User ID</li>
+  </ul>
+
+  <h2>Contact Us</h2>
+  <p>For questions: <a href="mailto:admin@kypriatechnologies.org">admin@kypriatechnologies.org</a></p>
+
+  <footer>&copy; 2026 Kypria Technologies LLC &mdash; <a href="/privacy.html">Privacy Policy</a></footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const box = document.getElementById('status');
+    if (code) {
+      box.innerHTML = `
+        <p>&#10003; <strong>Deletion request confirmed.</strong></p>
+        <p>Confirmation code: <span class="code">${code}</span></p>
+        <p>Your data associated with Kypria Technologies / Zeus AI has been removed.</p>
+      `;
+    } else {
+      box.innerHTML = '<p>No active deletion request found. If submitted via Facebook, it has been processed.</p>';
+    }
+  </script>
+</body>
+</html>
