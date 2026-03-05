@@ -3,107 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>AI Hub — Kypria Technologies</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Kypria AI Hub — Access your AI persona engine, manage temple subscriptions, and explore the full Kypria Technologies platform.">
+    <meta name="keywords" content="Kypria, AI Hub, persona engine, AI personas, character generation, temple subscriptions">
+    <link rel="canonical" href="https://kypriatechnologies.org/ai-hub.html">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kypriatechnologies.org/ai-hub.html">
+    <meta property="og:title" content="AI Hub — Kypria Technologies">
+    <meta property="og:description" content="Access your AI persona engine, manage temple subscriptions, and explore the Kypria platform.">
+    <meta property="og:image" content="https://kypriatechnologies.org/kypria-crest-og.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Hub — Kypria Technologies">
+    <meta name="twitter:description" content="Access your AI persona engine and manage your Kypria temple subscriptions.">
+    <meta name="twitter:image" content="https://kypriatechnologies.org/kypria-crest-og.png">
+
+    <!-- Favicon Links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+
     <style>
-        /* General Reset */
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212;
-            color: #EAEAEA;
+            box-sizing: border-box;
         }
 
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 50px 20px;
-            margin-bottom: 40px;
-            border-radius: 15px;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #cbd5e1;
+            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        .hero h1 {
-            font-size: 2.5em;
-            margin: 20px 0;
-        }
-
-        .pricing {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(25px);
-            padding: 25px;
-            border-radius: 15px;
-            max-width: 300px;
-            flex: 1 1 calc(33.333% - 40px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 40px;
         }
 
-        .pricing-card h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-
-        .pricing-card a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            color: white;
-            background: #6200ea;
+        nav .logo {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #fbbf24;
             text-decoration: none;
-            border-radius: 5px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover {
+            color: #fbbf24;
+        }
+
+        /* Hero */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.2em;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 48px 0;
+        }
+
+        .feature-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 32px 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.2em;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            color: #f1f5f9;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 48px 40px;
+            margin: 48px 0;
+        }
+
+        .how-it-works h2 {
+            color: #fbbf24;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            border-radius: 50%;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 16px;
+        }
+
+        .step h3 {
+            color: #f1f5f9;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        /* Tiers Quick Reference */
+        .tiers-section {
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .tiers-section h2 {
+            color: #fbbf24;
+            font-size: 2em;
+            margin-bottom: 32px;
+        }
+
+        .tiers-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .tier-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+
+        .tier-card .tier-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+
+        .tier-card h3 {
+            color: #fbbf24;
+            font-size: 1.5em;
+            margin-bottom: 8px;
+        }
+
+        .tier-card .tier-price {
+            font-size: 2em;
+            color: #ec4899;
             font-weight: bold;
+            margin: 12px 0;
         }
 
-        .faq-section, .testimonials {
-            padding: 30px;
-            margin-top: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
+        .tier-card .tier-price span {
+            font-size: 0.45em;
+            color: #94a3b8;
         }
 
-        /* Make responsive */
-        @media (max-width: 600px) {
-            .pricing {
-                flex-direction: column;
-            }
+        .tier-card p {
+            color: #94a3b8;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .tier-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tier-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.4);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(217, 70, 239, 0.1));
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 48px 40px;
+            text-align: center;
+            margin: 48px 0;
+        }
+
+        .cta-section h2 {
+            color: #f1f5f9;
+            font-size: 2em;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(217, 70, 239, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid #475569;
+            color: #64748b;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            nav { flex-direction: column; gap: 16px; }
+            nav .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .how-it-works { padding: 32px 20px; }
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <h1>Welcome to AI Hub</h1>
-        <p>Discover AI solutions tailored for you! Choose your path today.</p>
-    </header>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="/" class="logo">Kypria Technologies</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/pricing.html">Pricing</a></li>
+                <li><a href="/zeus">Zeus</a></li>
+                <li><a href="/privacy.html">Privacy</a></li>
+                <li><a href="/terms.html">Terms</a></li>
+            </ul>
+        </nav>
 
-    <section class="pricing">
-        <div class="pricing-card">
-            <h2>Free Plan</h2>
-            <p>Access to community resources and AI updates.</p>
+        <!-- Hero -->
+        <header>
+            <h1>AI Hub</h1>
+            <p class="subtitle">Your gateway to the Kypria Persona Engine. Generate AI-driven personas, manage your temple subscription, and unlock the full power of mythological archetypes.</p>
+        </header>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Persona Generation</h3>
+                <p>Create richly detailed AI personas built on mythological archetypes. Each persona comes with traits, backstory, emotional depth, and relational dynamics.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Zeus Intelligence</h3>
+                <p>Access Zeus-powered AI responses through Meta Messenger. Get leadership insights, strategic thinking frameworks, and decision-making support in real time.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💖</div>
+                <h3>Relationship Mapping</h3>
+                <p>Aphrodite and Lifesphere members unlock advanced relationship graphs between personas — emotional bonds, rivalries, alliances, and evolving dynamics.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Export &amp; API</h3>
+                <p>Export personas in JSON or CSV format. Lifesphere members get full API access at 100 requests per minute for integration with external tools and workflows.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Core Archetypes</h3>
+                <p>Draw from a library of mythological archetypes — Hero, Sage, Trickster, Ruler, Creator, and more. Each archetype shapes persona behavior and narrative voice.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3>Oracle Insights</h3>
+                <p>Daily personalized insights powered by AI. The Oracle analyzes patterns across your personas and delivers actionable wisdom tailored to your goals.</p>
+            </div>
         </div>
 
-        <div class="pricing-card">
-            <h2>Daily Oracle</h2>
-            <p>Daily personalized insights, exclusive to members.</p>
-            <a href="https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E" target="_blank">Subscribe $15/mo</a>
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Temple</h3>
+                    <p>Select Zeus, Aphrodite, or Lifesphere based on your needs and budget.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Generate Personas</h3>
+                    <p>Use the persona engine to create characters with traits, archetypes, and emotional depth.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Interact &amp; Refine</h3>
+                    <p>Chat with Zeus via Messenger, map relationships, and evolve your personas over time.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Export &amp; Deploy</h3>
+                    <p>Export in JSON/CSV or use the API to integrate personas into your own apps and workflows.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="pricing-card">
-            <h2>Premium</h2>
-            <p>Full-feature access, priority, and faster pipelines with personalization.</p>
+        <!-- Subscription Tiers -->
+        <div class="tiers-section">
+            <h2>Temple Subscriptions</h2>
+            <div class="tiers-row">
+                <div class="tier-card">
+                    <div class="tier-icon">⚡</div>
+                    <h3>Zeus Temple</h3>
+                    <div class="tier-price">$49<span>/month</span></div>
+                    <p>1,000 generations/month. Core archetypes, JSON/CSV export, email support.</p>
+                    <a href="https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E" target="_blank" class="tier-cta">Join Zeus</a>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-icon">💖</div>
+                    <h3>Aphrodite Temple</h3>
+                    <div class="tier-price">$79<span>/month</span></div>
+                    <p>5,000 generations/month. Relationship mapping, emotional depth scoring, priority support.</p>
+                    <a href="https://buy.stripe.com/eVqeVc0z5csfdst8QJ1gs0s" target="_blank" class="tier-cta">Join Aphrodite</a>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-icon">🌍</div>
+                    <h3>Lifesphere Temple</h3>
+                    <div class="tier-price">$149<span>/month</span></div>
+                    <p>Unlimited generations. Full API access, team collaboration, white-label output, dedicated manager.</p>
+                    <a href="https://buy.stripe.com/3cI28q81xeAnbklff71gs0t" target="_blank" class="tier-cta">Join Lifesphere</a>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <footer>
-     Road-More QAs W-4 Blocks below-links multiple value optimization!</footer>-Content Rich
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Begin?</h2>
+            <p>Explore the full pricing comparison, see feature details, and choose the temple that fits your creative vision.</p>
+            <a href="/pricing.html" class="cta-button">View Full Pricing</a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Kypria LLC. All rights reserved.</p>
+            <p><a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a> | <a href="mailto:support@kypriatechnologies.org">Contact</a></p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Powered by <a href="https://stripe.com" target="_blank">Stripe</a></p>
+        </footer>
+    </div>
+</body>
+</html>
