@@ -36,6 +36,20 @@
 /products/myth-visionary             /docs/divine-trinity/    301
 /products/myth-olympian              /docs/divine-trinity/    301
 
+# Aphrodite family → Aphrodite temple detail page
+/products/aphrodite-connect        /docs/divine-trinity/aphrodite   301
+/products/aphrodite-harmony        /docs/divine-trinity/aphrodite   301
+/products/aphrodite-goddess        /docs/divine-trinity/aphrodite   301
+/products/aphrodite-divine         /docs/divine-trinity/aphrodite   301
+/products/aphrodite-eternal        /docs/divine-trinity/aphrodite   301
+
+# LifeSphere family → LifeSphere temple detail page
+/products/lifesphere-temple        /docs/divine-trinity/lifesphere  301
+/products/lifesphere-sanctuary     /docs/divine-trinity/lifesphere  301
+/products/lifesphere-harmony       /docs/divine-trinity/lifesphere  301
+/products/lifesphere-vitality      /docs/divine-trinity/lifesphere  301
+/products/lifesphere-renewal       /docs/divine-trinity/lifesphere  301
+
 # Catch-all: any other /products/* path → main archive
 /products/*                          /docs/divine-trinity/    301
 
