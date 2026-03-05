@@ -1,3 +1,43 @@
-# Clean URL redirects
-/privacy    /privacy.html    200
-/zeus       /docs/divine-trinity/zeus.html    200
+# ═══════════════════════════════════════════════════════════
+# Netlify _redirects — Kypria Technologies Product URL Fix
+# ═══════════════════════════════════════════════════════════
+# Purpose: Map dead /products/* URLs to live /docs/divine-trinity/* pages
+# Deploy: Place this file in the root of the Netlify site (public/ or dist/)
+# These are 301 (permanent) redirects so search engines update their index.
+#
+# Generated: 2026-03-05 for Pantheon Revival project
+# ═══════════════════════════════════════════════════════════
+
+# Divine Trinity family → archive page
+/products/divine-trinity-starter     /docs/divine-trinity/    301
+/products/divine-trinity-pro         /docs/divine-trinity/    301
+/products/divine-trinity-elite       /docs/divine-trinity/    301
+/products/divine-trinity-enterprise  /docs/divine-trinity/    301
+/products/divine-trinity-olympus     /docs/divine-trinity/    301
+
+# Zeus family → Zeus temple detail page
+/products/zeus-spark                 /docs/divine-trinity/zeus    301
+/products/zeus-builder               /docs/divine-trinity/zeus    301
+/products/zeus-architect             /docs/divine-trinity/zeus    301
+/products/zeus-titan                 /docs/divine-trinity/zeus    301
+/products/zeus-olympus               /docs/divine-trinity/zeus    301
+
+# Hermes family → archive page (no dedicated Hermes page yet)
+/products/hermes-courier             /docs/divine-trinity/    301
+/products/hermes-messenger           /docs/divine-trinity/    301
+/products/hermes-herald              /docs/divine-trinity/    301
+/products/hermes-envoy               /docs/divine-trinity/    301
+/products/hermes-divine              /docs/divine-trinity/    301
+
+# MYTH family → archive page (no dedicated MYTH page yet)
+/products/myth-muse                  /docs/divine-trinity/    301
+/products/myth-creator               /docs/divine-trinity/    301
+/products/myth-artisan               /docs/divine-trinity/    301
+/products/myth-visionary             /docs/divine-trinity/    301
+/products/myth-olympian              /docs/divine-trinity/    301
+
+# Catch-all: any other /products/* path → main archive
+/products/*                          /docs/divine-trinity/    301
+
+# Terms of Service — /terms (no extension) → /terms.html
+/terms                               /terms.html              301
