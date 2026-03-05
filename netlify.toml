@@ -5,12 +5,9 @@ command = "npm run build"
   publish = "dist"
 functions = "netlify/functions"
 
+# NOTE: /zeus redirect is handled in _redirects (301 permanent).
+# Do NOT duplicate here — _redirects takes precedence on Netlify.
 
-
-[[redirects]]
-  from = "/zeus"
-  to = "/docs/divine-trinity/zeus.html"
-  status = 200
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
@@ -50,5 +47,3 @@ functions = "netlify/functions"
     # Image optimization plugin
 [[plugins]]
 package = "netlify-plugin-image-optim"
-
-
