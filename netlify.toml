@@ -52,8 +52,3 @@ functions = "netlify/functions"
 package = "netlify-plugin-image-optim"
 
 
-[[redirects]]
-  from = "/zeus"
-  to = "/docs/divine-trinity/zeus.html"
-  status = 200
-
