@@ -11,6 +11,8 @@ Allow: /
 Disallow: /test-page
 Disallow: /api/
 Disallow: /.netlify/
+Disallow: /codex.html
+Disallow: /quickref.html
 
 # Sitemap
 Sitemap: https://kypriatechnologies.org/sitemap.xml
