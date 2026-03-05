@@ -6,6 +6,11 @@ command = "npm run build"
 functions = "netlify/functions"
 
 
+
+[[redirects]]
+  from = "/zeus"
+  to = "/docs/divine-trinity/zeus.html"
+  status = 200
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
@@ -45,3 +50,4 @@ functions = "netlify/functions"
     # Image optimization plugin
 [[plugins]]
 package = "netlify-plugin-image-optim"
+
