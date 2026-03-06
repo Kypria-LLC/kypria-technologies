@@ -14,6 +14,12 @@
 /privacy    /privacy.html                     200
 /terms      /terms.html                       301
 
+# — Restricted pages (blocked from public access) ————————————————
+/codex        /        301
+/codex.html   /        301
+/quickref     /        301
+/quickref.html /       301
+
 # ── Divine Trinity family → archive page ───────────────────
 /products/divine-trinity-starter     /docs/divine-trinity/    301
 /products/divine-trinity-pro         /docs/divine-trinity/    301
