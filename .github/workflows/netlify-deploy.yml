@@ -1,0 +1,22 @@
+name: Trigger Netlify Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trigger-netlify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify Deploy Hook
+        run: |
+          curl -X POST -d '{}' ${{ secrets.NETLIFY_DEPLOY_HOOK }}
+        
+      - name: Deployment Status
+        run: |
+          echo "✅ Netlify deploy hook triggered successfully"
+          echo "📦 Check deployment status at: https://app.netlify.com/sites/kypriatechnologies/deploys"
