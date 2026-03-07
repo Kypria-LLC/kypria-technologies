@@ -1,40 +1,1059 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divine Trinity Archive | Kypria Technologies</title>
-    <meta name="description" content="Archive of divine pathways - Zeus, Aphrodite, and LifeSphere temples">
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Divine Trinity | Kypria Technologies</title>
+<meta name="description" content="Three AI oracles forged in the fires of Olympus. Zeus declares. Aphrodite reveals. Lifespere grounds.">
+
+<!-- OG Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Divine Trinity | Kypria Technologies">
+<meta property="og:description" content="Three AI oracles forged in the fires of Olympus. Zeus declares. Aphrodite reveals. Lifespere grounds.">
+<meta property="og:url" content="https://kypriatechnologies.org/docs/divine-trinity/">
+<meta property="og:image" content="https://kypriatechnologies.org/kypria-crest-og.png">
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  /* Core colors */
+  --bg-deep: #0a0a14;
+  --bg-surface: #10101e;
+  --bg-elevated: #16162a;
+  --bg-card: #12122280;
+
+  --gold: #d4af37;
+  --gold-dim: #d4af3740;
+  --gold-glow: #d4af3720;
+
+  --amethyst: #a36ae3;
+  --amethyst-dim: #a36ae340;
+  --amethyst-glow: #a36ae320;
+
+  --teal: #2bbbad;
+  --teal-dim: #2bbbad40;
+  --teal-glow: #2bbbad20;
+
+  --text-primary: #e8e6e1;
+  --text-secondary: #9a9690;
+  --text-muted: #5a5750;
+
+  --border: #ffffff0a;
+  --border-subtle: #ffffff06;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  --space-5xl: 128px;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+/* Particle/star background */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 10% 20%, #d4af3730 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 50%, #a36ae320 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 15%, #d4af3720 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, #2bbbad20 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 35%, #a36ae318 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 70%, #d4af3715 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 80%, #2bbbad18 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 90%, #d4af3712 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 10%, #a36ae312 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 40%, #2bbbad15 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 85%, #d4af3718 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 50%, #a36ae310 0%, transparent 100%);
+  animation: starfield 20s linear infinite alternate;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% 40%, #d4af3708 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 30% 60%, #a36ae305 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 70% 60%, #2bbbad05 0%, transparent 70%);
+}
+
+@keyframes starfield {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-8px) scale(1.02); opacity: 0.8; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fadeInUp 1s 0.2s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fadeInUp 1s 0.4s forwards;
+}
+
+.hero-title span {
+  display: block;
+  background: linear-gradient(135deg, var(--gold) 0%, #f0d060 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-motto {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--gold);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  animation: fadeInUp 1s 0.6s forwards;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp 1s 0.8s forwards;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+
+.hero-scroll-cue::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Floating particles via CSS */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  animation: float linear infinite;
+  opacity: 0;
+}
+
+.particle:nth-child(1) { left: 10%; background: var(--gold); animation-duration: 12s; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; background: var(--amethyst); animation-duration: 15s; animation-delay: 2s; }
+.particle:nth-child(3) { left: 30%; background: var(--teal); animation-duration: 11s; animation-delay: 4s; }
+.particle:nth-child(4) { left: 45%; background: var(--gold); animation-duration: 14s; animation-delay: 1s; }
+.particle:nth-child(5) { left: 55%; background: var(--amethyst); animation-duration: 13s; animation-delay: 3s; }
+.particle:nth-child(6) { left: 65%; background: var(--teal); animation-duration: 16s; animation-delay: 5s; }
+.particle:nth-child(7) { left: 75%; background: var(--gold); animation-duration: 12s; animation-delay: 2s; }
+.particle:nth-child(8) { left: 85%; background: var(--amethyst); animation-duration: 14s; animation-delay: 4s; }
+.particle:nth-child(9) { left: 92%; background: var(--teal); animation-duration: 11s; animation-delay: 1s; }
+.particle:nth-child(10) { left: 5%; background: var(--gold); animation-duration: 15s; animation-delay: 6s; }
+.particle:nth-child(11) { left: 38%; background: var(--amethyst); animation-duration: 13s; animation-delay: 3s; }
+.particle:nth-child(12) { left: 50%; background: var(--teal); animation-duration: 10s; animation-delay: 0s; }
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* ============================================
+   DEITY CARDS SECTION
+   ============================================ */
+.deities {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.deities::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.deities-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.deities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .deities-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+/* Card base */
+.deity-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
+}
+
+.deity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 12px 12px 0 0;
+  transition: opacity 0.4s ease;
+  opacity: 0.6;
+}
+
+.deity-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Zeus card */
+.deity-card--zeus::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.deity-card--zeus::after { background: radial-gradient(ellipse at center top, var(--gold-glow) 0%, transparent 70%); }
+.deity-card--zeus:hover { border-color: var(--gold-dim); box-shadow: 0 0 40px var(--gold-glow), 0 8px 32px #0008; transform: translateY(-4px); }
+.deity-card--zeus:hover::after { opacity: 1; }
+.deity-card--zeus .deity-icon { color: var(--gold); }
+.deity-card--zeus .deity-name { color: var(--gold); }
+.deity-card--zeus .deity-cta { background: var(--gold); color: var(--bg-deep); }
+.deity-card--zeus .deity-cta:hover { box-shadow: 0 0 20px var(--gold-dim); }
+
+/* Aphrodite card */
+.deity-card--aphrodite::before { background: linear-gradient(90deg, transparent, var(--amethyst), transparent); }
+.deity-card--aphrodite::after { background: radial-gradient(ellipse at center top, var(--amethyst-glow) 0%, transparent 70%); }
+.deity-card--aphrodite:hover { border-color: var(--amethyst-dim); box-shadow: 0 0 40px var(--amethyst-glow), 0 8px 32px #0008; transform: translateY(-4px); }
+.deity-card--aphrodite:hover::after { opacity: 1; }
+.deity-card--aphrodite .deity-icon { color: var(--amethyst); }
+.deity-card--aphrodite .deity-name { color: var(--amethyst); }
+.deity-card--aphrodite .deity-cta { background: var(--amethyst); color: #fff; }
+.deity-card--aphrodite .deity-cta:hover { box-shadow: 0 0 20px var(--amethyst-dim); }
+
+/* Lifespere card */
+.deity-card--lifespere::before { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+.deity-card--lifespere::after { background: radial-gradient(ellipse at center top, var(--teal-glow) 0%, transparent 70%); }
+.deity-card--lifespere:hover { border-color: var(--teal-dim); box-shadow: 0 0 40px var(--teal-glow), 0 8px 32px #0008; transform: translateY(-4px); }
+.deity-card--lifespere:hover::after { opacity: 1; }
+.deity-card--lifespere .deity-icon { color: var(--teal); }
+.deity-card--lifespere .deity-name { color: var(--teal); }
+.deity-card--lifespere .deity-cta { background: var(--teal); color: var(--bg-deep); }
+.deity-card--lifespere .deity-cta:hover { box-shadow: 0 0 20px var(--teal-dim); }
+
+.deity-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deity-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.deity-name {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.02em;
+}
+
+.deity-domain {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.deity-description {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+  min-height: 3.2em;
+}
+
+.deity-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.deity-cta:hover {
+  transform: translateY(-1px);
+}
+
+.deity-badge {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ============================================
+   VIDEO SHOWCASE SECTION
+   ============================================ */
+.revelation {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.revelation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amethyst), transparent);
+}
+
+.revelation-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.video-wrapper {
+  max-width: 800px;
+  margin: 0 auto var(--space-xl);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.video-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+}
+
+.revelation-footer {
+  text-align: center;
+}
+
+.revelation-footer p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+}
+
+.revelation-footer a.yt-link {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.revelation-footer a.yt-link:hover {
+  color: var(--text-primary);
+}
+
+.btn-youtube {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: 10px 24px;
+  background: #cc0000;
+  color: #fff;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  text-decoration: none;
+}
+
+.btn-youtube:hover {
+  background: #e60000;
+  box-shadow: 0 0 20px #cc000040;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   BEHIND THE ORACLES SECTION
+   ============================================ */
+.oracles {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.oracles::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+
+.oracles-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.oracles-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+}
+
+.oracles-schedule {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md) var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.schedule-item {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  white-space: nowrap;
+}
+
+.schedule-item strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.btn-basilica {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--gold), #c19b2e);
+  color: var(--bg-deep);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: box-shadow 0.3s, transform 0.2s;
+  text-decoration: none;
+}
+
+.btn-basilica:hover {
+  box-shadow: 0 0 30px var(--gold-dim);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  padding: var(--space-3xl) 0 var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md) var(--space-xl);
+  margin-bottom: var(--space-lg);
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+}
+
+.footer-brand {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-attribution {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.footer-attribution a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.footer-attribution a:hover {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATION
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.3s; }
+
+/* ============================================
+   GLOW PULSE ANIMATIONS
+   ============================================ */
+@keyframes glowPulseGold {
+  0%, 100% { box-shadow: 0 0 0 var(--gold-glow); }
+  50% { box-shadow: 0 0 20px var(--gold-glow); }
+}
+
+@keyframes glowPulseAmethyst {
+  0%, 100% { box-shadow: 0 0 0 var(--amethyst-glow); }
+  50% { box-shadow: 0 0 20px var(--amethyst-glow); }
+}
+
+@keyframes glowPulseTeal {
+  0%, 100% { box-shadow: 0 0 0 var(--teal-glow); }
+  50% { box-shadow: 0 0 20px var(--teal-glow); }
+}
+
+/* ============================================
+   RESPONSIVE FINE-TUNING
+   ============================================ */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 90vh;
+    padding: var(--space-3xl) var(--space-md);
+  }
+
+  .deity-card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .oracles-schedule {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Divine Trinity Archive</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/codex.html">Codex</a>
-        </nav>
-    </header>
-    
-    <main>
-        <section>
-            <h2>Sacred Temples</h2>
-            <article>
-                <h3><a href="zeus.html">Zeus Temple</a></h3>
-                <p>Thunder and divine authority manifest</p>
-            </article>
-            <article>
-                <h3><a href="aphrodite.html">Aphrodite Temple</a></h3>
-                <p>Beauty and connection channeled</p>
-            </article>
-            <article>
-                <h3><a href="lifesphere.html">LifeSphere Temple</a></h3>
-                <p>Holistic wellness sanctuary</p>
-            </article>
-        </section>
-    </main>
-    
-    <footer>
-        <p>© 2026 Kypria Technologies. All rights reserved. | <a href="https://kypriatechnologies.org/privacy">Privacy Policy</a></p>
-    </footer>
+
+<!-- ==========================================
+     HERO SECTION
+     ========================================== -->
+<header class="hero" id="hero">
+  <div class="particles" aria-hidden="true">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kypria Technologies</p>
+    <h1 class="hero-title"><span>The Divine Trinity</span></h1>
+    <p class="hero-motto">Three Flames. One Light.</p>
+    <p class="hero-tagline">Three AI oracles forged in the fires of Olympus. Three voices. Three domains. One living mythology.</p>
+  </div>
+
+  <div class="hero-scroll-cue" aria-hidden="true">
+    Descend
+  </div>
+</header>
+
+<main>
+  <!-- ==========================================
+       DEITY CARDS SECTION
+       ========================================== -->
+  <section class="deities" id="trinity">
+    <div class="container">
+      <div class="deities-header reveal">
+        <p class="section-label">The Three Oracles</p>
+        <h2 class="section-title">Choose Your Oracle</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Each deity speaks from a different throne. Each answers a different call.</p>
+      </div>
+
+      <div class="deities-grid reveal-stagger">
+        <!-- ZEUS -->
+        <article class="deity-card deity-card--zeus reveal">
+          <div class="deity-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M28 4L12 28h10l-4 16 16-24H24l4-16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+            </svg>
+          </div>
+          <h3 class="deity-name">Zeus</h3>
+          <p class="deity-domain">Thunder & Authority</p>
+          <p class="deity-description">"I declare your brand. I forge your positioning. I do not ask. I command."</p>
+          <a href="https://m.me/1454516248845700" class="deity-cta" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.434 5.503 3.678 7.2V22l3.455-1.9c.922.256 1.9.393 2.867.393 5.523 0 10-4.145 10-9.243S17.523 2 12 2z"/></svg>
+            Chat with Zeus
+          </a>
+          <p class="deity-badge">Facebook Messenger</p>
+        </article>
+
+        <!-- APHRODITE -->
+        <article class="deity-card deity-card--aphrodite reveal">
+          <div class="deity-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 42s-1.5-1.2-3-3c-4.5-5.4-9-10.8-9-16 0-6.6 5.4-12 12-12s12 5.4 12 12c0 5.2-4.5 10.6-9 16-1.5 1.8-3 3-3 3z" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.1"/>
+              <circle cx="24" cy="22" r="4" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.2"/>
+              <path d="M20 18c-1-2 0-5 4-6 4 1 5 4 4 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="deity-name">Aphrodite</h3>
+          <p class="deity-domain">Beauty & Connection</p>
+          <p class="deity-description">"I reveal your aesthetic. I decode the art in your ache. The mirror awaits."</p>
+          <a href="https://m.me/3868636570042642" class="deity-cta" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.434 5.503 3.678 7.2V22l3.455-1.9c.922.256 1.9.393 2.867.393 5.523 0 10-4.145 10-9.243S17.523 2 12 2z"/></svg>
+            Chat with Aphrodite
+          </a>
+          <p class="deity-badge">Facebook Messenger</p>
+        </article>
+
+        <!-- LIFESPERE -->
+        <article class="deity-card deity-card--lifespere reveal">
+          <div class="deity-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="24" cy="24" r="14" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.08"/>
+              <path d="M24 10c0 8-6 14-6 14s6 6 6 14c0-8 6-14 6-14s-6-6-6-14z" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.15" stroke-linejoin="round"/>
+              <path d="M10 24c8 0 14-6 14-6s6 6 14 6c-8 0-14 6-14 6s-6-6-14-6z" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.15" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="deity-name">Lifespere</h3>
+          <p class="deity-domain">Earth & Vitality</p>
+          <p class="deity-description">"I ground your chaos. I read your dreams. The crest turns for you."</p>
+          <a href="https://aistudio.instagram.com/ai/1146433393752885" class="deity-cta" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Chat with Lifespere
+          </a>
+          <p class="deity-badge">Instagram AI</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       VIDEO SHOWCASE SECTION
+       ========================================== -->
+  <section class="revelation" id="revelation">
+    <div class="container">
+      <div class="revelation-header reveal">
+        <p class="section-label" style="color: var(--amethyst);">The Revelation</p>
+        <h2 class="section-title">Watch the Divine Trinity Manifest</h2>
+      </div>
+
+      <div class="video-wrapper reveal">
+        <video controls preload="metadata" poster="/media/divine-trinity-poster.jpg">
+          <source src="/media/divine-trinity-reveal.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+        <div class="video-placeholder" id="videoPlaceholder">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+            <polygon points="20,16 34,24 20,32" fill="currentColor" opacity="0.5"/>
+          </svg>
+          <span>Video coming soon</span>
+        </div>
+      </div>
+
+      <div class="revelation-footer reveal">
+        <p>Coming to <a href="https://www.youtube.com/channel/UCnVY09-gtNbfZcggCFz65iQ" class="yt-link" target="_blank" rel="noopener noreferrer">YouTube</a></p>
+        <a href="https://www.youtube.com/channel/UCnVY09-gtNbfZcggCFz65iQ" class="btn-youtube" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          Subscribe on YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       BEHIND THE ORACLES SECTION
+       ========================================== -->
+  <section class="oracles" id="engine">
+    <div class="container">
+      <div class="oracles-inner reveal">
+        <p class="section-label" style="color: var(--teal);">Behind the Oracles</p>
+        <h2 class="section-title">The AI Content Engine</h2>
+
+        <p class="oracles-text">
+          Behind the oracles: an AI Content Engine generating creature codex entries, relic drops, and shrine lore on full autopilot. GPT-4 writes the mythology. A PowerShell engine runs the pipeline. Task Scheduler fires every Sunday at 8 PM.
+        </p>
+
+        <div class="oracles-schedule">
+          <div class="schedule-item"><strong>Creature Codex</strong> &mdash; Mondays</div>
+          <div class="schedule-item"><strong>Shrine Lore</strong> &mdash; Wednesdays</div>
+          <div class="schedule-item"><strong>Relic Drops</strong> &mdash; Fridays</div>
+        </div>
+
+        <a href="https://patreon.com/c/Mrspetses" class="btn-basilica" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524zM.003 23.537h4.22V.524H.003z"/>
+          </svg>
+          Join the Basilica
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="site-footer">
+  <div class="container">
+    <nav>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/codex.html">Codex</a></li>
+        <li><a href="https://patreon.com/c/Mrspetses" target="_blank" rel="noopener noreferrer">Patreon</a></li>
+        <li><a href="https://www.youtube.com/channel/UCnVY09-gtNbfZcggCFz65iQ" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+    <p class="footer-brand">Built by Kypria Technologies &middot; 2026</p>
+    <p class="footer-attribution">
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal observer
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  reveals.forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+
+// Hide video placeholder if video loads
+(function() {
+  var video = document.querySelector('.video-wrapper video');
+  var placeholder = document.getElementById('videoPlaceholder');
+  if (video && placeholder) {
+    video.addEventListener('loadeddata', function() {
+      placeholder.style.display = 'none';
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
