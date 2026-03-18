@@ -36,7 +36,7 @@ const rootFiles = fs.readdirSync('.').filter(f => {
   return true;
 });
 
-const srcDirs = ['assets', 'images', 'favicon_io', 'css', 'js', 'docs'];
+const srcDirs = ['assets', 'images', 'favicon_io', 'css', 'js', 'docs', 'demos'];
 
 // Ensure dist directory exists
 fs.mkdirSync('dist', { recursive: true });
