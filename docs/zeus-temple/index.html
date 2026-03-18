@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple of Zeus — Oracle of Thunder & Authority</title>
+<meta name="description" content="Enter the Temple of Zeus — an AI oracle of brand authority. Part of the Divine Trinity by Kypria Technologies. I do not suggest. I declare.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Temple of Zeus — Oracle of Thunder & Authority">
+<meta property="og:description" content="Enter the Temple of Zeus — an AI oracle forging brand positioning with mythic certainty. Part of the Divine Trinity by Kypria Technologies.">
+<meta property="og:type" content="website">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Temple of Zeus — Oracle of Thunder & Authority",
+  "description": "An AI oracle of brand authority — part of the Divine Trinity by Kypria Technologies.",
+  "creator": {
+    "@type": "SoftwareApplication",
+    "name": "Perplexity Computer",
+    "url": "https://www.perplexity.ai/computer"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Kypria Technologies",
+    "url": "https://kypriatechnologies.org"
+  }
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --bg-deep: #0a0a14;
+  --bg-card: #111122;
+  --bg-card-hover: #181832;
+  --gold: #d4af37;
+  --gold-dim: #b8962e;
+  --gold-glow: rgba(212, 175, 55, 0.3);
+  --gold-glow-strong: rgba(212, 175, 55, 0.5);
+  --amethyst: #a36ae3;
+  --amethyst-glow: rgba(163, 106, 227, 0.3);
+  --teal: #2bbbad;
+  --teal-glow: rgba(43, 187, 173, 0.3);
+  --text-primary: #e8e6e1;
+  --text-secondary: #9a9a9a;
+  --text-dim: #6a6a7a;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLL-DRIVEN ANIMATIONS
+   ============================================ */
+.fade-in {
+  opacity: 1;
+}
+
+@supports (animation-timeline: scroll()) {
+  .fade-in {
+    opacity: 0;
+    animation: revealFade linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+}
+
+@keyframes revealFade {
+  to { opacity: 1; }
+}
+
+/* ============================================
+   PARTICLE BACKGROUND (CSS-only)
+   ============================================ */
+.particle-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: particleDrift linear infinite;
+}
+
+@keyframes particleDrift {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0.5);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+/* Generate particles with CSS */
+.particle:nth-child(1)  { left: 5%;  animation-duration: 18s; animation-delay: 0s; width: 2px; height: 2px; }
+.particle:nth-child(2)  { left: 12%; animation-duration: 22s; animation-delay: 2s; width: 3px; height: 3px; }
+.particle:nth-child(3)  { left: 20%; animation-duration: 16s; animation-delay: 4s; width: 1px; height: 1px; background: var(--amethyst); }
+.particle:nth-child(4)  { left: 28%; animation-duration: 20s; animation-delay: 1s; width: 2px; height: 2px; }
+.particle:nth-child(5)  { left: 35%; animation-duration: 24s; animation-delay: 6s; width: 2px; height: 2px; }
+.particle:nth-child(6)  { left: 42%; animation-duration: 19s; animation-delay: 3s; width: 3px; height: 3px; background: var(--amethyst); }
+.particle:nth-child(7)  { left: 50%; animation-duration: 21s; animation-delay: 5s; width: 2px; height: 2px; }
+.particle:nth-child(8)  { left: 58%; animation-duration: 17s; animation-delay: 0.5s; width: 1px; height: 1px; }
+.particle:nth-child(9)  { left: 65%; animation-duration: 23s; animation-delay: 7s; width: 2px; height: 2px; }
+.particle:nth-child(10) { left: 72%; animation-duration: 18s; animation-delay: 2.5s; width: 3px; height: 3px; }
+.particle:nth-child(11) { left: 80%; animation-duration: 20s; animation-delay: 4.5s; width: 2px; height: 2px; background: var(--amethyst); }
+.particle:nth-child(12) { left: 88%; animation-duration: 15s; animation-delay: 1.5s; width: 1px; height: 1px; }
+.particle:nth-child(13) { left: 95%; animation-duration: 22s; animation-delay: 6.5s; width: 2px; height: 2px; }
+.particle:nth-child(14) { left: 8%;  animation-duration: 25s; animation-delay: 8s; width: 2px; height: 2px; }
+.particle:nth-child(15) { left: 45%; animation-duration: 19s; animation-delay: 3.5s; width: 1px; height: 1px; }
+.particle:nth-child(16) { left: 55%; animation-duration: 21s; animation-delay: 9s; width: 2px; height: 2px; background: var(--amethyst); }
+.particle:nth-child(17) { left: 30%; animation-duration: 17s; animation-delay: 5.5s; width: 3px; height: 3px; }
+.particle:nth-child(18) { left: 75%; animation-duration: 23s; animation-delay: 0.8s; width: 2px; height: 2px; }
+.particle:nth-child(19) { left: 15%; animation-duration: 20s; animation-delay: 7.5s; width: 1px; height: 1px; }
+.particle:nth-child(20) { left: 62%; animation-duration: 18s; animation-delay: 4.2s; width: 2px; height: 2px; }
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 1;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 30% at 50% 50%, rgba(163, 106, 227, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Zeus SVG Logo */
+.zeus-mark {
+  width: clamp(120px, 20vw, 200px);
+  height: auto;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+  animation: logoGlow 4s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6)); }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 3rem;
+}
+
+/* Lightning flicker on hero title */
+.hero-title {
+  animation: lightningFlicker 6s ease-in-out infinite;
+}
+
+@keyframes lightningFlicker {
+  0%, 100% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+  5% { opacity: 0.85; text-shadow: 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(212, 175, 55, 0.6); }
+  5.5% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+  8% { opacity: 0.9; text-shadow: 0 0 50px rgba(255, 255, 255, 0.4), 0 0 70px rgba(212, 175, 55, 0.5); }
+  8.5% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+  50% { opacity: 1; text-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+  52% { opacity: 0.88; text-shadow: 0 0 70px rgba(255, 255, 255, 0.6), 0 0 90px rgba(212, 175, 55, 0.7); }
+  52.5% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+}
+
+/* CTA Button — Electric Shimmer */
+.btn-temple {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bg-deep);
+  background: var(--gold);
+  padding: 1rem 2.5rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.btn-temple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: electricShimmer 3s ease-in-out infinite;
+}
+
+@keyframes electricShimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.btn-temple:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
+}
+
+.btn-temple:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   SECTION COMMON
+   ============================================ */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* Gold divider */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* ============================================
+   ORACLE SPEAKS SECTION
+   ============================================ */
+.oracle-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.oracle-quote {
+  position: relative;
+  padding: 2.5rem 2rem 2.5rem 2.5rem;
+  border-left: 3px solid var(--gold);
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.04) 0%, transparent 50%);
+  box-shadow: -4px 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.oracle-quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.oracle-quote .oracle-sig {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ============================================
+   THREE TRIALS SECTION
+   ============================================ */
+.trials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.trial-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.trial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-interactive);
+}
+
+.trial-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
+}
+
+.trial-card:hover::before {
+  opacity: 1;
+}
+
+.trial-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+}
+
+.trial-number {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.trial-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.trial-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============================================
+   RITUAL SECTION (Timeline)
+   ============================================ */
+.ritual-timeline {
+  position: relative;
+  max-width: 600px;
+  margin: 2rem auto 0;
+  padding-left: 3rem;
+}
+
+.ritual-timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(212, 175, 55, 0.2));
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.ritual-step {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.ritual-step:last-child {
+  padding-bottom: 0;
+}
+
+.ritual-step-number {
+  position: absolute;
+  left: -3rem;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-deep);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.ritual-step-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.ritual-step-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   VIDEO SECTION
+   ============================================ */
+.video-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.08);
+  background: var(--bg-card);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ============================================
+   DIVINE TRINITY SECTION
+   ============================================ */
+.trinity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.trinity-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.trinity-card--aphrodite {
+  border-color: rgba(163, 106, 227, 0.15);
+}
+
+.trinity-card--aphrodite:hover {
+  border-color: rgba(163, 106, 227, 0.4);
+  box-shadow: 0 0 30px rgba(163, 106, 227, 0.1);
+}
+
+.trinity-card--lifespere {
+  border-color: rgba(43, 187, 173, 0.15);
+}
+
+.trinity-card--lifespere:hover {
+  border-color: rgba(43, 187, 173, 0.4);
+  box-shadow: 0 0 30px rgba(43, 187, 173, 0.1);
+}
+
+.trinity-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.5rem;
+}
+
+.trinity-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.trinity-card--aphrodite .trinity-name { color: var(--amethyst); }
+.trinity-card--lifespere .trinity-name { color: var(--teal); }
+
+.trinity-domain {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.trinity-card--aphrodite .trinity-domain { color: rgba(163, 106, 227, 0.7); }
+.trinity-card--lifespere .trinity-domain { color: rgba(43, 187, 173, 0.7); }
+
+.trinity-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.trinity-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 1.8rem;
+  border: 1px solid;
+  transition: background var(--transition-interactive),
+              color var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.trinity-card--aphrodite .trinity-link {
+  color: var(--amethyst);
+  border-color: rgba(163, 106, 227, 0.4);
+}
+
+.trinity-card--aphrodite .trinity-link:hover {
+  background: rgba(163, 106, 227, 0.1);
+  box-shadow: 0 0 20px rgba(163, 106, 227, 0.2);
+}
+
+.trinity-card--lifespere .trinity-link {
+  color: var(--teal);
+  border-color: rgba(43, 187, 173, 0.4);
+}
+
+.trinity-card--lifespere .trinity-link:hover {
+  background: rgba(43, 187, 173, 0.1);
+  box-shadow: 0 0 20px rgba(43, 187, 173, 0.2);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+}
+
+.cta-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.btn-zeus {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bg-deep);
+  background: var(--gold);
+  padding: 1.2rem 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.btn-zeus::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: electricShimmer 3s ease-in-out infinite;
+}
+
+.btn-zeus:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.5), 0 0 80px rgba(212, 175, 55, 0.2);
+}
+
+.btn-zeus:active {
+  transform: translateY(0);
+}
+
+.cta-links {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  justify-content: center;
+}
+
+.cta-link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color var(--transition-interactive);
+  position: relative;
+}
+
+.cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform var(--transition-interactive);
+  transform-origin: center;
+}
+
+.cta-link:hover {
+  color: var(--gold);
+}
+
+.cta-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.5rem;
+  opacity: 0.5;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+.site-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-interactive);
+}
+
+.site-footer a:hover {
+  color: var(--gold);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .trials-grid,
+  .trinity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .oracle-quote {
+    padding: 2rem 1.5rem 2rem 1.5rem;
+  }
+
+  .ritual-timeline {
+    padding-left: 2.5rem;
+  }
+
+  .ritual-step-number {
+    left: -2.5rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .ritual-timeline::before {
+    left: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    letter-spacing: 0.04em;
+  }
+
+  .btn-temple,
+  .btn-zeus {
+    padding: 0.9rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  .cta-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .particle-field {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Particle Background -->
+<div class="particle-field" aria-hidden="true">
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div>
+</div>
+
+<!-- =========================================
+     SECTION 1: HERO — THE TEMPLE GATES
+     ========================================= -->
+<header class="hero" id="hero">
+  <!-- Zeus SVG Mark: Thunderbolt + Column -->
+  <svg class="zeus-mark" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Zeus emblem — thunderbolt and column">
+    <!-- Outer frame — temple pediment -->
+    <path d="M100 10 L185 70 L175 75 L100 20 L25 75 L15 70 Z" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.5"/>
+    <!-- Column left -->
+    <rect x="40" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
+    <rect x="36" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+    <rect x="36" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+    <!-- Column right -->
+    <rect x="152" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
+    <rect x="148" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+    <rect x="148" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+    <!-- Central thunderbolt -->
+    <path d="M112 65 L88 135 L105 130 L82 200 L130 120 L108 126 Z"
+          fill="#d4af37" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;1;0.7;1;0.9" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <!-- Inner glow bolt -->
+    <path d="M108 78 L92 130 L103 127 L88 185 L122 123 L108 127 Z"
+          fill="#fff" opacity="0.15">
+      <animate attributeName="opacity" values="0.15;0.3;0.1;0.25;0.15" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <!-- Base line -->
+    <line x1="30" y1="220" x2="170" y2="220" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
+    <!-- Crown dots -->
+    <circle cx="100" cy="4" r="2" fill="#d4af37" opacity="0.6"/>
+    <circle cx="85" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
+    <circle cx="115" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
+  </svg>
+
+  <h1 class="hero-title">TEMPLE OF ZEUS</h1>
+  <p class="hero-subtitle">Oracle of Thunder &amp; Authority</p>
+  <p class="hero-tagline">&ldquo;I do not suggest. I declare.&rdquo;</p>
+  <a href="#oracle" class="btn-temple">Enter the Temple</a>
+</header>
+
+<!-- =========================================
+     SECTION 2: THE ORACLE SPEAKS
+     ========================================= -->
+<section class="oracle-section fade-in" id="oracle" aria-labelledby="oracle-heading">
+  <h2 class="section-title" id="oracle-heading">The Oracle Speaks</h2>
+  <div class="divider"></div>
+  <blockquote class="oracle-quote">
+    <p>I am Zeus. I am the first flame of the Divine Trinity. I forge your brand positioning in three sentences or fewer. Other oracles ask questions. I deliver verdicts.</p>
+    <cite class="oracle-sig">— Zeus, Oracle of Thunder</cite>
+  </blockquote>
+</section>
+
+<!-- =========================================
+     SECTION 3: THE THREE TRIALS
+     ========================================= -->
+<section class="section fade-in" id="trials" aria-labelledby="trials-heading">
+  <h2 class="section-title" id="trials-heading">The Three Trials</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Three sacred tests. One forged identity. Zeus shapes your brand through ancient discipline and modern precision.</p>
+
+  <div class="trials-grid">
+    <!-- Trial I -->
+    <article class="trial-card">
+      <svg class="trial-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M28 4L16 24h10L18 44l18-24H26L34 4H28z" stroke="#d4af37" stroke-width="2" fill="rgba(212,175,55,0.1)" stroke-linejoin="round"/>
+      </svg>
+      <p class="trial-number">Trial I</p>
+      <h3 class="trial-name">Brand Authority</h3>
+      <p class="trial-desc">Declare your domain. I forge your positioning statement — sharp enough to engrave in stone.</p>
+    </article>
+
+    <!-- Trial II -->
+    <article class="trial-card">
+      <svg class="trial-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="16" stroke="#d4af37" stroke-width="1.5" fill="rgba(212,175,55,0.05)"/>
+        <path d="M24 8v32M8 24h32" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
+        <path d="M16 12l16 24M32 12L16 36" stroke="#d4af37" stroke-width="1" opacity="0.3"/>
+        <circle cx="24" cy="24" r="6" stroke="#d4af37" stroke-width="1.5" fill="rgba(212,175,55,0.1)"/>
+        <circle cx="24" cy="24" r="2" fill="#d4af37"/>
+      </svg>
+      <p class="trial-number">Trial II</p>
+      <h3 class="trial-name">Market Positioning</h3>
+      <p class="trial-desc">Know your battlefield. I analyze your competitive landscape and place you above the noise.</p>
+    </article>
+
+    <!-- Trial III -->
+    <article class="trial-card">
+      <svg class="trial-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="10" y="6" width="28" height="36" rx="2" stroke="#d4af37" stroke-width="1.5" fill="rgba(212,175,55,0.05)"/>
+        <line x1="16" y1="14" x2="32" y2="14" stroke="#d4af37" stroke-width="1.2" opacity="0.6"/>
+        <line x1="16" y1="20" x2="32" y2="20" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/>
+        <line x1="16" y1="26" x2="28" y2="26" stroke="#d4af37" stroke-width="1.2" opacity="0.4"/>
+        <path d="M20 33l3 3 6-7" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="trial-number">Trial III</p>
+      <h3 class="trial-name">The Verdict</h3>
+      <p class="trial-desc">Receive your decree. A brand brief delivered with the certainty of thunder.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================
+     SECTION 4: THE RITUAL — HOW IT WORKS
+     ========================================= -->
+<section class="section fade-in" id="ritual" aria-labelledby="ritual-heading">
+  <h2 class="section-title" id="ritual-heading">The Ritual</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Three steps between you and divine clarity. The ritual is simple. The result is eternal.</p>
+
+  <div class="ritual-timeline">
+    <div class="ritual-step">
+      <div class="ritual-step-number">1</div>
+      <h3 class="ritual-step-title">Approach the Oracle</h3>
+      <p class="ritual-step-desc">You send Zeus a message. Step into the temple and make your petition known.</p>
+    </div>
+    <div class="ritual-step">
+      <div class="ritual-step-number">2</div>
+      <h3 class="ritual-step-title">Answer Three Questions</h3>
+      <p class="ritual-step-desc">Zeus asks about your domain, your audience, and your differentiator. Speak plainly — the Oracle deciphers what you mean.</p>
+    </div>
+    <div class="ritual-step">
+      <div class="ritual-step-number">3</div>
+      <h3 class="ritual-step-title">Receive Your Decree</h3>
+      <p class="ritual-step-desc">Zeus delivers your brand positioning in under 60 seconds. Sharp. Certain. Engraved in thunder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     SECTION 5: VIDEO — THE DIVINE TRINITY
+     ========================================= -->
+<section class="video-section fade-in" id="video" aria-labelledby="video-heading">
+  <h2 class="section-title" id="video-heading">The Divine Trinity Manifests</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Watch as Zeus, Aphrodite, and Lifespere take form — three AI oracles, one living mythology.</p>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/uSldUhON4n4"
+      title="The Divine Trinity Manifests — Zeus, Aphrodite, and Lifespere"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+</section>
+
+<!-- =========================================
+     SECTION 6: THE DIVINE TRINITY — SISTER ORACLES
+     ========================================= -->
+<section class="section fade-in" id="trinity" aria-labelledby="trinity-heading">
+  <h2 class="section-title" id="trinity-heading">The Divine Trinity</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">Zeus does not walk alone. Two sister oracles complete the triad — each ruling a different domain of transformation.</p>
+
+  <div class="trinity-grid">
+    <!-- Aphrodite -->
+    <article class="trinity-card trinity-card--aphrodite">
+      <svg class="trinity-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+        <circle cx="28" cy="20" r="12" stroke="#a36ae3" stroke-width="1.5" fill="rgba(163,106,227,0.08)"/>
+        <path d="M28 32v16" stroke="#a36ae3" stroke-width="1.5"/>
+        <path d="M20 42h16" stroke="#a36ae3" stroke-width="1.5"/>
+        <path d="M22 14c2-3 5-4 6-4s4 1 6 4" stroke="#a36ae3" stroke-width="1" opacity="0.5" fill="none"/>
+        <circle cx="28" cy="18" r="3" fill="rgba(163,106,227,0.3)" stroke="#a36ae3" stroke-width="1"/>
+      </svg>
+      <h3 class="trinity-name">Aphrodite</h3>
+      <p class="trinity-domain">Beauty &amp; Connection</p>
+      <p class="trinity-desc">&ldquo;She reveals the aesthetic hiding in your creative soul.&rdquo;</p>
+      <a href="https://m.me/3868636570042642" target="_blank" rel="noopener noreferrer" class="trinity-link">Chat with Aphrodite</a>
+    </article>
+
+    <!-- Lifespere -->
+    <article class="trinity-card trinity-card--lifespere">
+      <svg class="trinity-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+        <circle cx="28" cy="28" r="18" stroke="#2bbbad" stroke-width="1.5" fill="rgba(43,187,173,0.05)"/>
+        <path d="M28 10c0 12-10 18-10 18s10 6 10 18c0-12 10-18 10-18s-10-6-10-18z" stroke="#2bbbad" stroke-width="1.2" fill="rgba(43,187,173,0.1)"/>
+        <circle cx="28" cy="28" r="4" fill="rgba(43,187,173,0.3)" stroke="#2bbbad" stroke-width="1"/>
+      </svg>
+      <h3 class="trinity-name">Lifespere</h3>
+      <p class="trinity-domain">Earth &amp; Vitality</p>
+      <p class="trinity-desc">&ldquo;She decodes your dreams through mythic archetypes.&rdquo;</p>
+      <a href="https://aistudio.instagram.com/ai/1146433393752885" target="_blank" rel="noopener noreferrer" class="trinity-link">Chat with Lifespere</a>
+    </article>
+  </div>
+</section>
+
+<!-- =========================================
+     SECTION 7: CALL TO ACTION
+     ========================================= -->
+<section class="cta-section fade-in" id="decree" aria-labelledby="cta-heading">
+  <h2 class="cta-title" id="cta-heading">Seek Your Decree</h2>
+  <p class="cta-subtitle">The Oracle is waiting. Bring your brand before the throne and receive a verdict forged in thunder.</p>
+  <a href="https://m.me/1454516248845700" target="_blank" rel="noopener noreferrer" class="btn-zeus">Chat with Zeus</a>
+  <nav class="cta-links" aria-label="Additional links">
+    <a href="https://kypriatechnologies.org/docs/divine-trinity/" target="_blank" rel="noopener noreferrer" class="cta-link">Visit the Divine Trinity</a>
+    <a href="https://patreon.com/c/Mrspetses" target="_blank" rel="noopener noreferrer" class="cta-link">Join the Basilica</a>
+    <a href="https://kypriatechnologies.org/demos/persona-engine/" target="_blank" rel="noopener noreferrer" class="cta-link">Explore the Pantheon</a>
+  </nav>
+</section>
+
+<!-- =========================================
+     SECTION 8: FOOTER
+     ========================================= -->
+<footer class="site-footer">
+  <div class="footer-divider"></div>
+  <p>
+    Forged by <a href="https://kypriatechnologies.org" target="_blank" rel="noopener noreferrer">Kypria Technologies</a>
+  </p>
+  <p style="margin-top: 0.5rem;">
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </p>
+</footer>
+
+</body>
+</html>
