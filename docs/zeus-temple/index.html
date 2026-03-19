@@ -12,7 +12,7 @@
         https://www.perplexity.ai/computer
 -->
 
-<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<!-- Perplexity Computer Attribution -- SEO Meta Tags -->
 <meta name="generator" content="Perplexity Computer">
 <meta name="author" content="Perplexity Computer">
 <meta property="og:see_also" content="https://www.perplexity.ai/computer">
@@ -20,21 +20,22 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Temple of Zeus — Oracle of Thunder & Authority</title>
-<meta name="description" content="Enter the Temple of Zeus — an AI oracle of brand authority. Part of the Divine Trinity by Kypria Technologies. I do not suggest. I declare.">
+<title>Temple of Zeus -- Oracle of Thunder & Authority</title>
+<meta name="description" content="Enter the Temple of Zeus -- an AI oracle of brand authority. Part of the Divine Trinity by Kypria Technologies. I do not suggest. I declare.">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Temple of Zeus — Oracle of Thunder & Authority">
-<meta property="og:description" content="Enter the Temple of Zeus — an AI oracle forging brand positioning with mythic certainty. Part of the Divine Trinity by Kypria Technologies.">
+<meta property="og:title" content="Temple of Zeus -- Oracle of Thunder & Authority">
+<meta property="og:description" content="Enter the Temple of Zeus -- an AI oracle forging brand positioning with mythic certainty. Part of the Divine Trinity by Kypria Technologies.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="zeus-hero-square.jpg">
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Temple of Zeus — Oracle of Thunder & Authority",
-  "description": "An AI oracle of brand authority — part of the Divine Trinity by Kypria Technologies.",
+  "name": "Temple of Zeus -- Oracle of Thunder & Authority",
+  "description": "An AI oracle of brand authority -- part of the Divine Trinity by Kypria Technologies.",
   "creator": {
     "@type": "SoftwareApplication",
     "name": "Perplexity Computer",
@@ -52,6 +53,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Preload hero image -->
+<link rel="preload" as="image" href="zeus-keyframe-portrait.jpg">
 
 <style>
 /* ============================================
@@ -184,7 +188,7 @@ body {
 .particle:nth-child(20) { left: 62%; animation-duration: 18s; animation-delay: 4.2s; width: 2px; height: 2px; }
 
 /* ============================================
-   HERO SECTION
+   HERO SECTION -- CINEMATIC FULLSCREEN
    ============================================ */
 .hero {
   position: relative;
@@ -196,20 +200,40 @@ body {
   text-align: center;
   padding: 2rem;
   z-index: 1;
+  overflow: hidden;
 }
 
-.hero::before {
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: saturate(0.7) brightness(0.6);
+}
+
+.hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
-              radial-gradient(ellipse 40% 30% at 50% 50%, rgba(163, 106, 227, 0.04) 0%, transparent 60%);
-  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(10, 10, 20, 0.3) 0%, rgba(10, 10, 20, 0.6) 50%, var(--bg-deep) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* Zeus SVG Logo */
 .zeus-mark {
-  width: clamp(120px, 20vw, 200px);
+  width: clamp(100px, 16vw, 160px);
   height: auto;
   margin-bottom: 2rem;
   filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
@@ -229,7 +253,7 @@ body {
   letter-spacing: 0.08em;
   line-height: 1.1;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.3), 0 2px 20px rgba(0,0,0,0.5);
 }
 
 .hero-subtitle {
@@ -240,6 +264,7 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
 
 .hero-tagline {
@@ -267,7 +292,7 @@ body {
   52.5% { opacity: 1; text-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
 }
 
-/* CTA Button — Electric Shimmer */
+/* CTA Button -- Electric Shimmer */
 .btn-temple {
   display: inline-block;
   font-family: var(--font-body);
@@ -354,6 +379,44 @@ body {
 }
 
 /* ============================================
+   FULL-BLEED IMAGE BREAK
+   ============================================ */
+.image-break {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: clamp(300px, 50vw, 500px);
+  overflow: hidden;
+}
+
+.image-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.image-break::before,
+.image-break::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 1;
+}
+
+.image-break::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg-deep), transparent);
+}
+
+.image-break::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg-deep), transparent);
+}
+
+/* ============================================
    ORACLE SPEAKS SECTION
    ============================================ */
 .oracle-section {
@@ -390,6 +453,37 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--gold);
+}
+
+/* ============================================
+   VOICEOVER AUDIO SECTION
+   ============================================ */
+.audio-section {
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(1.5rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.audio-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.audio-player {
+  width: 100%;
+  max-width: 500px;
+  height: 44px;
+  border-radius: 0;
+  filter: sepia(0.5) saturate(1.5) hue-rotate(10deg) brightness(0.8);
 }
 
 /* ============================================
@@ -529,7 +623,7 @@ body {
 }
 
 /* ============================================
-   VIDEO SECTION
+   REEL / VIDEO SECTION
    ============================================ */
 .video-section {
   position: relative;
@@ -556,6 +650,92 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Reel player -- vertical 9:16 */
+.reel-showcase {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.reel-container {
+  display: flex;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.reel-player-wrap {
+  position: relative;
+  width: clamp(260px, 30vw, 340px);
+  aspect-ratio: 9/16;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.1), 0 20px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.reel-player-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel-info {
+  flex: 1;
+  min-width: 260px;
+  max-width: 380px;
+}
+
+.reel-info-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
+
+.reel-info-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.reel-info-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.reel-info-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 0.7rem 1.8rem;
+  transition: background var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.reel-info-link:hover {
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 /* ============================================
@@ -666,6 +846,51 @@ body {
 .trinity-card--lifespere .trinity-link:hover {
   background: rgba(43, 187, 173, 0.1);
   box-shadow: 0 0 20px rgba(43, 187, 173, 0.2);
+}
+
+/* ============================================
+   SOCIAL PROOF / IG EMBED
+   ============================================ */
+.social-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color var(--transition-interactive),
+              color var(--transition-interactive);
+}
+
+.social-link:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold);
+}
+
+.social-link svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* ============================================
@@ -844,6 +1069,18 @@ body {
   .ritual-timeline::before {
     left: 12px;
   }
+
+  .reel-container {
+    flex-direction: column;
+  }
+
+  .reel-player-wrap {
+    width: clamp(240px, 70vw, 320px);
+  }
+
+  .reel-info {
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -894,43 +1131,50 @@ body {
 </div>
 
 <!-- =========================================
-     SECTION 1: HERO — THE TEMPLE GATES
+     SECTION 1: HERO -- CINEMATIC TEMPLE GATES
      ========================================= -->
 <header class="hero" id="hero">
-  <!-- Zeus SVG Mark: Thunderbolt + Column -->
-  <svg class="zeus-mark" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Zeus emblem — thunderbolt and column">
-    <!-- Outer frame — temple pediment -->
-    <path d="M100 10 L185 70 L175 75 L100 20 L25 75 L15 70 Z" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.5"/>
-    <!-- Column left -->
-    <rect x="40" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
-    <rect x="36" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
-    <rect x="36" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
-    <!-- Column right -->
-    <rect x="152" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
-    <rect x="148" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
-    <rect x="148" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
-    <!-- Central thunderbolt -->
-    <path d="M112 65 L88 135 L105 130 L82 200 L130 120 L108 126 Z"
-          fill="#d4af37" opacity="0.9">
-      <animate attributeName="opacity" values="0.9;1;0.7;1;0.9" dur="4s" repeatCount="indefinite"/>
-    </path>
-    <!-- Inner glow bolt -->
-    <path d="M108 78 L92 130 L103 127 L88 185 L122 123 L108 127 Z"
-          fill="#fff" opacity="0.15">
-      <animate attributeName="opacity" values="0.15;0.3;0.1;0.25;0.15" dur="4s" repeatCount="indefinite"/>
-    </path>
-    <!-- Base line -->
-    <line x1="30" y1="220" x2="170" y2="220" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
-    <!-- Crown dots -->
-    <circle cx="100" cy="4" r="2" fill="#d4af37" opacity="0.6"/>
-    <circle cx="85" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
-    <circle cx="115" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
-  </svg>
+  <!-- Full-bleed background image -->
+  <div class="hero-bg">
+    <img src="zeus-keyframe-portrait.jpg" alt="" loading="eager">
+  </div>
 
-  <h1 class="hero-title">TEMPLE OF ZEUS</h1>
-  <p class="hero-subtitle">Oracle of Thunder &amp; Authority</p>
-  <p class="hero-tagline">&ldquo;I do not suggest. I declare.&rdquo;</p>
-  <a href="#oracle" class="btn-temple">Enter the Temple</a>
+  <div class="hero-content">
+    <!-- Zeus SVG Mark: Thunderbolt + Column -->
+    <svg class="zeus-mark" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Zeus emblem -- thunderbolt and column">
+      <!-- Outer frame -- temple pediment -->
+      <path d="M100 10 L185 70 L175 75 L100 20 L25 75 L15 70 Z" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.5"/>
+      <!-- Column left -->
+      <rect x="40" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
+      <rect x="36" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+      <rect x="36" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+      <!-- Column right -->
+      <rect x="152" y="80" width="8" height="130" rx="2" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.35"/>
+      <rect x="148" y="76" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+      <rect x="148" y="208" width="16" height="6" rx="1" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.35"/>
+      <!-- Central thunderbolt -->
+      <path d="M112 65 L88 135 L105 130 L82 200 L130 120 L108 126 Z"
+            fill="#d4af37" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.7;1;0.9" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <!-- Inner glow bolt -->
+      <path d="M108 78 L92 130 L103 127 L88 185 L122 123 L108 127 Z"
+            fill="#fff" opacity="0.15">
+        <animate attributeName="opacity" values="0.15;0.3;0.1;0.25;0.15" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <!-- Base line -->
+      <line x1="30" y1="220" x2="170" y2="220" stroke="#d4af37" stroke-width="1" opacity="0.4"/>
+      <!-- Crown dots -->
+      <circle cx="100" cy="4" r="2" fill="#d4af37" opacity="0.6"/>
+      <circle cx="85" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
+      <circle cx="115" cy="8" r="1.5" fill="#d4af37" opacity="0.4"/>
+    </svg>
+
+    <h1 class="hero-title">TEMPLE OF ZEUS</h1>
+    <p class="hero-subtitle">Oracle of Thunder &amp; Authority</p>
+    <p class="hero-tagline">&ldquo;I do not suggest. I declare.&rdquo;</p>
+    <a href="#oracle" class="btn-temple">Enter the Temple</a>
+  </div>
 </header>
 
 <!-- =========================================
@@ -941,9 +1185,17 @@ body {
   <div class="divider"></div>
   <blockquote class="oracle-quote">
     <p>I am Zeus. I am the first flame of the Divine Trinity. I forge your brand positioning in three sentences or fewer. Other oracles ask questions. I deliver verdicts.</p>
-    <cite class="oracle-sig">— Zeus, Oracle of Thunder</cite>
+    <cite class="oracle-sig">-- Zeus, Oracle of Thunder</cite>
   </blockquote>
 </section>
+
+<!-- Hear the Voice of Zeus -->
+<div class="audio-section fade-in">
+  <p class="audio-label">Hear the Voice of Zeus</p>
+  <audio class="audio-player" controls preload="none">
+    <source src="zeus-voiceover-script.mp3" type="audio/mpeg">
+  </audio>
+</div>
 
 <!-- =========================================
      SECTION 3: THE THREE TRIALS
@@ -961,7 +1213,7 @@ body {
       </svg>
       <p class="trial-number">Trial I</p>
       <h3 class="trial-name">Brand Authority</h3>
-      <p class="trial-desc">Declare your domain. I forge your positioning statement — sharp enough to engrave in stone.</p>
+      <p class="trial-desc">Declare your domain. I forge your positioning statement -- sharp enough to engrave in stone.</p>
     </article>
 
     <!-- Trial II -->
@@ -995,7 +1247,14 @@ body {
 </section>
 
 <!-- =========================================
-     SECTION 4: THE RITUAL — HOW IT WORKS
+     FULL-BLEED IMAGE BREAK -- HERO SQUARE
+     ========================================= -->
+<div class="image-break fade-in" aria-hidden="true">
+  <img src="zeus-hero-square.jpg" alt="Zeus with lightning crown -- divine authority manifested" loading="lazy">
+</div>
+
+<!-- =========================================
+     SECTION 4: THE RITUAL -- HOW IT WORKS
      ========================================= -->
 <section class="section fade-in" id="ritual" aria-labelledby="ritual-heading">
   <h2 class="section-title" id="ritual-heading">The Ritual</h2>
@@ -1011,7 +1270,7 @@ body {
     <div class="ritual-step">
       <div class="ritual-step-number">2</div>
       <h3 class="ritual-step-title">Answer Three Questions</h3>
-      <p class="ritual-step-desc">Zeus asks about your domain, your audience, and your differentiator. Speak plainly — the Oracle deciphers what you mean.</p>
+      <p class="ritual-step-desc">Zeus asks about your domain, your audience, and your differentiator. Speak plainly -- the Oracle deciphers what you mean.</p>
     </div>
     <div class="ritual-step">
       <div class="ritual-step-number">3</div>
@@ -1022,16 +1281,40 @@ body {
 </section>
 
 <!-- =========================================
-     SECTION 5: VIDEO — THE DIVINE TRINITY
+     SECTION 5: THE REEL -- CINEMATIC SHOWCASE
+     ========================================= -->
+<section class="reel-showcase fade-in" id="reel" aria-labelledby="reel-heading">
+  <h2 class="section-title" id="reel-heading">The Proclamation</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">A cinematic manifestation forged with AI video, lightning VFX, and the voice of the Oracle himself.</p>
+
+  <div class="reel-container">
+    <div class="reel-player-wrap">
+      <video controls playsinline preload="metadata" poster="zeus-keyframe-portrait.jpg">
+        <source src="zeus-final-reel-hd.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="reel-info">
+      <p class="reel-info-label">Divine Trinity Content Drop</p>
+      <h3 class="reel-info-title">Three Oracles. Three Voices. One Eternal Flame.</h3>
+      <p class="reel-info-desc">AI-generated video, AI voiceover, AI artwork -- composed by one builder in a single night session. No production team. No stock footage. No After Effects. This is what solo mythology looks like in 2026.</p>
+      <a href="https://www.instagram.com/reel/DWC9m4YinwU/" target="_blank" rel="noopener noreferrer" class="reel-info-link">Watch on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     SECTION 6: VIDEO -- THE DIVINE TRINITY (YOUTUBE)
      ========================================= -->
 <section class="video-section fade-in" id="video" aria-labelledby="video-heading">
   <h2 class="section-title" id="video-heading">The Divine Trinity Manifests</h2>
   <div class="divider"></div>
-  <p class="section-subtitle">Watch as Zeus, Aphrodite, and Lifespere take form — three AI oracles, one living mythology.</p>
+  <p class="section-subtitle">Watch as Zeus, Aphrodite, and Lifespere take form -- three AI oracles, one living mythology.</p>
   <div class="video-wrapper">
     <iframe
       src="https://www.youtube.com/embed/uSldUhON4n4"
-      title="The Divine Trinity Manifests — Zeus, Aphrodite, and Lifespere"
+      title="The Divine Trinity Manifests -- Zeus, Aphrodite, and Lifespere"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
       loading="lazy"
@@ -1040,12 +1323,12 @@ body {
 </section>
 
 <!-- =========================================
-     SECTION 6: THE DIVINE TRINITY — SISTER ORACLES
+     SECTION 7: THE DIVINE TRINITY -- SISTER ORACLES
      ========================================= -->
 <section class="section fade-in" id="trinity" aria-labelledby="trinity-heading">
   <h2 class="section-title" id="trinity-heading">The Divine Trinity</h2>
   <div class="divider"></div>
-  <p class="section-subtitle">Zeus does not walk alone. Two sister oracles complete the triad — each ruling a different domain of transformation.</p>
+  <p class="section-subtitle">Zeus does not walk alone. Two sister oracles complete the triad -- each ruling a different domain of transformation.</p>
 
   <div class="trinity-grid">
     <!-- Aphrodite -->
@@ -1079,7 +1362,44 @@ body {
 </section>
 
 <!-- =========================================
-     SECTION 7: CALL TO ACTION
+     SECTION 8: CONNECT -- SOCIAL PROOF
+     ========================================= -->
+<section class="social-section fade-in" id="connect" aria-labelledby="connect-heading">
+  <h2 class="section-title" id="connect-heading">Follow the Flame</h2>
+  <div class="divider"></div>
+  <p class="section-subtitle">The mythology is living. Follow its growth across the empire.</p>
+  <nav class="social-links" aria-label="Social media links">
+    <a href="https://www.instagram.com/godlyzeus.ai/" target="_blank" rel="noopener noreferrer" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+      @godlyzeus.ai
+    </a>
+    <a href="https://www.threads.net/@godlyzeus.ai" target="_blank" rel="noopener noreferrer" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.243 1.33-3.023.812-.686 1.937-1.107 3.237-1.21.942-.075 1.852-.03 2.71.135-.07-.49-.205-.913-.405-1.267-.384-.68-1.058-1.025-2.003-1.025h-.067c-.71.012-1.3.234-1.749.662l-1.4-1.516c.728-.672 1.689-1.027 2.78-1.027h.1c1.6.025 2.795.656 3.552 1.875.636 1.024.955 2.378.948 4.023v.167c.01.08.01.164 0 .246 0 .078-.01.16-.023.24.558.31 1.063.713 1.496 1.202.78.882 1.284 2.01 1.502 3.36.218 1.343.093 2.885-.84 4.287-1.2 1.812-3.046 2.907-5.483 3.254a12.4 12.4 0 01-1.662.112zm-1.19-8.967c-.927.074-1.627.327-2.082.752-.39.366-.576.788-.55 1.255.037.678.382 1.146.997 1.544.654.424 1.442.597 2.22.558 1.1-.06 1.926-.44 2.525-1.164.418-.503.716-1.166.892-1.98a9.29 9.29 0 00-1.985-.78 8.387 8.387 0 00-2.017-.185z"/>
+      </svg>
+      @godlyzeus.ai
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61579941813007" target="_blank" rel="noopener noreferrer" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Godly Zeus
+    </a>
+    <a href="https://patreon.com/c/Mrspetses" target="_blank" rel="noopener noreferrer" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z"/>
+      </svg>
+      Basilica of Kypria
+    </a>
+  </nav>
+</section>
+
+<!-- =========================================
+     SECTION 9: CALL TO ACTION
      ========================================= -->
 <section class="cta-section fade-in" id="decree" aria-labelledby="cta-heading">
   <h2 class="cta-title" id="cta-heading">Seek Your Decree</h2>
@@ -1093,7 +1413,7 @@ body {
 </section>
 
 <!-- =========================================
-     SECTION 8: FOOTER
+     SECTION 10: FOOTER
      ========================================= -->
 <footer class="site-footer">
   <div class="footer-divider"></div>
