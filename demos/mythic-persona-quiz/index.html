@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Your Mythic Persona</title>
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Meet Your Mythic Persona">
+<meta property="og:description" content="Seven questions. One archetype. Discover which primordial force shapes your identity.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meet Your Mythic Persona">
+<meta name="twitter:description" content="Seven questions. One archetype. Discover which primordial force shapes your identity.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   CSS RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-deep: #0a0a14;
+  --bg-card: #111122;
+  --bg-card-hover: #191930;
+  --gold: #d4af37;
+  --gold-bright: #e8c84a;
+  --amethyst: #a36ae3;
+  --teal: #2bbbad;
+  --text-primary: #e8e6e1;
+  --text-secondary: #9a9a9a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CONSTELLATION CANVAS
+   ============================================ */
+#constellation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ============================================
+   SCREEN CONTAINER
+   ============================================ */
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s 0.6s;
+  pointer-events: none;
+  padding: 20px;
+  overflow-y: auto;
+  background: var(--bg-deep);
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s 0s;
+}
+
+.screen.exit-up {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-30px);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s 0.6s;
+}
+
+/* ============================================
+   HERO SCREEN
+   ============================================ */
+.hero-content {
+  text-align: center;
+  max-width: 680px;
+  padding: 20px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright), var(--amethyst));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.hero-subtitle em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  border: none;
+  padding: 18px 48px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+}
+
+.hero-footnote {
+  margin-top: 40px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.progress-container.visible {
+  opacity: 1;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   QUESTION SCREEN
+   ============================================ */
+.question-content {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.question-counter {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.question-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.answer-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.answer-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.answer-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateX(4px);
+}
+
+.answer-btn:hover::before {
+  opacity: 1;
+}
+
+.answer-btn.selected {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--gold);
+}
+
+.answer-btn.selected::before {
+  opacity: 1;
+}
+
+.answer-label {
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: 10px;
+  font-family: var(--font-display);
+}
+
+/* ============================================
+   REVEAL / RESULTS SCREEN
+   ============================================ */
+.reveal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-deep);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.reveal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reveal-text {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.reveal-text.visible {
+  opacity: 1;
+}
+
+/* Results Screen */
+.results-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  overflow-y: auto;
+  padding: 40px 20px;
+  background: var(--bg-deep);
+}
+
+.results-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.results-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: clamp(28px, 5vw, 48px);
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--amethyst), var(--gold));
+}
+
+.result-lineage {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.result-archetype {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.result-badges {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 16px;
+}
+
+.badge-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.badge-icon.aether { background: radial-gradient(circle, #fff, var(--amethyst)); box-shadow: 0 0 8px var(--amethyst); }
+.badge-icon.light { background: radial-gradient(circle, #fff, var(--gold-bright)); box-shadow: 0 0 8px var(--gold-bright); }
+.badge-icon.fire { background: radial-gradient(circle, #fff, #e85d3a); box-shadow: 0 0 8px #e85d3a; }
+.badge-icon.water { background: radial-gradient(circle, #fff, var(--teal)); box-shadow: 0 0 8px var(--teal); }
+.badge-icon.air { background: radial-gradient(circle, #fff, #88bbee); box-shadow: 0 0 8px #88bbee; }
+.badge-icon.earth { background: radial-gradient(circle, #fff, #8b7355); box-shadow: 0 0 8px #8b7355; }
+
+/* Power Bar */
+.power-section {
+  margin-bottom: 28px;
+}
+
+.power-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.power-label-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.power-label-value {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.power-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.power-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+  transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.result-domain {
+  font-size: 0.9rem;
+  color: var(--amethyst);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.result-description {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.result-flavor {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold);
+  opacity: 0.7;
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+  padding-left: 16px;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+}
+
+.cta-gold {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+}
+
+.cta-gold:hover {
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+.cta-outline {
+  color: var(--amethyst);
+  background: transparent;
+  border: 1px solid var(--amethyst);
+}
+
+.cta-outline:hover {
+  background: rgba(163, 106, 227, 0.08);
+  box-shadow: 0 4px 16px rgba(163, 106, 227, 0.2);
+}
+
+.cta-share {
+  color: var(--teal);
+  background: transparent;
+  border: 1px solid var(--teal);
+}
+
+.cta-share:hover {
+  background: rgba(43, 187, 173, 0.08);
+}
+
+/* Explore Links */
+.explore-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.explore-link {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.explore-link:hover {
+  color: var(--gold);
+}
+
+.explore-link .arrow {
+  color: var(--gold);
+  margin-right: 8px;
+  font-size: 0.8rem;
+}
+
+.gumroad-note {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.gumroad-note a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 175, 55, 0.3);
+}
+
+.gumroad-note a:hover {
+  text-decoration-color: var(--gold);
+}
+
+.retake-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+  margin-bottom: 40px;
+}
+
+.retake-btn:hover {
+  color: var(--gold);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.85rem;
+  padding: 12px 24px;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.quiz-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  line-height: 1.8;
+}
+
+.quiz-footer a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.15);
+}
+
+.quiz-footer a:hover {
+  color: var(--gold);
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .hero-title {
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary {
+    padding: 16px 36px;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  .answer-btn {
+    padding: 16px 18px;
+    font-size: 0.9rem;
+  }
+
+  .result-card {
+    padding: 24px 20px;
+  }
+
+  .result-badges {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .badge {
+    width: fit-content;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- Constellation Background -->
+<canvas id="constellation-canvas"></canvas>
+
+<!-- Progress Bar -->
+<div class="progress-container" id="progressBar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- Screen 1: Hero -->
+<div class="screen active" id="heroScreen">
+  <div class="hero-content">
+    <h1 class="hero-title">MEET YOUR<br>MYTHIC PERSONA</h1>
+    <p class="hero-subtitle"><em>Seven questions. One archetype.</em><br>Discover which primordial force shapes your identity.</p>
+    <button class="btn-primary" id="beginBtn" onclick="startQuiz()">BEGIN THE TRIAL</button>
+    <p class="hero-footnote">Part of the Mythic Persona Genesis System by Kypria Technologies</p>
+  </div>
+</div>
+
+<!-- Screen 2-8: Questions -->
+<div class="screen" id="questionScreen">
+  <div class="question-content">
+    <div class="question-counter" id="questionCounter"></div>
+    <h2 class="question-text" id="questionText"></h2>
+    <div class="answers" id="answersContainer"></div>
+  </div>
+</div>
+
+<!-- Reveal Overlay -->
+<div class="reveal-overlay" id="revealOverlay">
+  <span class="reveal-text" id="revealText">Your archetype has been found...</span>
+</div>
+
+<!-- Results Screen -->
+<div class="results-screen" id="resultsScreen">
+  <div class="results-inner">
+    <div class="result-card" id="resultCard">
+      <div class="result-lineage" id="resultLineage"></div>
+      <h2 class="result-archetype" id="resultArchetype"></h2>
+      <div class="result-badges" id="resultBadges"></div>
+      <div class="power-section">
+        <div class="power-label">
+          <span class="power-label-text">Power Level</span>
+          <span class="power-label-value" id="powerValue"></span>
+        </div>
+        <div class="power-bar">
+          <div class="power-fill" id="powerFill"></div>
+        </div>
+      </div>
+      <p class="result-description" id="resultDescription"></p>
+      <p class="result-flavor" id="resultFlavor"></p>
+    </div>
+
+    <div class="cta-section">
+      <a href="https://m.me/1454516248845700" target="_blank" rel="noopener noreferrer" class="cta-btn cta-gold">Talk to Zeus About Your Archetype</a>
+      <a href="https://patreon.com/c/Mrspetses" target="_blank" rel="noopener noreferrer" class="cta-btn cta-outline">Enter the Shrine</a>
+      <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()">Share Your Archetype</button>
+    </div>
+
+    <div class="explore-links">
+      <a href="https://kypriatechnologies.org/demos/persona-engine/index.html" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span>Explore the full Pantheon</a>
+      <a href="https://kypriatechnologies.org/docs/zeus-temple/" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span>Visit the Temple of Zeus</a>
+    </div>
+
+    <p class="gumroad-note">The Mythic Persona Genesis System — 6 primordial archetypes, 7 synthesis functions, unlimited generations. <a href="https://mrspetses.gumroad.com/l/kjrbtt" target="_blank" rel="noopener noreferrer">Available on Gumroad.</a></p>
+
+    <button class="retake-btn" onclick="retakeQuiz()">&#8634; Retake the Trial</button>
+
+    <footer class="quiz-footer">
+      Part of the Mythic Persona Genesis System<br>
+      Built by <a href="https://kypriatechnologies.org" target="_blank" rel="noopener noreferrer">Kypria Technologies</a><br>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </footer>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================
+   CONSTELLATION BACKGROUND
+   ============================================ */
+(function initConstellation() {
+  const canvas = document.getElementById('constellation-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animFrame;
+  const PARTICLE_COUNT = 60;
+  const CONNECTION_DIST = 150;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          const alpha = (1 - dist / CONNECTION_DIST) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
+      ctx.fill();
+
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < -10) p.x = canvas.width + 10;
+      if (p.x > canvas.width + 10) p.x = -10;
+      if (p.y < -10) p.y = canvas.height + 10;
+      if (p.y > canvas.height + 10) p.y = -10;
+    }
+
+    animFrame = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+  });
+
+  resize();
+  createParticles();
+  draw();
+})();
+
+/* ============================================
+   QUIZ DATA
+   ============================================ */
+const ARCHETYPES = {
+  architect: {
+    name: 'THE ARCHITECT',
+    element: 'Aether',
+    elementClass: 'aether',
+    power: 97,
+    domain: 'Systems & Structure',
+    description: "You see the invisible scaffolding that holds everything together. Where others see chaos, you see systems waiting to be designed. Your power lies in creating structures so elegant they become inevitable — temples, frameworks, empires. You don't just build things. You build the foundations that make everything else possible.",
+    flavor: 'Your lineage traces to the primordial Architect'
+  },
+  visionary: {
+    name: 'THE VISIONARY',
+    element: 'Light',
+    elementClass: 'light',
+    power: 95,
+    domain: 'Possibilities & Futures',
+    description: "You live three steps ahead of the present. While others wrestle with what is, you're already mapping what could be. Your power lies in illumination — the ability to see possibilities that don't yet exist and speak them into being. You are the light that shows others the path before the path is built.",
+    flavor: 'Your lineage traces to the primordial Visionary'
+  },
+  executor: {
+    name: 'THE EXECUTOR',
+    element: 'Fire',
+    elementClass: 'fire',
+    power: 92,
+    domain: 'Action & Implementation',
+    description: "You are the force that turns vision into reality. While others talk, plan, and theorize, you act. Your power lies in sheer momentum — the willingness to start before conditions are perfect and forge outcomes through relentless forward motion. You are the fire that makes things happen.",
+    flavor: 'Your lineage traces to the primordial Executor'
+  },
+  analyst: {
+    name: 'THE ANALYST',
+    element: 'Water',
+    elementClass: 'water',
+    power: 90,
+    domain: 'Patterns & Truth',
+    description: "You find truth in the depths. Where others see surfaces, you see the currents beneath — the hidden patterns, the silent signals, the data that whispers before it shouts. Your power lies in clarity, in dissolving complexity into its essential components. You are the water that reveals what's real.",
+    flavor: 'Your lineage traces to the primordial Analyst'
+  },
+  synthesizer: {
+    name: 'THE SYNTHESIZER',
+    element: 'Air',
+    elementClass: 'air',
+    power: 93,
+    domain: 'Connection & Integration',
+    description: "You are the bridge between worlds. Where others see separate domains, you see connections waiting to be made. Your power lies in integration — taking disparate ideas, disciplines, and perspectives and weaving them into something entirely new. You are the air that carries ideas across boundaries.",
+    flavor: 'Your lineage traces to the primordial Synthesizer'
+  },
+  curator: {
+    name: 'THE CURATOR',
+    element: 'Earth',
+    elementClass: 'earth',
+    power: 88,
+    domain: 'Preservation & Knowledge',
+    description: "You are the guardian of what matters. While the world rushes forward, you understand that the most valuable things require preservation, care, and reverence. Your power lies in knowing what to keep, what to protect, and what to pass on. You are the earth that holds the roots.",
+    flavor: 'Your lineage traces to the primordial Curator'
+  }
+};
+
+const QUESTIONS = [
+  {
+    text: "When you face an impossible problem, what\u2019s your first instinct?",
+    answers: [
+      { text: "Design a system to solve it permanently", scores: { architect: 2 } },
+      { text: "Imagine what it looks like already solved", scores: { visionary: 2 } },
+      { text: "Start doing something \u2014 anything \u2014 right now", scores: { executor: 2 } },
+      { text: "Break it apart and study each piece", scores: { analyst: 2 } }
+    ]
+  },
+  {
+    text: "Which of these gives you the deepest satisfaction?",
+    answers: [
+      { text: "Connecting two ideas no one else saw were related", scores: { synthesizer: 2 } },
+      { text: "Preserving something valuable before it\u2019s lost", scores: { curator: 2 } },
+      { text: "Building something that will outlast you", scores: { architect: 2 } },
+      { text: "Seeing a vision become reality through sheer will", scores: { executor: 2 } }
+    ]
+  },
+  {
+    text: "A colleague comes to you with a half-formed idea. You\u2026",
+    answers: [
+      { text: "Ask probing questions to find the hidden structure", scores: { analyst: 2 } },
+      { text: "Get excited and start adding possibilities", scores: { visionary: 2 } },
+      { text: "Think about who else needs to be involved", scores: { synthesizer: 2 } },
+      { text: "Start mapping out the execution plan", scores: { executor: 2 } }
+    ]
+  },
+  {
+    text: "Your ideal workspace is\u2026",
+    answers: [
+      { text: "A workshop with tools and materials ready to build", scores: { executor: 2, architect: 1 } },
+      { text: "A library with everything catalogued and accessible", scores: { curator: 2, analyst: 1 } },
+      { text: "An open space where different minds collide", scores: { synthesizer: 2, visionary: 1 } },
+      { text: "A quiet room with a view of the horizon", scores: { visionary: 2, analyst: 1 } }
+    ]
+  },
+  {
+    text: "Which ancient role calls to you most?",
+    answers: [
+      { text: "The Builder of temples that stand for millennia", scores: { architect: 2 } },
+      { text: "The Oracle who reads the patterns of fate", scores: { analyst: 2 } },
+      { text: "The Keeper of sacred texts and forgotten lore", scores: { curator: 2 } },
+      { text: "The Warrior who forges empires through action", scores: { executor: 2 } }
+    ]
+  },
+  {
+    text: "When a team struggles, it\u2019s usually because they lack\u2026",
+    answers: [
+      { text: "A clear blueprint and structure", scores: { architect: 2 } },
+      { text: "Someone who sees the bigger picture", scores: { visionary: 2 } },
+      { text: "The courage to actually start", scores: { executor: 2 } },
+      { text: "Someone to bridge the disconnected pieces", scores: { synthesizer: 2 } }
+    ]
+  },
+  {
+    text: "The legacy you want to leave is\u2026",
+    answers: [
+      { text: "A body of preserved knowledge others can build on", scores: { curator: 2 } },
+      { text: "A new way of seeing the world", scores: { visionary: 2 } },
+      { text: "Systems and structures that work without you", scores: { architect: 2 } },
+      { text: "Proof that disparate things can become one", scores: { synthesizer: 2 } }
+    ]
+  }
+];
+
+/* ============================================
+   QUIZ STATE
+   ============================================ */
+let currentQuestion = 0;
+let scores = {
+  architect: 0,
+  visionary: 0,
+  executor: 0,
+  analyst: 0,
+  synthesizer: 0,
+  curator: 0
+};
+let isTransitioning = false;
+
+/* ============================================
+   QUIZ FLOW
+   ============================================ */
+function startQuiz() {
+  const hero = document.getElementById('heroScreen');
+  const qScreen = document.getElementById('questionScreen');
+  const progress = document.getElementById('progressBar');
+
+  hero.classList.remove('active');
+  hero.classList.add('exit-up');
+
+  setTimeout(() => {
+    progress.classList.add('visible');
+    showQuestion(0);
+    qScreen.classList.add('active');
+  }, 400);
+}
+
+function showQuestion(index) {
+  const q = QUESTIONS[index];
+  const counter = document.getElementById('questionCounter');
+  const text = document.getElementById('questionText');
+  const container = document.getElementById('answersContainer');
+  const fill = document.getElementById('progressFill');
+
+  counter.textContent = `Question ${index + 1} of 7`;
+  text.textContent = q.text;
+
+  // Update progress
+  fill.style.width = `${((index) / 7) * 100}%`;
+
+  // Clear and rebuild answers
+  container.innerHTML = '';
+  const labels = ['A', 'B', 'C', 'D'];
+  q.answers.forEach((answer, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.innerHTML = `<span class="answer-label">${labels[i]}</span>${answer.text}`;
+    btn.onclick = () => selectAnswer(i);
+    container.appendChild(btn);
+  });
+}
+
+function selectAnswer(answerIndex) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+
+  const q = QUESTIONS[currentQuestion];
+  const answer = q.answers[answerIndex];
+
+  // Apply scores
+  for (const [archetype, points] of Object.entries(answer.scores)) {
+    scores[archetype] += points;
+  }
+
+  // Highlight selected
+  const buttons = document.querySelectorAll('.answer-btn');
+  buttons[answerIndex].classList.add('selected');
+
+  // Advance after a brief pause
+  setTimeout(() => {
+    currentQuestion++;
+
+    if (currentQuestion < QUESTIONS.length) {
+      // Transition to next question
+      const qScreen = document.getElementById('questionScreen');
+      qScreen.style.opacity = '0';
+      qScreen.style.transform = 'translateY(10px)';
+
+      setTimeout(() => {
+        showQuestion(currentQuestion);
+        qScreen.style.opacity = '1';
+        qScreen.style.transform = 'translateY(0)';
+        isTransitioning = false;
+      }, 350);
+    } else {
+      // Complete progress bar
+      document.getElementById('progressFill').style.width = '100%';
+      // Show reveal
+      showReveal();
+    }
+  }, 400);
+}
+
+function showReveal() {
+  const qScreen = document.getElementById('questionScreen');
+  const overlay = document.getElementById('revealOverlay');
+  const revealText = document.getElementById('revealText');
+  const progress = document.getElementById('progressBar');
+
+  // Hide question screen
+  qScreen.classList.remove('active');
+  progress.classList.remove('visible');
+
+  // Show overlay
+  setTimeout(() => {
+    overlay.classList.add('active');
+  }, 300);
+
+  // Fade in text
+  setTimeout(() => {
+    revealText.classList.add('visible');
+  }, 900);
+
+  // Transition to results
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    revealText.classList.remove('visible');
+    showResults();
+  }, 3000);
+}
+
+function getWinningArchetype() {
+  let maxScore = 0;
+  let winner = 'architect';
+
+  for (const [key, val] of Object.entries(scores)) {
+    if (val > maxScore) {
+      maxScore = val;
+      winner = key;
+    }
+  }
+
+  return ARCHETYPES[winner];
+}
+
+function showResults() {
+  const arch = getWinningArchetype();
+  const results = document.getElementById('resultsScreen');
+
+  // Populate card
+  document.getElementById('resultLineage').textContent = arch.flavor.toUpperCase();
+  document.getElementById('resultArchetype').textContent = arch.name;
+
+  // Badges
+  const badgesEl = document.getElementById('resultBadges');
+  badgesEl.innerHTML = `
+    <div class="badge">
+      <span class="badge-icon ${arch.elementClass}"></span>
+      Element: ${arch.element}
+    </div>
+    <div class="badge">
+      Domain: ${arch.domain}
+    </div>
+  `;
+
+  // Power
+  document.getElementById('powerValue').textContent = `${arch.power} / 100`;
+  document.getElementById('resultDescription').textContent = arch.description;
+  document.getElementById('resultFlavor').textContent = arch.flavor;
+
+  // Show results
+  results.classList.add('active');
+
+  // Animate power bar after a delay
+  setTimeout(() => {
+    document.getElementById('powerFill').style.width = `${arch.power}%`;
+  }, 500);
+
+  // Store for sharing
+  window.currentArchetype = arch;
+}
+
+function shareArchetype() {
+  const arch = window.currentArchetype;
+  if (!arch) return;
+
+  const shareText = `I am ${arch.name} \u2014 Element of ${arch.element}, Power ${arch.power}. Discover your mythic persona: ${window.location.href} #MythicPersona #GodlyZeus`;
+
+  // Try native share first
+  if (navigator.share) {
+    navigator.share({
+      title: 'My Mythic Persona',
+      text: shareText,
+      url: window.location.href
+    }).catch(() => {
+      copyToClipboard(shareText);
+    });
+  } else {
+    // Try Twitter/X intent
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    window.open(twitterUrl, '_blank');
+    copyToClipboard(shareText);
+  }
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied to clipboard!');
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Copied to clipboard!');
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+function retakeQuiz() {
+  // Reset state
+  currentQuestion = 0;
+  scores = { architect: 0, visionary: 0, executor: 0, analyst: 0, synthesizer: 0, curator: 0 };
+  isTransitioning = false;
+
+  const results = document.getElementById('resultsScreen');
+  const hero = document.getElementById('heroScreen');
+  const qScreen = document.getElementById('questionScreen');
+  const progress = document.getElementById('progressBar');
+
+  // Hide everything immediately
+  results.classList.remove('active');
+  qScreen.classList.remove('active');
+  progress.classList.remove('visible');
+  hero.classList.remove('exit-up');
+
+  // Reset power bar
+  document.getElementById('powerFill').style.width = '0%';
+  document.getElementById('progressFill').style.width = '0%';
+  results.scrollTop = 0;
+
+  // Show hero
+  setTimeout(() => {
+    hero.classList.add('active');
+  }, 100);
+}
+</script>
+</body>
+</html>
