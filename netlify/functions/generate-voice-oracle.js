@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { uploadToS3 } = require('./s3-utils');
+const { uploadToS3 } = require('../shared/s3-utils');
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_IDS = {

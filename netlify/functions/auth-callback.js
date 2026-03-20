@@ -1,4 +1,4 @@
-﻿const config = require('./config');
+﻿const config = require('../shared/config');
 exports.handler = async (event) => {
   const { code } = event.queryStringParameters || {};
   if (!code) return { statusCode: 400, body: 'No code' };

@@ -5,7 +5,7 @@
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const axios = require('axios');
-const { setUserContext, getUserContext } = require('./redis-context');
+const { setUserContext, getUserContext } = require('../shared/redis-context');
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
@@ -248,7 +248,7 @@ async function sendSubscriptionEndMessage(userId) {
  * Record purchase in Redis analytics
  */
 async function recordPurchase(userId, session) {
-  const redis = require('./redis-context').redis;
+  const redis = require('../shared/redis-context').redis;
   
   try {
     const purchaseData = {

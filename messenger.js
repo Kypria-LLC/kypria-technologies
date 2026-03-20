@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { setUserContext, getUserContext } = require('./redis-context');
+const { setUserContext, getUserContext } = require('./netlify/shared/redis-context');
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 async function handlePostback(senderId, postback) {
