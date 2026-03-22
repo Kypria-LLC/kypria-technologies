@@ -8,7 +8,7 @@ Funnel: Social Post → Quiz → Talk to Zeus → Patreon Shrine
 
 | Platform | Persona | Primary CTA | Frequency |
 |---|---|---|---|
-| Facebook (Godly Zeus) | Zeus (formal, authoritative) | Talk to Zeus m.me/1454516248845700 | 3x/week |
+| Facebook (Godly Zeus) | Zeus (formal, authoritative) | Talk to Zeus m.me/705565335971937 | 3x/week |
 | Instagram (@mrspetses) | Lifespere (earthy, visual) | Quiz link in bio | 3x/week |
 | Threads (@godlyzeus.ai) | Aphrodite (playful, warm) | Quiz + Messenger | 3x/week |
 | Patreon | Basilica voice | Enter the Shrine | 1x/week |
@@ -33,7 +33,7 @@ Discover which primordial force shapes your identity:
 kypriatechnologies.org/demos/mythic-persona-quiz/
 
 Talk to Zeus after. I'll tell you what it means.
-m.me/1454516248845700
+m.me/705565335971937
 ```
 
 ### Post 2 — Authority/Verdict (Wed Mar 25)
@@ -47,7 +47,7 @@ Brand positioning. In under 60 seconds. Sharp enough to engrave in stone.
 This is what I do. I do not suggest. I declare.
 
 Bring your brand before the throne:
-m.me/1454516248845700
+m.me/705565335971937
 
 Or take the trial first. Discover your archetype.
 kypriatechnologies.org/demos/mythic-persona-quiz/
@@ -70,7 +70,7 @@ Find your archetype first:
 kypriatechnologies.org/demos/mythic-persona-quiz/
 
 Then talk to us.
-m.me/1454516248845700
+m.me/705565335971937
 ```
 
 ---
@@ -177,7 +177,7 @@ but the quiz is where it starts
 kypriatechnologies.org/demos/mythic-persona-quiz/
 
 after you get your result — talk to Zeus
-m.me/1454516248845700
+m.me/705565335971937
 
 he's waiting to tell you what it means
 ```
@@ -207,7 +207,7 @@ This is what solo mythology looks like in 2026.
 https://kypriatechnologies.org/demos/mythic-persona-quiz/
 
 ⚡ Talk to Zeus:
-https://m.me/1454516248845700
+https://m.me/705565335971937
 
 🏛️ Enter the Shrine (Patreon):
 https://patreon.com/c/Mrspetses
