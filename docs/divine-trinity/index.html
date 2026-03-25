@@ -1054,5 +1054,185 @@ img, video {
 })();
 </script>
 
+<!-- SOCIAL PROOF ENGINE -->
+<script>
+/**
+ * divine-trinity-inject.js — Social Proof Engine frontend
+ *
+ * Paste this inside <script> tags just before </body> in:
+ *   docs/divine-trinity/index.html
+ *
+ * Targets REAL CSS selectors from the live page:
+ *   .deity-card--zeus      → Zeus card
+ *   .deity-card--aphrodite → Aphrodite card
+ *   .deity-card--lifespere → Lifespere card (note: "lifespere" not "lifesphere")
+ *   .deity-badge           → existing badge element inside each card
+ *   .deity-cta             → CTA button inside each card
+ *   .hero-content          → hero section inner container
+ *
+ * Degrades silently — if APIs are down, the page stays a beautiful static page.
+ */
+
+(function () {
+  'use strict';
+
+  // ── Shared styles ──
+  var tickerStyle =
+    'background:rgba(212,175,55,0.08);' +
+    'border:1px solid rgba(212,175,55,0.2);' +
+    'border-radius:8px;' +
+    'padding:12px 20px;' +
+    'margin:16px 0 0;' +
+    'text-align:center;' +
+    'font-family:var(--font-body);' +
+    'font-size:0.8rem;' +
+    'color:var(--gold);' +
+    'line-height:1.5;';
+
+  var igBadgeStyle =
+    'display:inline-block;' +
+    'background:rgba(163,106,227,0.08);' +
+    'border:1px solid rgba(163,106,227,0.2);' +
+    'color:var(--amethyst);' +
+    'padding:5px 14px;' +
+    'border-radius:20px;' +
+    'font-family:var(--font-body);' +
+    'font-size:0.7rem;' +
+    'font-weight:500;' +
+    'letter-spacing:0.1em;' +
+    'margin-top:var(--space-md);';
+
+  var countBadgeStyle =
+    'display:inline-block;' +
+    'font-family:var(--font-body);' +
+    'font-size:0.65rem;' +
+    'font-weight:500;' +
+    'letter-spacing:0.15em;' +
+    'text-transform:uppercase;' +
+    'color:var(--text-muted);' +
+    'border:1px solid var(--border);' +
+    'padding:4px 10px;' +
+    'border-radius:20px;' +
+    'margin-top:var(--space-sm);';
+
+  // ── Helper: time ago ──
+  function timeAgo(dateStr) {
+    var diff = Date.now() - new Date(dateStr).getTime();
+    var mins = Math.floor(diff / 60000);
+    if (mins < 60) return mins + 'm ago';
+    var hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    var days = Math.floor(hrs / 24);
+    return days + 'd ago';
+  }
+
+  // ── 1. Zeus Feed + Instagram ──
+  fetch('/api/zeus-feed')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.ok) return;
+
+      // Zeus ticker: latest post under Zeus card
+      if (data.facebook && data.facebook.posts && data.facebook.posts.length > 0) {
+        var post = data.facebook.posts[0];
+        var msg = post.message || '';
+        var excerpt = msg.length > 120 ? msg.substring(0, 120) + '\u2026' : msg;
+        var when = post.created_time ? timeAgo(post.created_time) : '';
+
+        var ticker = document.createElement('div');
+        ticker.setAttribute('style', tickerStyle);
+        ticker.innerHTML =
+          '<strong>\u26A1 Zeus has spoken</strong><br>' +
+          '<em style="opacity:0.85;font-style:italic;">\u201C' + excerpt + '\u201D</em>' +
+          (when ? '<br><span style="font-size:0.65rem;opacity:0.5;">' + when + '</span>' : '');
+
+        var zeusCard = document.querySelector('.deity-card--zeus');
+        if (zeusCard) {
+          // Insert after the badge (last child) for clean layout
+          zeusCard.appendChild(ticker);
+        }
+      }
+
+      // Instagram media count badge: under Aphrodite card
+      if (data.instagram && data.instagram.media_count > 0) {
+        var igBadge = document.createElement('div');
+        igBadge.setAttribute('style', 'text-align:center;');
+        igBadge.innerHTML =
+          '<span style="' + igBadgeStyle + '">' +
+          '\u2728 ' + data.instagram.media_count + ' divine transmissions \u00B7 @' + data.instagram.username +
+          '</span>';
+
+        var aphroditeCard = document.querySelector('.deity-card--aphrodite');
+        if (aphroditeCard) {
+          aphroditeCard.appendChild(igBadge);
+        }
+      }
+    })
+    .catch(function (e) {
+      // Silent fail — page stays static
+      console.log('Oracle feeds dormant:', e.message || e);
+    });
+
+  // ── 2. Stripe Subscriber Counts ──
+  fetch('/api/stripe-counts')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.ok || !data.counts) return;
+
+      var cards = [
+        { selector: '.deity-card--zeus', tier: 'zeus', color: 'var(--gold)' },
+        { selector: '.deity-card--aphrodite', tier: 'aphrodite', color: 'var(--amethyst)' },
+        { selector: '.deity-card--lifespere', tier: 'lifesphere', color: 'var(--teal)' }
+      ];
+
+      cards.forEach(function (cfg) {
+        var card = document.querySelector(cfg.selector);
+        if (!card) return;
+
+        var count = data.counts[cfg.tier] || 0;
+        var badge = document.createElement('div');
+        badge.setAttribute('style', 'text-align:center;');
+
+        var label;
+        if (count === 0) {
+          label = 'Be the founding initiate';
+        } else if (count === 1) {
+          label = '1 initiate in this temple';
+        } else {
+          label = count + ' initiates in this temple';
+        }
+
+        badge.innerHTML =
+          '<span style="' + countBadgeStyle + 'color:' + cfg.color + ';border-color:' + cfg.color + '40;">' +
+          label +
+          '</span>';
+
+        card.appendChild(badge);
+      });
+
+      // Optional: total count in hero section
+      if (data.counts.total > 0) {
+        var hero = document.querySelector('.hero-content');
+        if (hero) {
+          var totalBadge = document.createElement('div');
+          totalBadge.setAttribute('style',
+            'margin-top:var(--space-xl);opacity:0;animation:fadeInUp 1s 1.2s forwards;'
+          );
+          totalBadge.innerHTML =
+            '<span style="font-family:var(--font-body);font-size:0.72rem;letter-spacing:0.15em;' +
+            'text-transform:uppercase;color:var(--gold);opacity:0.7;">' +
+            '\uD83D\uDD25 ' + data.counts.total + ' initiate' + (data.counts.total !== 1 ? 's' : '') +
+            ' across all temples' +
+            '</span>';
+          hero.appendChild(totalBadge);
+        }
+      }
+    })
+    .catch(function (e) {
+      console.log('Initiate counts dormant:', e.message || e);
+    });
+})();
+</script>
+
 </body>
 </html>
