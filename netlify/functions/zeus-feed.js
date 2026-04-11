@@ -3,7 +3,8 @@
  * 
  * Endpoint: /api/zeus-feed
  * Env vars required:
- *   META_SYSTEM_USER_TOKEN  — ZeusPublisher system user token (never expires)
+ *   PAGE_ACCESS_TOKEN       — Facebook Page access token (can read page posts)
+ *   META_SYSTEM_USER_TOKEN  — fallback: ZeusPublisher system user token (never expires)
  *   META_PAGE_ID            — 1058205557375892
  *   META_IG_USER_ID         — 17841480052164129
  * 
@@ -45,7 +46,7 @@ exports.handler = async (event) => {
     return { statusCode: 200, headers, body: '' };
   }
 
-  const token = process.env.META_SYSTEM_USER_TOKEN;
+  const token = process.env.PAGE_ACCESS_TOKEN || process.env.META_SYSTEM_USER_TOKEN;
   const pageId = process.env.META_PAGE_ID || '1058205557375892';
   const igUserId = process.env.META_IG_USER_ID || '17841480052164129';
 
@@ -53,7 +54,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200, // Return 200 with ok:false so frontend degrades silently
       headers,
-      body: JSON.stringify({ ok: false, error: 'Token not configured' })
+      body: JSON.stringify({ ok: false, error: 'Page token not configured' })
     };
   }
 
