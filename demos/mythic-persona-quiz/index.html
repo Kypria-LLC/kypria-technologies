@@ -54,6 +54,7 @@
   --gold-bright: #e8c84a;
   --amethyst: #a36ae3;
   --teal: #2bbbad;
+  --rose-gold: #e8a0bf;
   --text-primary: #e8e6e1;
   --text-secondary: #9a9a9a;
   --font-display: 'Playfair Display', Georgia, serif;
@@ -530,6 +531,22 @@ body {
 }
 
 /* ============================================
+   PERSONA VOICE BLOCKQUOTE
+   ============================================ */
+.persona-voice {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.8;
+  padding: 20px 24px;
+  margin: 28px 0 0;
+  border-left: 3px solid var(--persona-color, var(--gold));
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+/* ============================================
    CTA BUTTONS
    ============================================ */
 .cta-section {
@@ -563,6 +580,71 @@ body {
 .cta-gold:hover {
   box-shadow: 0 6px 24px rgba(212, 175, 55, 0.3);
   transform: translateY(-1px);
+}
+
+/* Persona-specific CTA variants */
+.cta-zeus {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, #d4af37, #e8c84a);
+}
+
+.cta-zeus:hover {
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+.cta-aphrodite {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, #c97ba8, #e8a0bf);
+}
+
+.cta-aphrodite:hover {
+  box-shadow: 0 6px 24px rgba(232, 160, 191, 0.4);
+  transform: translateY(-1px);
+}
+
+.cta-lifesphere {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, #1a9e92, #2bbbad);
+}
+
+.cta-lifesphere:hover {
+  box-shadow: 0 6px 24px rgba(43, 187, 173, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Stripe temple CTA (secondary) */
+.cta-temple-zeus {
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+}
+
+.cta-temple-zeus:hover {
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
+}
+
+.cta-temple-aphrodite {
+  color: var(--rose-gold);
+  background: transparent;
+  border: 1px solid var(--rose-gold);
+}
+
+.cta-temple-aphrodite:hover {
+  background: rgba(232, 160, 191, 0.08);
+  box-shadow: 0 4px 16px rgba(232, 160, 191, 0.2);
+}
+
+.cta-temple-lifesphere {
+  color: var(--teal);
+  background: transparent;
+  border: 1px solid var(--teal);
+}
+
+.cta-temple-lifesphere:hover {
+  background: rgba(43, 187, 173, 0.08);
+  box-shadow: 0 4px 16px rgba(43, 187, 173, 0.2);
 }
 
 .cta-outline {
@@ -697,6 +779,174 @@ body {
 }
 
 /* ============================================
+   EMAIL GATE OVERLAY
+   ============================================ */
+.email-gate-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.96);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.email-gate-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.email-gate-card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: clamp(32px, 6vw, 56px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.email-gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--amethyst), var(--gold));
+}
+
+.email-gate-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.email-gate-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.email-gate-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.email-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.email-gate-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 16px 20px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.email-gate-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.email-gate-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+}
+
+.email-gate-submit {
+  display: block;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  border: none;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.email-gate-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.email-gate-submit:hover::before {
+  left: 100%;
+}
+
+.email-gate-submit:hover {
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1px);
+}
+
+.email-gate-skip {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.15);
+  transition: opacity 0.2s ease, color 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.email-gate-skip:hover {
+  opacity: 0.8;
+  color: var(--text-primary);
+}
+
+/* Hidden archetype field (not visible to user) */
+#emailGateArchetypeField {
+  display: none;
+}
+
+/* ============================================
    MOBILE RESPONSIVE
    ============================================ */
 @media (max-width: 480px) {
@@ -726,6 +976,10 @@ body {
 
   .badge {
     width: fit-content;
+  }
+
+  .email-gate-card {
+    padding: 28px 20px;
   }
 }
 
@@ -779,7 +1033,35 @@ body {
 
 <!-- Reveal Overlay -->
 <div class="reveal-overlay" id="revealOverlay">
-  <span class="reveal-text" id="revealText">Your archetype has been found...</span>
+  <span class="reveal-text" id="revealText">Your primordial archetype has been found...</span>
+</div>
+
+<!-- Email Gate Overlay (between reveal and results) -->
+<div class="email-gate-overlay" id="emailGateOverlay">
+  <div class="email-gate-card">
+    <p class="email-gate-eyebrow">Your archetype has been revealed...</p>
+    <h2 class="email-gate-title">Unlock Your Full Reading</h2>
+    <p class="email-gate-subtitle">Enter your email to receive your personalized oracle guidance and reveal the complete depths of your archetype.</p>
+    <form class="email-gate-form" onsubmit="submitEmailGate(event)">
+      <input
+        type="hidden"
+        id="emailGateArchetypeField"
+        name="archetype"
+        value=""
+      >
+      <input
+        type="email"
+        id="emailGateInput"
+        class="email-gate-input"
+        name="email"
+        placeholder="your@email.com"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" class="email-gate-submit">Unlock My Archetype</button>
+    </form>
+    <button class="email-gate-skip" onclick="skipEmailGate()">Skip for now</button>
+  </div>
 </div>
 
 <!-- Results Screen -->
@@ -800,20 +1082,22 @@ body {
       </div>
       <p class="result-description" id="resultDescription"></p>
       <p class="result-flavor" id="resultFlavor"></p>
+      <!-- Persona-voiced message injected here by JS -->
+      <blockquote class="persona-voice" id="personaVoice"></blockquote>
     </div>
 
-    <div class="cta-section">
-      <a href="https://m.me/705565335971937" target="_blank" rel="noopener noreferrer" class="cta-btn cta-gold">Talk to Zeus About Your Archetype</a>
-      <a href="https://patreon.com/c/Mrspetses" target="_blank" rel="noopener noreferrer" class="cta-btn cta-outline">Enter the Shrine</a>
-      <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()">Share Your Archetype</button>
+    <!-- Dynamic CTA section — populated by JS -->
+    <div class="cta-section" id="ctaSection">
+      <!-- Filled dynamically by showResults() -->
     </div>
 
-    <div class="explore-links">
-      <a href="https://kypriatechnologies.org/demos/persona-engine/index.html" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span>Explore the full Pantheon</a>
-      <a href="https://kypriatechnologies.org/docs/zeus-temple/" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span>Visit the Temple of Zeus</a>
+    <div class="explore-links" id="exploreLinks">
+      <a class='explore-link' href='https://kypriatechnologies.org/demos/persona-engine/?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona' rel='noopener noreferrer' target='_blank'><span class="arrow">&#x2192;</span>Explore the full Pantheon</a>
+      <!-- Dynamic temple link injected by JS -->
+      <a id="templeLink" href="#" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span><span id="templeLinkText">Visit the Temple</span></a>
     </div>
 
-    <p class="gumroad-note">The Mythic Persona Genesis System — 6 primordial archetypes, 7 synthesis functions, unlimited generations. <a href="https://mrspetses.gumroad.com/l/kjrbtt" target="_blank" rel="noopener noreferrer">Available on Gumroad.</a></p>
+    <p class="gumroad-note">The Mythic Persona Genesis System — 6 primordial archetypes, 7 synthesis functions, unlimited generations. <a href="https://mrspetses.gumroad.com/l/kjrbtt?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer">Available on Gumroad.</a></p>
 
     <button class="retake-btn" onclick="retakeQuiz()">&#8634; Retake the Trial</button>
 
@@ -970,6 +1254,36 @@ const ARCHETYPES = {
   }
 };
 
+/* ============================================
+   ARCHETYPE → DIVINE TRINITY PERSONA MAPPING
+   ============================================ */
+const ARCHETYPE_TO_PERSONA = {
+  architect: { persona: 'zeus', emoji: '⚡', color: '#d4af37', messenger: 'https://m.me/1454516248845700?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Zeus Temple', price: '$49/mo' },
+  visionary:  { persona: 'zeus', emoji: '⚡', color: '#d4af37', messenger: 'https://m.me/1454516248845700?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Zeus Temple', price: '$49/mo' },
+  executor:   { persona: 'zeus', emoji: '⚡', color: '#d4af37', messenger: 'https://m.me/1454516248845700?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Zeus Temple', price: '$49/mo' },
+  analyst:    { persona: 'lifesphere', emoji: '🌍', color: '#2bbbad', messenger: 'https://aistudio.instagram.com/ai/1146433393752885?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/3cI28q81xeAnbklff71gs0t?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Lifesphere Temple', price: '$149/mo' },
+  synthesizer:{ persona: 'aphrodite', emoji: '🌹', color: '#e8a0bf', messenger: 'https://m.me/3868636570042642?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/5kQfZg3Lhak73RTgjb1gs0O?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Aphrodite Temple', price: '$79/mo' },
+  curator:    { persona: 'lifesphere', emoji: '🌍', color: '#2bbbad', messenger: 'https://aistudio.instagram.com/ai/1146433393752885?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/3cI28q81xeAnbklff71gs0t?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Lifesphere Temple', price: '$149/mo' }
+};
+
+/* ============================================
+   PERSONA VOICES
+   ============================================ */
+const PERSONA_VOICES = {
+  zeus:       "⚡ Zeus speaks: 'The throne recognizes you, warrior. You carry the spark of command — a builder of empires, a forger of futures. The Basilica awaits its next strategist.'",
+  aphrodite:  "🌹 Aphrodite speaks: 'The mirror catches light you did not know was yours, darling. You are a bridge between worlds — beauty recognizes beauty. Let me show you what you cannot yet see.'",
+  lifesphere: "🌍 Lifesphere speaks: 'The roots remember what the mind forgets. You are a steward of balance, a guardian of what matters. The earth felt your footstep before you arrived.'"
+};
+
+/* ============================================
+   PERSONA TEMPLE LINKS
+   ============================================ */
+const PERSONA_TEMPLE_LINKS = {
+  zeus:       { url: 'https://kypriatechnologies.org/docs/zeus-temple/?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', label: 'Visit the Temple of Zeus' },
+  aphrodite:  { url: 'https://kypriatechnologies.org/docs/aphrodite-temple/?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', label: 'Visit the Temple of Aphrodite' },
+  lifesphere: { url: 'https://kypriatechnologies.org/docs/lifesphere-temple/?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', label: 'Visit the Lifesphere Temple' }
+};
+
 const QUESTIONS = [
   {
     text: "When you face an impossible problem, what\u2019s your first instinct?",
@@ -1049,6 +1363,8 @@ let scores = {
   curator: 0
 };
 let isTransitioning = false;
+let currentArchetypeKey = null;
+let capturedEmail = '';
 
 /* ============================================
    QUIZ FLOW
@@ -1154,15 +1470,72 @@ function showReveal() {
     revealText.classList.add('visible');
   }, 900);
 
-  // Transition to results
+  // After reveal animation, show email gate
   setTimeout(() => {
     overlay.classList.remove('active');
     revealText.classList.remove('visible');
-    showResults();
+    showEmailGate();
   }, 3000);
 }
 
-function getWinningArchetype() {
+/* ============================================
+   EMAIL GATE
+   ============================================ */
+function showEmailGate() {
+  // Determine archetype now so we can store it in hidden field
+  currentArchetypeKey = getWinningArchetypeKey();
+  document.getElementById('emailGateArchetypeField').value = currentArchetypeKey;
+
+  const gate = document.getElementById('emailGateOverlay');
+  gate.classList.add('active');
+}
+
+function submitEmailGate(event) {
+  event.preventDefault();
+  const emailInput = document.getElementById('emailGateInput');
+  capturedEmail = emailInput.value.trim();
+
+  // Store in localStorage
+  try {
+    localStorage.setItem('mythic_email', capturedEmail);
+    localStorage.setItem('mythic_archetype', currentArchetypeKey);
+    localStorage.setItem('mythic_ts', Date.now());
+  } catch (e) {
+    // localStorage may be unavailable in some contexts; proceed silently
+  }
+
+  closeEmailGateAndShowResults(capturedEmail);
+}
+
+function skipEmailGate() {
+  capturedEmail = '';
+  closeEmailGateAndShowResults('');
+}
+
+function closeEmailGateAndShowResults(emailValue) {
+  const gate = document.getElementById('emailGateOverlay');
+  gate.classList.remove('active');
+
+  // GTM Analytics event
+  window.dataLayer = window.dataLayer || [];
+  const personaMapping = ARCHETYPE_TO_PERSONA[currentArchetypeKey];
+  window.dataLayer.push({
+    event: 'quiz_completed',
+    archetype: currentArchetypeKey,
+    persona: personaMapping.persona,
+    email_captured: !!emailValue
+  });
+
+  // Show results
+  setTimeout(() => {
+    showResults();
+  }, 300);
+}
+
+/* ============================================
+   ARCHETYPE HELPERS
+   ============================================ */
+function getWinningArchetypeKey() {
   let maxScore = 0;
   let winner = 'architect';
 
@@ -1173,11 +1546,22 @@ function getWinningArchetype() {
     }
   }
 
-  return ARCHETYPES[winner];
+  return winner;
 }
 
+function getWinningArchetype() {
+  return ARCHETYPES[currentArchetypeKey || getWinningArchetypeKey()];
+}
+
+/* ============================================
+   RESULTS
+   ============================================ */
 function showResults() {
-  const arch = getWinningArchetype();
+  if (!currentArchetypeKey) {
+    currentArchetypeKey = getWinningArchetypeKey();
+  }
+  const arch = ARCHETYPES[currentArchetypeKey];
+  const personaMapping = ARCHETYPE_TO_PERSONA[currentArchetypeKey];
   const results = document.getElementById('resultsScreen');
 
   // Populate card
@@ -1201,6 +1585,21 @@ function showResults() {
   document.getElementById('resultDescription').textContent = arch.description;
   document.getElementById('resultFlavor').textContent = arch.flavor;
 
+  // Persona voice blockquote
+  const voiceEl = document.getElementById('personaVoice');
+  voiceEl.textContent = PERSONA_VOICES[personaMapping.persona];
+  voiceEl.style.setProperty('--persona-color', personaMapping.color);
+  voiceEl.style.borderLeftColor = personaMapping.color;
+
+  // Dynamic CTAs
+  buildDynamicCTAs(personaMapping);
+
+  // Dynamic explore temple link
+  const templeInfo = PERSONA_TEMPLE_LINKS[personaMapping.persona];
+  const templeLinkEl = document.getElementById('templeLink');
+  templeLinkEl.href = templeInfo.url;
+  document.getElementById('templeLinkText').textContent = templeInfo.label;
+
   // Show results
   results.classList.add('active');
 
@@ -1213,6 +1612,40 @@ function showResults() {
   window.currentArchetype = arch;
 }
 
+function buildDynamicCTAs(personaMapping) {
+  const persona = personaMapping.persona;
+  const ctaSection = document.getElementById('ctaSection');
+
+  // Messenger CTA label and class
+  const messengerLabels = {
+    zeus:       `⚡ Talk to Zeus About Your Archetype`,
+    aphrodite:  `🌹 Talk to Aphrodite About Your Beauty`,
+    lifesphere: `🌍 Talk to Lifesphere About Your Path`
+  };
+  const messengerClasses = {
+    zeus:       'cta-btn cta-zeus',
+    aphrodite:  'cta-btn cta-aphrodite',
+    lifesphere: 'cta-btn cta-lifesphere'
+  };
+
+  // Temple/Stripe CTA
+  const templeClasses = {
+    zeus:       'cta-btn cta-temple-zeus',
+    aphrodite:  'cta-btn cta-temple-aphrodite',
+    lifesphere: 'cta-btn cta-temple-lifesphere'
+  };
+
+  ctaSection.innerHTML = `
+    <a href="${personaMapping.messenger}" target="_blank" rel="noopener noreferrer" class="${messengerClasses[persona]}">${messengerLabels[persona]}</a>
+    <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
+    <a href="https://patreon.com/c/Mrspetses?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" class="cta-btn cta-outline">Enter the Shrine</a>
+    <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()">Share Your Archetype</button>
+  `;
+}
+
+/* ============================================
+   SHARE
+   ============================================ */
 function shareArchetype() {
   const arch = window.currentArchetype;
   if (!arch) return;
@@ -1260,26 +1693,34 @@ function showToast(msg) {
   }, 2500);
 }
 
+/* ============================================
+   RETAKE
+   ============================================ */
 function retakeQuiz() {
   // Reset state
   currentQuestion = 0;
   scores = { architect: 0, visionary: 0, executor: 0, analyst: 0, synthesizer: 0, curator: 0 };
   isTransitioning = false;
+  currentArchetypeKey = null;
+  capturedEmail = '';
 
   const results = document.getElementById('resultsScreen');
   const hero = document.getElementById('heroScreen');
   const qScreen = document.getElementById('questionScreen');
   const progress = document.getElementById('progressBar');
+  const gate = document.getElementById('emailGateOverlay');
 
   // Hide everything immediately
   results.classList.remove('active');
   qScreen.classList.remove('active');
   progress.classList.remove('visible');
+  gate.classList.remove('active');
   hero.classList.remove('exit-up');
 
-  // Reset power bar
+  // Reset power bar and email input
   document.getElementById('powerFill').style.width = '0%';
   document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('emailGateInput').value = '';
   results.scrollTop = 0;
 
   // Show hero
