@@ -658,6 +658,20 @@ body {
   box-shadow: 0 4px 16px rgba(163, 106, 227, 0.2);
 }
 
+.cta-oracle-waitlist {
+  color: #a8e6cf;
+  background: transparent;
+  border: 1px solid rgba(168, 230, 207, 0.5);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+
+.cta-oracle-waitlist:hover {
+  background: rgba(168, 230, 207, 0.08);
+  box-shadow: 0 4px 16px rgba(168, 230, 207, 0.2);
+  border-color: #a8e6cf;
+}
+
 .cta-share {
   color: var(--teal);
   background: transparent;
@@ -1639,6 +1653,7 @@ function buildDynamicCTAs(personaMapping) {
     <a href="${personaMapping.messenger}" target="_blank" rel="noopener noreferrer" class="${messengerClasses[persona]}">${messengerLabels[persona]}</a>
     <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
     <a href="https://patreon.com/c/Mrspetses?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" class="cta-btn cta-outline">Enter the Shrine</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUzNEEJWAorS3yu6vzMnhPu20pmm2HFsfltWZcIUPZBRBAkw/viewform?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" class="cta-btn cta-oracle-waitlist">Join the Oracle Waitlist</a>
     <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()">Share Your Archetype</button>
   `;
 }
