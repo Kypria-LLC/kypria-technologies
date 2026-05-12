@@ -1096,7 +1096,7 @@ body {
       >
       <button type="submit" class="email-gate-submit">Unlock My Archetype</button>
     </form>
-    <button class="email-gate-skip" onclick="skipEmailGate()">Skip for now</button>
+    <p class="email-gate-subtitle" style="margin-top:16px;font-size:0.78rem;opacity:0.55">Your email unlocks the full reading. We will never share it.</p>
   </div>
 </div>
 
@@ -1526,10 +1526,77 @@ function showEmailGate() {
   gate.classList.add('active');
 }
 
+// Supabase config (anon publishable key, INSERT-only policy enforced server-side)
+const SUPABASE_URL = 'https://baizupiweobjkarchsyc.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhaXp1cGl3ZW9iamthcmNoc3ljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEwNTQwMTksImV4cCI6MjA3NjYzMDAxOX0.xQnlsv0cR7RTK0m0q9AB1JsGicOZUrZ-Yi9OPretbsg';
+
+function readUtmAndContext() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source'),
+    utm_medium: params.get('utm_medium'),
+    utm_campaign: params.get('utm_campaign'),
+    utm_content: params.get('utm_content'),
+    utm_term: params.get('utm_term'),
+    referrer: document.referrer || null,
+    landing_path: window.location.pathname
+  };
+}
+
+async function postLeadToSupabase(payload) {
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/leads', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    return res.ok;
+  } catch (e) {
+    return false;
+  }
+}
+
 function submitEmailGate(event) {
   event.preventDefault();
   const emailInput = document.getElementById('emailGateInput');
   capturedEmail = emailInput.value.trim();
+  const submitBtn = event.target.querySelector('.email-gate-submit');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Unlocking...'; }
+
+  // Build lead payload
+  const personaMapping = ARCHETYPE_TO_PERSONA[currentArchetypeKey] || { persona: 'zeus' };
+  const utm = readUtmAndContext();
+  const payload = {
+    source: 'quiz',
+    persona_result: personaMapping.persona,
+    email: capturedEmail,
+    quiz_score: {
+      archetype: currentArchetypeKey,
+      scores: scores,
+      completed_at: new Date().toISOString()
+    },
+    utm_source: utm.utm_source,
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign,
+    utm_content: utm.utm_content,
+    utm_term: utm.utm_term,
+    referrer: utm.referrer,
+    landing_path: utm.landing_path
+  };
+
+  // Fire-and-forget POST. We do NOT block the result reveal on the network call.
+  postLeadToSupabase(payload).then(ok => {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: ok ? 'lead_captured' : 'lead_capture_failed', persona: personaMapping.persona });
+      if (window.fbq) { fbq('track', ok ? 'Lead' : 'LeadFailed', { persona: personaMapping.persona }); }
+      if (window.gtag) { gtag('event', ok ? 'lead_captured' : 'lead_capture_failed', { persona: personaMapping.persona }); }
+    } catch (e) { /* noop */ }
+  });
 
   // Store in localStorage
   try {
@@ -1671,13 +1738,23 @@ function buildDynamicCTAs(personaMapping) {
     lifesphere: 'cta-btn cta-temple-lifesphere'
   };
 
+  // ACTION 1 (May 12 2026): single Stripe Buy hero + $19 Founding anchor + share. Removed Messenger, Patreon, Google Form to eliminate decision paralysis.
   ctaSection.innerHTML = `
-    <a href="${personaMapping.messenger}" target="_blank" rel="noopener noreferrer" class="${messengerClasses[persona]}">${messengerLabels[persona]}</a>
-    <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
-    <a href="https://patreon.com/c/Mrspetses?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" class="cta-btn cta-outline">Enter the Shrine</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdUzNEEJWAorS3yu6vzMnhPu20pmm2HFsfltWZcIUPZBRBAkw/viewform?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" class="cta-btn cta-oracle-waitlist">Join the Oracle Waitlist</a>
-    <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()">Share Your Archetype</button>
+    <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}" onclick="trackCheckoutIntent('${persona}','primary')">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
+    <div style="text-align:center;margin:14px 0 6px;font-size:0.82rem;opacity:0.7;letter-spacing:0.04em">or claim a Founding seat — 50 only</div>
+    <a href="#founding-member" id="foundingAnchorBtn" class="cta-btn cta-outline" onclick="trackCheckoutIntent('${persona}','founding'); return true;">Founding Member — $19/mo for life</a>
+    <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()" style="margin-top:18px">Share Your Archetype</button>
+    <div style="text-align:center;margin-top:14px;font-size:0.72rem;opacity:0.45"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdUzNEEJWAorS3yu6vzMnhPu20pmm2HFsfltWZcIUPZBRBAkw/viewform?utm_source=quiz&utm_medium=result_fallback&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">Not ready? Join the waitlist.</a></div>
   `;
+}
+
+function trackCheckoutIntent(persona, tier) {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'checkout_intent', persona: persona, tier: tier });
+    if (window.fbq) { fbq('track', 'InitiateCheckout', { content_category: persona, content_name: tier }); }
+    if (window.gtag) { gtag('event', 'begin_checkout', { persona: persona, tier: tier }); }
+  } catch (e) { /* noop */ }
 }
 
 /* ============================================
