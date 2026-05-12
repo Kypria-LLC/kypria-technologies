@@ -1742,7 +1742,7 @@ function buildDynamicCTAs(personaMapping) {
   ctaSection.innerHTML = `
     <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}" onclick="trackCheckoutIntent('${persona}','primary')">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
     <div style="text-align:center;margin:14px 0 6px;font-size:0.82rem;opacity:0.7;letter-spacing:0.04em">or claim a Founding seat — 50 only</div>
-    <a href="#founding-member" id="foundingAnchorBtn" class="cta-btn cta-outline" onclick="trackCheckoutIntent('${persona}','founding'); return true;">Founding Member — $19/mo for life</a>
+    <a href="https://buy.stripe.com/4gMbJ0chN2RF0FH0kd1gs0P" id="foundingAnchorBtn" class="cta-btn cta-outline" onclick="trackCheckoutIntent('${persona}','founding'); return true;">Founding Member — $19/mo for life · 50 seats only</a>
     <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()" style="margin-top:18px">Share Your Archetype</button>
     <div style="text-align:center;margin-top:14px;font-size:0.72rem;opacity:0.45"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdUzNEEJWAorS3yu6vzMnhPu20pmm2HFsfltWZcIUPZBRBAkw/viewform?utm_source=quiz&utm_medium=result_fallback&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">Not ready? Join the waitlist.</a></div>
   `;
