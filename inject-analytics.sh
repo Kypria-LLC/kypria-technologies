@@ -5,7 +5,7 @@
 set -e
 
 GA4_ID="G-ZR3YV47D0X"
-META_PIXEL_ID="750068155374586"
+META_PIXEL_ID="1236706014984822"
 
 # Marker so the block is only injected once
 MARKER="<!-- KYPRIA_ANALYTICS_v1 -->"
