@@ -119,8 +119,8 @@ Cron `1853ff0d` runs this hourly automatically — alerts at 40 active, pauses a
 
 1. Which ad account holds the April $118.60 spend?
    - Space context says `act=2049364046010873` (likely phantom — does not resolve)
-   - Prior session memory referenced `act=1909290965860482` — VERIFIED PHANTOM May 12 2026; does not exist in any of the four Meta Business contexts (Kypria 1986097145242511, Godly Zeus 2061212768049584, Kypria LLC 701331759350000, kostas1_)
-   - Actual ad account inventory: only `120238801786230646` ("Kypria BUNDLES Catalog Ads") exists, in Kypria LLC portfolio 701331759350000
+   - Prior session memory referenced `act=1909290965860482` — VERIFIED PHANTOM May 12 2026; does not exist in any of the four Meta Business contexts (Kypria 1986097145242511, Godly Zeus 2061212768049584, Kypria LLC 701331759350000, personal account)
+   - Actual ad account inventory: only `812929881544066` ("Kypria BUNDLES Catalog Ads") exists, in Kypria LLC portfolio 701331759350000. The ID `120238801786230646` that appeared in earlier session traces was a transcription error and is blacklisted.
    - The $118.60 forensics remains unresolved and is decoupled from Phase 2 campaign launch
    - Resolution: separate forensics pass after Action 2 ships
 2. Which Page is the ad served from?
