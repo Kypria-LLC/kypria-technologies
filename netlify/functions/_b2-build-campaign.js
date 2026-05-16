@@ -122,16 +122,13 @@ exports.handler = async (event) => {
   //   destination_type: WEBSITE
   //   targeting: US, 18-65+, advantage audience flag, automatic placements
   //   attribution_spec: 7d_click + 1d_view
+  // Minimal targeting; let Meta auto-assign placements (Advantage+ Placements)
+  // by omitting publisher_platforms/positions entirely.
   const targeting = {
     geo_locations: { countries: ['US'] },
     age_min: 18,
     age_max: 65,
-    targeting_automation: { advantage_audience: 1 },
-    publisher_platforms: ['facebook', 'instagram', 'audience_network', 'messenger'],
-    facebook_positions: ['feed','right_hand_column','marketplace','video_feeds','story','search','instream_video','facebook_reels'],
-    instagram_positions: ['stream','story','explore','reels','profile_feed'],
-    messenger_positions: ['messenger_home','story'],
-    audience_network_positions: ['classic']
+    targeting_automation: { advantage_audience: 1 }
   };
   const promotedObject = {
     pixel_id: PIXEL_ID,
