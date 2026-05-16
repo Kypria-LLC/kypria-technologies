@@ -139,23 +139,27 @@ exports.handler = async (event) => {
     { event_type: 'CLICK_THROUGH', window_days: 7 },
     { event_type: 'VIEW_THROUGH', window_days: 1 }
   ];
-  out.steps.create_adset = await gpost(`/${AD_ACCOUNT}/adsets`, {
-    name: 'Three Temple · US · Adv+ Audience · v1',
-    campaign_id: campaignId,
-    status: 'PAUSED',
-    daily_budget: '2000', // cents = $20/day
-    billing_event: 'IMPRESSIONS',
-    optimization_goal: 'OFFSITE_CONVERSIONS',
-    bid_strategy: 'LOWEST_COST_WITHOUT_CAP',
-    destination_type: 'WEBSITE',
-    promoted_object: JSON.stringify(promotedObject),
-    targeting: JSON.stringify(targeting),
-    attribution_spec: JSON.stringify(attributionSpec),
-    start_time: new Date(Date.now() + 60 * 60 * 1000).toISOString(), // 1h from now
-    is_dynamic_creative: 'false'
-  });
-
-  const adsetId = out.steps.create_adset.body?.id;
+  let adsetId = q.adset_id || null;
+  if (adsetId) {
+    out.steps.create_adset = { http: 200, body: { id: adsetId, reused: true } };
+  } else {
+    out.steps.create_adset = await gpost(`/${AD_ACCOUNT}/adsets`, {
+      name: 'Three Temple · US · Adv+ Audience · v1',
+      campaign_id: campaignId,
+      status: 'PAUSED',
+      daily_budget: '2000', // cents = $20/day
+      billing_event: 'IMPRESSIONS',
+      optimization_goal: 'OFFSITE_CONVERSIONS',
+      bid_strategy: 'LOWEST_COST_WITHOUT_CAP',
+      destination_type: 'WEBSITE',
+      promoted_object: JSON.stringify(promotedObject),
+      targeting: JSON.stringify(targeting),
+      attribution_spec: JSON.stringify(attributionSpec),
+      start_time: new Date(Date.now() + 60 * 60 * 1000).toISOString(), // 1h from now
+      is_dynamic_creative: 'false'
+    });
+    adsetId = out.steps.create_adset.body?.id;
+  }
   if (!adsetId) {
     return {
       statusCode: 200,
@@ -175,9 +179,7 @@ exports.handler = async (event) => {
         link: 'https://kypriatechnologies.org/?utm_source=meta&utm_medium=cpc&utm_campaign=three_temple_catalog_v1&utm_content={{product.id}}',
         name: 'Which oracle forged you?',
         description: '{{product.description}}',
-        call_to_action: { type: 'SUBSCRIBE' },
-        multi_share_optimized: true,
-        multi_share_end_card: true
+        call_to_action: { type: 'SUBSCRIBE' }
       }
     }),
     product_set_id: PRODUCT_SET_ID
