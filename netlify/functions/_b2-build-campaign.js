@@ -170,10 +170,17 @@ exports.handler = async (event) => {
 
   // Step 4: Create Ad Creative (catalog DPA template)
   // For catalog DPA with web destination, we need a template creative referencing product set + page.
+  // Must include instagram_user_id for Advantage+ Placements (IG eligibility).
+  const IG_USER_ID = process.env.META_IG_USER_ID || '17841480052164129';
+  let creativeId = q.creative_id || null;
+  if (creativeId) {
+    out.steps.create_creative = { http: 200, body: { id: creativeId, reused: true } };
+  } else {
   const creativeBody = {
     name: 'Three Temple Catalog Creative v1',
     object_story_spec: JSON.stringify({
       page_id: PAGE_ID,
+      instagram_user_id: IG_USER_ID,
       template_data: {
         message: 'Three temples. One mirror. Find yours.',
         link: 'https://kypriatechnologies.org/?utm_source=meta&utm_medium=cpc&utm_campaign=three_temple_catalog_v1&utm_content={{product.id}}',
@@ -185,8 +192,8 @@ exports.handler = async (event) => {
     product_set_id: PRODUCT_SET_ID
   };
   out.steps.create_creative = await gpost(`/${AD_ACCOUNT}/adcreatives`, creativeBody);
-
-  const creativeId = out.steps.create_creative.body?.id;
+    creativeId = out.steps.create_creative.body?.id;
+  }
   if (!creativeId) {
     return {
       statusCode: 200,
