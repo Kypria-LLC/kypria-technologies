@@ -13,7 +13,7 @@
 | Campaign objective | Sales (manual setup, NOT Advantage+ Catalog) |
 | Ad account | 812929881544066 (Kypria BUNDLES Catalog Ads, Kypria LLC portfolio 701331759350000) |
 | Optimization event | Pixel Lead |
-| Pixel ID | 1236706014984822 (Kypria Web Pixel, owned by Kypria portfolio 1986097145242511) |
+| Pixel ID | 1024027273624000 (Kypria Web Pixel, owned by Kypria portfolio 1986097145242511) |
 | Page identity | `1058205557375892` (Godly Zeus AI — canonical Business Manager / Ads Manager ID). Public URL form `61576793849282` also resolves to the same Page. Portfolio: Godly Zeus by Kypria Technologies (2061212768049584). Verified via Business Settings 2026-05-12 22:07 EDT. |
 | Creative | Zeus Proclamation Reel (use "Existing post from Page", not Upload Media) |
 | Headline | Which oracle forged you? |
@@ -33,7 +33,7 @@
 
 1. **Catalog footgun:** Ad account 812929881544066 was provisioned as a Commerce/Catalog ads account. Ads Manager will likely default to Advantage+ Catalog Ads or Sales→Catalog optimization. Explicitly override: Sales → Manual setup → Conversion location = Website → optimization event = Lead. Do NOT select any catalog/feed-based campaign type.
 2. **Creative source:** Zeus Proclamation Reel lives on Page `1058205557375892` (Godly Zeus AI — canonical ID; public URL form is `61576793849282`, same Page), not in ad account 812929881544066's Media Library. Use "Existing post from Page" not Upload Media.
-3. **Pixel readiness:** Confirm Pixel `1236706014984822` appears in the Lead-optimization dropdown BEFORE finishing the campaign builder. If it doesn't appear, the cross-portfolio partner-share didn't complete — stop and re-run Phase 1B.
+3. **Pixel readiness:** Confirm Pixel `1024027273624000` appears in the Lead-optimization dropdown BEFORE finishing the campaign builder. If it doesn't appear, the cross-portfolio partner-share didn't complete — stop and re-run Phase 1B.
 
 ## Day-1 check (launch day + 8 hours)
 
@@ -139,7 +139,7 @@ When the Meta new-business cooldown lifts, execute in this exact order. Do NOT s
 
 ### Step 1 — Verify cooldown is lifted (no clicks required)
 
-1. Open https://business.facebook.com/latest/settings/datasets?asset_id=1236706014984822&business_id=1986097145242511
+1. Open https://business.facebook.com/latest/settings/datasets?asset_id=1024027273624000&business_id=1986097145242511
 2. Click the Partners tab
 3. Hover over "Assign partner" button
 4. If tooltip still says "Businesses new to Facebook Products can share this asset..." → still locked, retry in 1 week
@@ -155,7 +155,7 @@ When the Meta new-business cooldown lifts, execute in this exact order. Do NOT s
 ### Step 3 — Connect Pixel to ad account 812929881544066
 
 1. Switch context: https://business.facebook.com/settings/pixels?business_id=701331759350000
-2. Verify Pixel `1236706014984822` appears in the list
+2. Verify Pixel `1024027273624000` appears in the list
 3. Click into the Pixel → "Connected assets" → "Add"
 4. Select ad account `812929881544066`
 5. Save
@@ -164,7 +164,7 @@ When the Meta new-business cooldown lifts, execute in this exact order. Do NOT s
 
 1. https://business.facebook.com/adsmanager/manage/campaigns?act=812929881544066
 2. Create campaign → Sales → Manual → Website → optimization event dropdown
-3. Confirm Pixel `1236706014984822` appears and Lead event is selectable
+3. Confirm Pixel `1024027273624000` appears and Lead event is selectable
 4. Cancel/discard the draft. Verification only.
 
 ### Step 5 — (Optional) Rename ad account
@@ -185,7 +185,7 @@ Schedule for the first Wednesday 9:00 AM EDT after Step 4 verification succeeds.
 - Founding Member tier created in Stripe livemode (prod_UVO81vjCKsEdfp, price_1TWNLoADK1uzxo0bLyjACyzu, link buy.stripe.com/4gMbJ0chN2RF0FH0kd1gs0P)
 - Seat-cap monitor cron 1853ff0d deployed (alerts at 40 active, critical at 50)
 - Three custom skills authored: kypria-deploy, kypria-persona-reply, kypria-stripe-product
-- Meta Pixel swap: orphaned App-type dataset 750068155374586 replaced with Web Pixel 1236706014984822 (commit 4bf90cd)
+- Meta Pixel swap: orphaned App-type dataset 750068155374586 replaced with Web Pixel 1024027273624000 (commit 4bf90cd)
 - Phantom ad account IDs purged from memory and skills: 1909290965860482 and 2049364046010873 do not exist
 - Real ad account verified: 812929881544066 in Kypria LLC portfolio 701331759350000
 - Phase 1B (cross-business partner share) BLOCKED by Meta new-business cooldown; no clicks executed

@@ -5,7 +5,7 @@
 // Assets (verified live May 16 2026):
 //   ad_account: act_1613993156363506 (Godly Zeus Ads, USD, NY)
 //   page: 1058205557375892 (Godly Zeus AI)
-//   pixel: 1161892008605801 (Zeus)
+//   pixel: 1024027273624000 (Godly Zeus Web Pixel)
 //   catalog: 835685825803663 (Three Temple, 6 products)
 //   product_set: 1298038635198750 (All Products)
 //   ig_user: godlyzeus.ai (Full control via ZeusPublisher)
@@ -25,7 +25,7 @@ const TOKEN = process.env.META_CAPI_ACCESS_TOKEN || process.env.META_SYSTEM_USER
 const API = 'https://graph.facebook.com/v21.0';
 const AD_ACCOUNT = 'act_1613993156363506';
 const PAGE_ID = '1058205557375892';
-const PIXEL_ID = '1161892008605801';
+const PIXEL_ID = '1024027273624000';
 const CATALOG_ID = '835685825803663';
 const PRODUCT_SET_ID = '1298038635198750';
 const IG_USER_ID = null; // resolve at runtime or leave null (page-attached IG)

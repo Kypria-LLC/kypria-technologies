@@ -1,10 +1,10 @@
 /**
  * Meta Conversions API bridge
- * Sends server-side events to the Zeus Pixel (1161892008605801) from Stripe webhook events.
+ * Sends server-side events to the Godly Zeus Web Pixel (1024027273624000) from Stripe webhook events.
  *
  * Required env vars:
  *   META_CAPI_ACCESS_TOKEN   System User token with ads_management scope
- *   META_PIXEL_ID            Default 1161892008605801 (Zeus)
+ *   META_PIXEL_ID            Default 1024027273624000 (Godly Zeus Web Pixel)
  *   META_CAPI_TEST_EVENT_CODE  Optional, for Test Events tab verification
  *
  * Event match quality maximization: hash email + send fbp/fbc when available
@@ -16,7 +16,7 @@
 const axios = require('axios');
 const crypto = require('crypto');
 
-const PIXEL_ID = process.env.META_PIXEL_ID || '1161892008605801';
+const PIXEL_ID = process.env.META_PIXEL_ID || '1024027273624000';
 // Prefer dedicated CAPI token; fall back to the existing System User token used by zeus-feed.
 // Both need ads_management scope on the Zeus pixel's ad account.
 const ACCESS_TOKEN = process.env.META_CAPI_ACCESS_TOKEN || process.env.META_SYSTEM_USER_TOKEN;

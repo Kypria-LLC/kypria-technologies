@@ -94,4 +94,4 @@ Winner = highest **subscriptions per 1k reach** (cost-free CPA proxy). If no sub
 ## Reminder
 
 - Founding tier cap is 50 seats. Seat-cap cron `1853ff0d` runs hourly and will push notify at 40/50 and 50/50.
-- Pixel 1236706014984822 fires the Lead event on quiz email submit and PageView on every page — every click from these posts is attributable post-Phase 1B partner-share.
+- Pixel 1024027273624000 fires the Lead event on quiz email submit and PageView on every page — every click from these posts is attributable post-Phase 1B partner-share.
