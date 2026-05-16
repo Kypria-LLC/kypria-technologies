@@ -14,13 +14,14 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ status: 'idle' }) };
   }
   const out = { timestamp: new Date().toISOString() };
-  out.pixel_basic = await gget('/1161892008605801', 'id,name,owner_business,last_fired_time,code,enable_automatic_matching,automatic_matching_fields,is_unavailable');
-  // Pixel custom event types received
-  out.pixel_custom_events = await gget('/1161892008605801?fields=stats.aggregation(event)', '');
-  // Recent activity via Conversions API logs
-  out.pixel_da_check = await gget('/1161892008605801/da_checks', 'key,result,title,description');
-  // Aggregated event stats
-  out.pixel_stats_v2 = await gget('/1161892008605801/stats', 'event,count,start_time,end_time,aggregation');
+  // Probe the REAL web pixel: 1236706014984822 (from fbq init in HTML)
+  out.real_pixel_basic = await gget('/1236706014984822', 'id,name,owner_business,is_unavailable,code');
+  out.real_pixel_da_check = await gget('/1236706014984822/da_checks', 'key,result,title,description');
+  // Compare: 1161892008605801 is registered as App
+  out.zeus_app_basic = await gget('/1161892008605801', 'id,name,owner_business');
+  out.zeus_app_da_check = await gget('/1161892008605801/da_checks', 'key,result,title');
+  // Catalog binding
+  out.catalog_pixel = await gget('/835685825803663', 'id,name,product_count,business,event_stats');
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
