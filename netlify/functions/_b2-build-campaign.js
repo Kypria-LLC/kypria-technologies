@@ -97,8 +97,9 @@ exports.handler = async (event) => {
     status: 'PAUSED',
     special_ad_categories: '[]',
     buying_type: 'AUCTION',
+    is_adset_budget_sharing_enabled: 'false', // ad-set-level budgets, no CBO sharing
     // Manual mode (NOT Advantage+ Shopping Campaign / ASC):
-    // omit smart_promotion_type. Setting is_skadnetwork_attribution false for catalog DPA web pixel.
+    // omit smart_promotion_type.
   });
 
   const campaignId = out.steps.create_campaign.body?.id;
