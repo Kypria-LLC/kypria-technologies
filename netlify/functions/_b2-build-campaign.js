@@ -89,20 +89,22 @@ exports.handler = async (event) => {
     };
   }
 
-  // Step 2: Create Campaign (PAUSED)
-  const campaignName = 'Three Temple Catalog · Subscribe · v1 (May 16 2026)';
-  out.steps.create_campaign = await gpost(`/${AD_ACCOUNT}/campaigns`, {
-    name: campaignName,
-    objective: 'OUTCOME_SALES',
-    status: 'PAUSED',
-    special_ad_categories: '[]',
-    buying_type: 'AUCTION',
-    is_adset_budget_sharing_enabled: 'false', // ad-set-level budgets, no CBO sharing
-    // Manual mode (NOT Advantage+ Shopping Campaign / ASC):
-    // omit smart_promotion_type.
-  });
-
-  const campaignId = out.steps.create_campaign.body?.id;
+  // Step 2: Create Campaign (PAUSED) — or reuse existing if ?campaign_id= passed
+  let campaignId = q.campaign_id || null;
+  if (campaignId) {
+    out.steps.create_campaign = { http: 200, body: { id: campaignId, reused: true } };
+  } else {
+    const campaignName = 'Three Temple Catalog · Subscribe · v1 (May 16 2026)';
+    out.steps.create_campaign = await gpost(`/${AD_ACCOUNT}/campaigns`, {
+      name: campaignName,
+      objective: 'OUTCOME_SALES',
+      status: 'PAUSED',
+      special_ad_categories: '[]',
+      buying_type: 'AUCTION',
+      is_adset_budget_sharing_enabled: 'false',
+    });
+    campaignId = out.steps.create_campaign.body?.id;
+  }
   if (!campaignId) {
     return {
       statusCode: 200,
@@ -110,6 +112,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(redact({ ...out, fatal: 'Campaign creation failed; halting before AdSet.' }), null, 2)
     };
   }
+  out.campaign_id = campaignId;
 
   // Step 3: Create Ad Set (PAUSED)
   // Catalog DPA with website conversion optimization:
@@ -125,10 +128,10 @@ exports.handler = async (event) => {
     age_max: 65,
     targeting_automation: { advantage_audience: 1 },
     publisher_platforms: ['facebook', 'instagram', 'audience_network', 'messenger'],
-    facebook_positions: ['feed','right_hand_column','marketplace','video_feeds','story','search','instream_video','facebook_reels','facebook_reels_overlay'],
-    instagram_positions: ['stream','story','explore','reels','profile_feed','search','ig_search'],
-    messenger_positions: ['messenger_home','sponsored_messages','story'],
-    audience_network_positions: ['classic','rewarded_video']
+    facebook_positions: ['feed','right_hand_column','marketplace','video_feeds','story','search','instream_video','facebook_reels'],
+    instagram_positions: ['stream','story','explore','reels','profile_feed'],
+    messenger_positions: ['messenger_home','story'],
+    audience_network_positions: ['classic']
   };
   const promotedObject = {
     pixel_id: PIXEL_ID,
