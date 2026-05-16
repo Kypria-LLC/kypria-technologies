@@ -14,10 +14,13 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ status: 'idle' }) };
   }
   const out = { timestamp: new Date().toISOString() };
-  out.pixel_basic = await gget('/1161892008605801', 'id,name,owner_business,creation_time,last_fired_time,code,enable_automatic_matching,automatic_matching_fields');
-  out.pixel_stats_event = await gget('/1161892008605801/stats', 'aggregation,start_time,end_time,event,count');
-  // Try different stats slice
+  out.pixel_basic = await gget('/1161892008605801', 'id,name,owner_business,last_fired_time,code,enable_automatic_matching,automatic_matching_fields,is_unavailable');
+  // Pixel custom event types received
+  out.pixel_custom_events = await gget('/1161892008605801?fields=stats.aggregation(event)', '');
+  // Recent activity via Conversions API logs
   out.pixel_da_check = await gget('/1161892008605801/da_checks', 'key,result,title,description');
+  // Aggregated event stats
+  out.pixel_stats_v2 = await gget('/1161892008605801/stats', 'event,count,start_time,end_time,aggregation');
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
