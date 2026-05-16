@@ -6,6 +6,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const axios = require('axios');
 const { setUserContext, getUserContext } = require('../shared/redis-context');
+const { sendCapiEvent, lookupPersona } = require('../shared/meta-capi');
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
@@ -38,11 +39,11 @@ exports.handler = async (event, context) => {
   // Handle the event
   switch (stripeEvent.type) {
     case 'checkout.session.completed':
-      await handleCheckoutCompleted(stripeEvent.data.object);
+      await handleCheckoutCompleted(stripeEvent.data.object, stripeEvent.id);
       break;
     
     case 'customer.subscription.created':
-      await handleSubscriptionCreated(stripeEvent.data.object);
+      await handleSubscriptionCreated(stripeEvent.data.object, stripeEvent.id);
       break;
     
     case 'customer.subscription.deleted':
@@ -62,8 +63,15 @@ exports.handler = async (event, context) => {
 /**
  * Handle successful checkout
  */
-async function handleCheckoutCompleted(session) {
-  console.log('✅ Payment successful:', session.id);
+async function handleCheckoutCompleted(session, stripeEventId) {
+  console.log('Payment successful:', session.id);
+
+  // Meta CAPI: Purchase event
+  try {
+    await fireCapiPurchase(session, stripeEventId);
+  } catch (e) {
+    console.error('[capi] Purchase fire failed (non-fatal):', e.message);
+  }
 
   const userId = session.metadata.user_id;
   const deity = session.metadata.deity || 'lifesphere';
@@ -112,7 +120,14 @@ async function handleCheckoutCompleted(session) {
 /**
  * Handle subscription created
  */
-async function handleSubscriptionCreated(subscription) {
+async function handleSubscriptionCreated(subscription, stripeEventId) {
+  // Meta CAPI: Subscribe event
+  try {
+    await fireCapiSubscribe(subscription, stripeEventId);
+  } catch (e) {
+    console.error('[capi] Subscribe fire failed (non-fatal):', e.message);
+  }
+
   const userId = subscription.metadata.user_id;
   const tier = subscription.metadata.tier || 'initiate';
 
@@ -298,4 +313,96 @@ async function sendMessage(recipientId, message) {
   } catch (error) {
     console.error('❌ Send API error:', error.response?.data || error.message);
   }
+}
+/**
+ * Fire Meta CAPI Purchase event from checkout.session.completed.
+ * Match-quality fields:
+ *  - email: from session.customer_details.email (preferred) or customer object
+ *  - fbp/fbc: from session.metadata.fbp / fbc (set by create-checkout-session.js)
+ *  - external_id: Stripe customer id (hashed in capi module)
+ * Dedupe: stripeEventId (also fired by client-side fbq if present).
+ */
+async function fireCapiPurchase(session, stripeEventId) {
+  // Skip if non-paid mode session (subscriptions emit subscription.created instead)
+  if (session.mode === 'subscription') {
+    console.log('[capi] checkout.session is subscription mode, deferring to subscription.created');
+    return;
+  }
+
+  const email = session.customer_details?.email || session.customer_email;
+  const productId = session.metadata?.product_id || session.metadata?.stripe_product_id;
+  const persona = productId ? lookupPersona(productId) : { persona: 'Zeus', temple: 'Unknown' };
+
+  await sendCapiEvent({
+    eventName: 'Purchase',
+    eventId: stripeEventId,
+    eventTime: session.created || Math.floor(Date.now() / 1000),
+    eventSourceUrl: session.success_url || 'https://kypriatechnologies.org/',
+    email: email,
+    fbp: session.metadata?.fbp,
+    fbc: session.metadata?.fbc,
+    externalId: session.customer,
+    clientIp: session.metadata?.client_ip,
+    clientUserAgent: session.metadata?.client_user_agent,
+    value: (session.amount_total || 0) / 100,
+    currency: (session.currency || 'usd').toUpperCase(),
+    contentId: productId,
+    contentName: persona.temple,
+    contentCategory: persona.persona,
+    subscriptionId: session.subscription
+  });
+}
+
+/**
+ * Fire Meta CAPI Subscribe event from customer.subscription.created.
+ * Pulls email + product from the first subscription item.
+ */
+async function fireCapiSubscribe(subscription, stripeEventId) {
+  let email;
+  let productId;
+  let amount = 0;
+  let currency = 'usd';
+
+  // Resolve product from first subscription item
+  const item = subscription.items?.data?.[0];
+  if (item) {
+    productId = item.price?.product;
+    amount = (item.price?.unit_amount || 0) / 100;
+    currency = (item.price?.currency || 'usd').toUpperCase();
+  }
+
+  // Resolve email by fetching customer object
+  try {
+    if (subscription.customer) {
+      const customer = await stripe.customers.retrieve(subscription.customer);
+      email = customer?.email;
+    }
+  } catch (e) {
+    console.error('[capi] customer fetch failed:', e.message);
+  }
+
+  const persona = productId ? lookupPersona(productId) : { persona: 'Zeus', temple: 'Unknown' };
+
+  // Skip retired Founding product
+  if (persona.persona === 'Retired') {
+    console.log(`[capi] subscription on retired product ${productId}, not firing Subscribe`);
+    return;
+  }
+
+  await sendCapiEvent({
+    eventName: 'Subscribe',
+    eventId: stripeEventId,
+    eventTime: subscription.created || Math.floor(Date.now() / 1000),
+    eventSourceUrl: 'https://kypriatechnologies.org/',
+    email: email,
+    fbp: subscription.metadata?.fbp,
+    fbc: subscription.metadata?.fbc,
+    externalId: subscription.customer,
+    value: amount,
+    currency: currency,
+    contentId: productId,
+    contentName: persona.temple,
+    contentCategory: persona.persona,
+    subscriptionId: subscription.id
+  });
 }
