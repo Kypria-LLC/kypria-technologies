@@ -57,11 +57,16 @@ exports.handler = async (event) => {
   results.timestamp = new Date().toISOString();
 
   results.probe0_me = await gget('/me', 'id,name');
-  results.probe0_debug = await gget('/debug_token', `input_token=${encodeURIComponent(TOKEN)}`);
+  // debug_token uses different URL shape
+  try {
+    const dt = await fetch(`${API}/debug_token?input_token=${encodeURIComponent(TOKEN)}&access_token=${encodeURIComponent(TOKEN)}`);
+    results.probe0_debug = { http: dt.status, body: await dt.json() };
+  } catch (e) { results.probe0_debug = { http: 0, body: { error: { message: e.message } } }; }
   results.probe1_assigned_ad_accounts = await gget('/me/assigned_ad_accounts', 'id,name,account_status,business,currency,timezone_name');
   results.probe2_ad_account_direct = await gget('/act_1613993156363506', 'id,name,account_status,business,capabilities,currency,timezone_name');
   results.probe3_catalog = await gget('/835685825803663', 'id,name,product_count,business');
-  results.probe4_pixel = await gget('/1161892008605801', 'id,name,owner_business,is_unavailable');
+  results.probe4_pixel = await gget('/1161892008605801', 'id,name,owner_business,owner_ad_account,code,creation_time');
+  results.probe4b_pixel_stats = await gget('/1161892008605801/stats', 'aggregation,start_time,end_time,event,count');
   results.probe5_owned_businesses = await gget('/me/businesses', 'id,name');
 
   return {
