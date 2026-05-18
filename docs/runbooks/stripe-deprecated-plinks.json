@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-05-18T03:51:08.238673+00:00",
+  "captured_via": "Stripe Pipedream MCP \u2014 GET /v1/payment_links?active=true&expand[]=data.line_items (May 17 2026 23:35 EDT)",
+  "rationale": "These 3 active Payment Links all resolve to product prod_TVGm7qxwJwd2eU (Zeus Temple) / price price_1SYGFAADK1uzxo0bLHS82RMu ($49.00 USD recurring monthly). 0 references on kypriatechnologies.org main branch as of 2026-05-17 23:40 EDT. Canonical kept link is plink_1SlffkADK1uzxo0bBxG4J6Ml (URL 6oUbJ095...). Deactivation reversible from Stripe Dashboard. No deletion.",
+  "canonical_kept": {
+    "payment_link_id": "plink_1SlffkADK1uzxo0bBxG4J6Ml",
+    "buy_url": "https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E",
+    "price_id": "price_1SYGFAADK1uzxo0bLHS82RMu",
+    "product_id": "prod_TVGm7qxwJwd2eU",
+    "description": "Zeus Temple",
+    "unit_amount_cents": 4900,
+    "currency": "usd",
+    "interval": "month",
+    "interval_count": 1,
+    "active": true,
+    "livemode": true,
+    "after_completion": "hosted_confirmation",
+    "subscription_data_present": true
+  },
+  "deprecated_candidates": [
+    {
+      "payment_link_id": "plink_1SYGWEADK1uzxo0bL3dxioCk",
+      "buy_url": "https://buy.stripe.com/cNiaEW2Hd0JxfABff71gs0r",
+      "price_id": "price_1SYGFAADK1uzxo0bLHS82RMu",
+      "product_id": "prod_TVGm7qxwJwd2eU",
+      "description": "Zeus Temple",
+      "unit_amount_cents": 4900,
+      "currency": "usd",
+      "interval": "month",
+      "interval_count": 1,
+      "active": true,
+      "livemode": true,
+      "after_completion": "redirect",
+      "subscription_data_present": true
+    },
+    {
+      "payment_link_id": "plink_1TLN30ADK1uzxo0bX5YhqUiD",
+      "buy_url": "https://buy.stripe.com/14A3cu6XteAn7450kd1gs0K",
+      "price_id": "price_1SYGFAADK1uzxo0bLHS82RMu",
+      "product_id": "prod_TVGm7qxwJwd2eU",
+      "description": "Zeus Temple",
+      "unit_amount_cents": 4900,
+      "currency": "usd",
+      "interval": "month",
+      "interval_count": 1,
+      "active": true,
+      "livemode": true,
+      "after_completion": "hosted_confirmation",
+      "subscription_data_present": true
+    },
+    {
+      "payment_link_id": "plink_1TMO03ADK1uzxo0bDPYqiCBo",
+      "buy_url": "https://buy.stripe.com/9B6cN481xbobfABff71gs0N",
+      "price_id": "price_1SYGFAADK1uzxo0bLHS82RMu",
+      "product_id": "prod_TVGm7qxwJwd2eU",
+      "description": "Zeus Temple",
+      "unit_amount_cents": 4900,
+      "currency": "usd",
+      "interval": "month",
+      "interval_count": 1,
+      "active": true,
+      "livemode": true,
+      "after_completion": "hosted_confirmation",
+      "subscription_data_present": true
+    }
+  ]
+}
