@@ -24,7 +24,7 @@
 
 | Persona | Product Name | Price | Product ID | Buy Link(s) |
 |---|---|---|---|---|
-| Zeus | Zeus Oracle (display name on site) | $49 one-time | TODO: resolve concrete `prod_...` ID. Stripe currently holds multiple Zeus-named products (Zeus Temple x3, Zeus AI - Pro/Starter/Enterprise/Annual/Setup). Match buy link `6oUbJ095Bcsfcopd6Z1gs0E` against price.product on the dashboard before automating against this row. | https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E |
+| Zeus | Zeus Temple | **$49/mo recurring** | `prod_TVGm7qxwJwd2eU` (price `price_1SYGFAADK1uzxo0bLHS82RMu`) — verified May 17 2026 via Stripe API. NOTE: 4 active Payment Links point to this product+price; only `plink_1Slffk...` (URL `6oUbJ095...`) is wired on the site. The 3 unused duplicates (`9B6cN481...`, `14A3cu6X...`, `cNiaEW2H...`) are deactivation candidates. An annual price `price_1TXfDrADK1uzxo0bnk3ab6CG` ($490/yr) also exists on the same product (Payment Link `00w00i2H...`). | https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E |
 | Aphrodite | Aphrodite Mirror | $79 one-time | prod_ULLD9uSHwzaznx | Quiz: https://buy.stripe.com/5kQfZg3Lhak73RTgjb1gs0O — Homepage: https://buy.stripe.com/eVqeVc0z5csfdst8QJ1gs0s |
 | Lifesphere | Lifesphere Balance | $149 one-time | prod_TjrqhMKSxlZ8hH | https://buy.stripe.com/3cI28q81xeAnbklff71gs0t |
 | All three | Founding Member | $19/mo recurring | prod_UVO81vjCKsEdfp (price_1TWNLoADK1uzxo0bLyjACyzu, cap 50 seats) | https://buy.stripe.com/4gMbJ0chN2RF0FH0kd1gs0P |
