@@ -31,6 +31,22 @@
 
 ---
 
+## Deprecated Payment Links (Zeus Temple dupes)
+
+These 3 active Payment Links all resolve to `prod_TVGm7qxwJwd2eU` / `price_1SYGFAADK1uzxo0bLHS82RMu` ($49/mo recurring) but have ZERO references on the live site. Inventoried via Stripe API on May 17 2026 23:35 EDT (see `stripe-deprecated-plinks.json`).
+
+| Payment Link ID | Buy URL | Status |
+|---|---|---|
+| `plink_1SYGWEADK1uzxo0bL3dxioCk` | `https://buy.stripe.com/cNiaEW2Hd0JxfABff71gs0r` | deactivated 2026-05-18 |
+| `plink_1TLN30ADK1uzxo0bX5YhqUiD` | `https://buy.stripe.com/14A3cu6XteAn7450kd1gs0K` | deactivated 2026-05-18 |
+| `plink_1TMO03ADK1uzxo0bDPYqiCBo` | `https://buy.stripe.com/9B6cN481xbobfABff71gs0N` | deactivated 2026-05-18 |
+
+Canonical kept Payment Link: `plink_1SlffkADK1uzxo0bBxG4J6Ml` → `https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E` (wired in 5 site files; see canonical row above).
+
+Deactivation is reversible from the Stripe Dashboard. No customer or analytics history is affected — only the public buy URL stops accepting new checkouts. After deactivation fires, update each row's status to `deactivated YYYY-MM-DD` in a follow-up commit.
+
+---
+
 ## Persona-to-Product Mapping (Stripe Welcome Email Cron 4c04e762)
 
 The cron reads the product ID from the completed payment intent and assigns a persona voice for the welcome email.
