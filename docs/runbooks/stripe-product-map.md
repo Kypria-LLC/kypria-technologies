@@ -37,9 +37,9 @@ These 3 active Payment Links all resolve to `prod_TVGm7qxwJwd2eU` / `price_1SYGF
 
 | Payment Link ID | Buy URL | Status |
 |---|---|---|
-| `plink_1SYGWEADK1uzxo0bL3dxioCk` | `https://buy.stripe.com/cNiaEW2Hd0JxfABff71gs0r` | pending-deactivation |
-| `plink_1TLN30ADK1uzxo0bX5YhqUiD` | `https://buy.stripe.com/14A3cu6XteAn7450kd1gs0K` | pending-deactivation |
-| `plink_1TMO03ADK1uzxo0bDPYqiCBo` | `https://buy.stripe.com/9B6cN481xbobfABff71gs0N` | pending-deactivation |
+| `plink_1SYGWEADK1uzxo0bL3dxioCk` | `https://buy.stripe.com/cNiaEW2Hd0JxfABff71gs0r` | deactivated 2026-05-18 |
+| `plink_1TLN30ADK1uzxo0bX5YhqUiD` | `https://buy.stripe.com/14A3cu6XteAn7450kd1gs0K` | deactivated 2026-05-18 |
+| `plink_1TMO03ADK1uzxo0bDPYqiCBo` | `https://buy.stripe.com/9B6cN481xbobfABff71gs0N` | deactivated 2026-05-18 |
 
 Canonical kept Payment Link: `plink_1SlffkADK1uzxo0bBxG4J6Ml` → `https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E` (wired in 5 site files; see canonical row above).
 

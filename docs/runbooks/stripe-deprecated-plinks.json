@@ -29,10 +29,12 @@
       "currency": "usd",
       "interval": "month",
       "interval_count": 1,
-      "active": true,
+      "active": false,
       "livemode": true,
       "after_completion": "redirect",
-      "subscription_data_present": true
+      "subscription_data_present": true,
+      "status": "deactivated",
+      "deactivated_at_utc": "2026-05-18T04:05:00Z"
     },
     {
       "payment_link_id": "plink_1TLN30ADK1uzxo0bX5YhqUiD",
@@ -44,10 +46,12 @@
       "currency": "usd",
       "interval": "month",
       "interval_count": 1,
-      "active": true,
+      "active": false,
       "livemode": true,
       "after_completion": "hosted_confirmation",
-      "subscription_data_present": true
+      "subscription_data_present": true,
+      "status": "deactivated",
+      "deactivated_at_utc": "2026-05-18T04:05:00Z"
     },
     {
       "payment_link_id": "plink_1TMO03ADK1uzxo0bDPYqiCBo",
@@ -59,10 +63,13 @@
       "currency": "usd",
       "interval": "month",
       "interval_count": 1,
-      "active": true,
+      "active": false,
       "livemode": true,
       "after_completion": "hosted_confirmation",
-      "subscription_data_present": true
+      "subscription_data_present": true,
+      "status": "deactivated",
+      "deactivated_at_utc": "2026-05-18T04:05:00Z"
     }
-  ]
+  ],
+  "last_updated_utc": "2026-05-18T04:06:04.430795+00:00"
 }
