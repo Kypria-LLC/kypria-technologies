@@ -1133,8 +1133,6 @@ body {
       <a id="templeLink" href="#" target="_blank" rel="noopener noreferrer" class="explore-link"><span class="arrow">&#x2192;</span><span id="templeLinkText">Visit the Temple</span></a>
     </div>
 
-    <p class="gumroad-note">The Mythic Persona Genesis System — 6 primordial archetypes, 7 synthesis functions, unlimited generations. <a href="https://mrspetses.gumroad.com/l/kjrbtt?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer">Available on Gumroad.</a></p>
-
     <button class="retake-btn" onclick="retakeQuiz()">&#8634; Retake the Trial</button>
 
     <footer class="quiz-footer">
@@ -1597,6 +1595,30 @@ function submitEmailGate(event) {
       if (window.gtag) { gtag('event', ok ? 'lead_captured' : 'lead_capture_failed', { persona: personaMapping.persona }); }
     } catch (e) { /* noop */ }
   });
+
+  // KYPRIA-LEAD-CAPTURE: send lead to Supabase edge function (beacon survives page transition)
+  (function captureLead() {
+    const qs = new URLSearchParams(window.location.search);
+    const payload = {
+      email: capturedEmail,
+      archetype: currentArchetypeKey,
+      utm_source: qs.get('utm_source'),
+      utm_medium: qs.get('utm_medium'),
+      utm_campaign: qs.get('utm_campaign'),
+      utm_content: qs.get('utm_content'),
+      utm_term: qs.get('utm_term'),
+      referrer: document.referrer || null,
+      landing_path: window.location.pathname
+    };
+    try {
+      if (typeof gtag === 'function') gtag('event', 'quiz_capture', { archetype: currentArchetypeKey });
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: currentArchetypeKey });
+    } catch (e) { /* analytics must never block capture */ }
+    try {
+      const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+      navigator.sendBeacon('https://baizupiweobjkarchsyc.supabase.co/functions/v1/capture-lead', blob);
+    } catch (e) { /* noop */ }
+  })();
 
   // Store in localStorage
   try {
