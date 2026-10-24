@@ -2,6 +2,19 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const ALLOWED_ORIGIN = "https://kypriatechnologies.org";
 
+// Store the mapped persona, not the raw quiz archetype key: leads.persona_result
+// is constrained to zeus / aphrodite / lifesphere / NULL (leads_persona_result_check)
+// and the funnel contract defines this column as the stored persona layer.
+// Mirror of demos/mythic-persona-quiz ARCHETYPE_TO_PERSONA — keep in sync.
+const ARCHETYPE_TO_PERSONA: Record<string, string> = {
+  architect: "zeus",
+  visionary: "zeus",
+  executor: "zeus",
+  analyst: "lifesphere",
+  curator: "lifesphere",
+  synthesizer: "aphrodite",
+};
+
 function cors(origin: string | null): Record<string, string> {
   return {
     "Access-Control-Allow-Origin": origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : "null",
@@ -47,7 +60,7 @@ Deno.serve(async (req: Request) => {
     .insert({
       source: "quiz",
       email,
-      persona_result: str(body.archetype, 64),
+      persona_result: ARCHETYPE_TO_PERSONA[str(body.archetype, 64) ?? ""] ?? null,
       utm_source: str(body.utm_source, 128),
       utm_medium: str(body.utm_medium, 128),
       utm_campaign: str(body.utm_campaign, 128),
