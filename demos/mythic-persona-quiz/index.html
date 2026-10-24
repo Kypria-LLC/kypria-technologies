@@ -452,8 +452,18 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   line-height: 1.2;
+}
+
+.result-sublabel {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.85;
 }
 
 .result-badges {
@@ -680,20 +690,6 @@ body {
   box-shadow: 0 4px 16px rgba(163, 106, 227, 0.2);
 }
 
-.cta-oracle-waitlist {
-  color: #a8e6cf;
-  background: transparent;
-  border: 1px solid rgba(168, 230, 207, 0.5);
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-}
-
-.cta-oracle-waitlist:hover {
-  background: rgba(168, 230, 207, 0.08);
-  box-shadow: 0 4px 16px rgba(168, 230, 207, 0.2);
-  border-color: #a8e6cf;
-}
-
 .cta-share {
   color: var(--teal);
   background: transparent;
@@ -729,24 +725,6 @@ body {
   color: var(--gold);
   margin-right: 8px;
   font-size: 0.8rem;
-}
-
-.gumroad-note {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  opacity: 0.6;
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.gumroad-note a {
-  color: var(--gold);
-  text-decoration: underline;
-  text-decoration-color: rgba(212, 175, 55, 0.3);
-}
-
-.gumroad-note a:hover {
-  text-decoration-color: var(--gold);
 }
 
 .retake-btn {
@@ -1106,6 +1084,7 @@ body {
     <div class="result-card" id="resultCard">
       <div class="result-lineage" id="resultLineage"></div>
       <h2 class="result-archetype" id="resultArchetype"></h2>
+      <div class="result-sublabel" id="resultSubLabel"></div>
       <div class="result-badges" id="resultBadges"></div>
       <div class="power-section">
         <div class="power-label">
@@ -1234,6 +1213,7 @@ body {
 const ARCHETYPES = {
   architect: {
     name: 'THE ARCHITECT',
+    subLabel: 'The Architect',
     element: 'Aether',
     elementClass: 'aether',
     power: 97,
@@ -1243,6 +1223,7 @@ const ARCHETYPES = {
   },
   visionary: {
     name: 'THE VISIONARY',
+    subLabel: 'The Visionary',
     element: 'Light',
     elementClass: 'light',
     power: 95,
@@ -1252,6 +1233,7 @@ const ARCHETYPES = {
   },
   executor: {
     name: 'THE EXECUTOR',
+    subLabel: 'The Executor',
     element: 'Fire',
     elementClass: 'fire',
     power: 92,
@@ -1261,6 +1243,7 @@ const ARCHETYPES = {
   },
   analyst: {
     name: 'THE ANALYST',
+    subLabel: 'The Analyst',
     element: 'Water',
     elementClass: 'water',
     power: 90,
@@ -1270,6 +1253,7 @@ const ARCHETYPES = {
   },
   synthesizer: {
     name: 'THE SYNTHESIZER',
+    subLabel: 'The Synthesizer',
     element: 'Air',
     elementClass: 'air',
     power: 93,
@@ -1279,6 +1263,7 @@ const ARCHETYPES = {
   },
   curator: {
     name: 'THE CURATOR',
+    subLabel: 'The Curator',
     element: 'Earth',
     elementClass: 'earth',
     power: 88,
@@ -1291,6 +1276,13 @@ const ARCHETYPES = {
 /* ============================================
    ARCHETYPE → DIVINE TRINITY PERSONA MAPPING
    ============================================ */
+/* Persona display names for the result-card headline (added in PR B) */
+const PERSONA_DISPLAY = {
+  zeus:       'ZEUS',
+  aphrodite:  'APHRODITE',
+  lifesphere: 'LIFESPHERE'
+};
+
 const ARCHETYPE_TO_PERSONA = {
   architect: { persona: 'zeus', emoji: '⚡', color: '#d4af37', messenger: 'https://m.me/1454516248845700?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Zeus Temple', price: '$49/mo' },
   visionary:  { persona: 'zeus', emoji: '⚡', color: '#d4af37', messenger: 'https://m.me/1454516248845700?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', stripe: 'https://buy.stripe.com/6oUbJ095Bcsfcopd6Z1gs0E?utm_source=quiz&utm_medium=result&utm_campaign=mythic_persona', tier: 'Zeus Temple', price: '$49/mo' },
@@ -1691,7 +1683,10 @@ function showResults() {
 
   // Populate card
   document.getElementById('resultLineage').textContent = arch.flavor.toUpperCase();
-  document.getElementById('resultArchetype').textContent = arch.name;
+  // PR B: persona-first headline; the archetype becomes the sub-label below it.
+  const personaDisplay = PERSONA_DISPLAY[personaMapping.persona];
+  document.getElementById('resultArchetype').textContent = personaDisplay;
+  document.getElementById('resultSubLabel').textContent = arch.subLabel;
 
   // Badges
   const badgesEl = document.getElementById('resultBadges');
@@ -1760,11 +1755,11 @@ function buildDynamicCTAs(personaMapping) {
     lifesphere: 'cta-btn cta-temple-lifesphere'
   };
 
-  // ACTION 1 v2 (May 15 2026): Founding $19/mo tier retired (product/price/payment-link deactivated in Stripe livemode). Result page now collapses to the single persona-matched Temple Buy hero + share + waitlist fallback. No competing CTAs.
+  // ACTION 1 v2 (May 15 2026): Founding $19/mo tier retired (product/price/payment-link deactivated in Stripe livemode). Result page is the single persona-matched Temple Buy hero + share. No competing CTAs.
+  // PR B (Oct 2026): result_fallback waitlist link removed — the quiz email gate already captures email+UTMs; the legacy Google Form is retired (see FUNNEL-CONTRACT checkpoint #3). Historical form responses: PENDING operator export; import as source=waitlist via authorized path (not capture-lead).
   ctaSection.innerHTML = `
     <a href="${personaMapping.stripe}" target="_blank" rel="noopener noreferrer" class="${templeClasses[persona]}" onclick="trackCheckoutIntent('${persona}','primary')">Enter the ${personaMapping.tier} — ${personaMapping.price}</a>
     <button class="cta-btn cta-share" id="shareBtn" onclick="shareArchetype()" style="margin-top:18px">Share Your Archetype</button>
-    <div style="text-align:center;margin-top:14px;font-size:0.72rem;opacity:0.45"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdUzNEEJWAorS3yu6vzMnhPu20pmm2HFsfltWZcIUPZBRBAkw/viewform?utm_source=quiz&utm_medium=result_fallback&utm_campaign=mythic_persona" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">Not ready? Join the waitlist.</a></div>
   `;
 }
 
