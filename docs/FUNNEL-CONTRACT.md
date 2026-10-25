@@ -5,11 +5,11 @@
 
 | | |
 |---|---|
-| **Version** | 1.2 — compiled 2026-10-24 (EDT) |
+| **Version** | 1.3 — compiled 2026-10-24 (EDT) |
 | **Status vocabulary** | shared with OPERATIONS-HANDBOOK |
-| **Source of record** | PR #83 diff (`demos/mythic-persona-quiz/index.html` + `supabase/functions/capture-lead/index.ts`), merged to main 2026-10-23 06:42:43 UTC; mapping, CTA structure, and live schema re-verified 2026-10-24 against repo code and the deployed endpoint |
+| **Source of record** | PR #83 / #85 / #86 / #87 diffs + live verification on 2026-10-24: `capture-lead` v3, `public.recent_trinity_leads()` RPC, `Trinity-Lead-Alert` Power Automate flow, and `TrinityLeadAlert.xlsx` on OneDrive Business root |
 | **Repo** | Kypria-LLC/kypria-technologies |
-| **Supersedes** | v1.1 (2026-10-23) |
+| **Supersedes** | v1.2 (2026-10-24) |
 
 ---
 
@@ -158,10 +158,40 @@ The result page renders exactly **2 primary CTAs**: (1) a single persona-matched
 
 ---
 
+## 6. Trinity Messenger Surface + Alert Path — VERIFIED 2026-10-24
+
+### 6a. Messenger surface canon
+
+- **Auto-reply:** Messenger-only (`utm_content=auto_a`); Instagram DMs carry no auto-reply (Meta Business Suite enforces one instant reply per page; channel split ruled not worth ManyChat overhead).
+- **Away message:** 24/7, Patreon-free, links the Mythic Persona Quiz with `utm_content=away_a`.
+- **Keyword automations:** `kw_subscribe`, `kw_lifesphere`, `kw_mirror` (mirror only), `kw_oracle`, `kw_quiz` (new; quiz re-homed out of `MIRROR`). All quiz copy reads `"60 seconds."`
+- **FAQ automation:** RETIRED — blank answers plus duplicate-trigger risk alongside keyword automations.
+
+### 6b. Lead alert path (Supabase RPC + RLS)
+
+- **RPC:** `public.recent_trinity_leads()` (`SECURITY DEFINER`, `STABLE`, `search_path = 'public'`), callable via publishable (`anon`) key.
+- **Returned columns (PII-free):** `id`, `persona_result`, `utm_source`, `utm_content`, `created_at` (`WHERE utm_campaign = 'trinityb01' ORDER BY created_at DESC LIMIT 50`) — **no `email` field** is returned by the RPC, preventing PII exposure in downstream alert notifications.
+- **RLS policy:** `read_trinity_leads_for_alert` (`FOR SELECT TO anon USING (utm_campaign = 'trinityb01'::text)`) scopes publishable reads strictly to the `trinityb01` launch campaign.
+
+### 6c. `Trinity-Lead-Alert` flow (Power Automate) & OneDrive ledger
+
+- **Pipeline:** Recurrence (`15m`) → HTTP `GET` `/rest/v1/rpc/recent_trinity_leads` (publishable key in headers) → Excel `List rows present in a table` (`watermark`) → `Filter array` (`created_at > watermark`, ISO-8601 string comparison) → `Apply to each` → `Send an email (V2)` to `mrspetses@gmail.com` (`New Trinity lead: {created_at} | {string(items('Apply_to_each'))}`) → `Condition` (`length(body('Filter_array')) > 0`) → `If yes`: `Update a row` (`idColumn = key`, `id = last_seen_created_at`, `item/value = @last(sort(body('Filter_array'),'created_at'))?['created_at']`).
+- **The One Rule:** Watermark advances once per batch, and **only after** email delivery succeeds (`If yes` branch). Empty filter results skip `Send an email (V2)` (`⊖`) and never touch `Update a row`.
+- **Ledger (`TrinityLeadAlert.xlsx`, OneDrive Business root, driveItem `01KYDG7EEIU6QJUHFFRNDLOVNYN3VBYK3H`):**
+  - Table `watermark` (`watermark!A1:B2`): `key = last_seen_created_at`, seeded at `2026-10-24T22:00:00Z` (verified holding after the 22:57 EDT silent-path test run; logged as `Δ-020` for On-then-test sequence).
+  - Table `alert_log` (`alert_log!A1:E2`): columns `alerted_at`, `lead_id`, `persona_result`, `utm_content`, `notes` (initialized `2026-10-24T22:00:00Z | — | — | — | ledger initialized; awaiting first stranger`).
+- **v1.3 non-blocking follow-ups:**
+  1. Name the UTM/persona fields explicitly in the alert email body (`persona_result`, `utm_source`, `utm_content`) instead of dumping `string(items('Apply_to_each'))`.
+  2. Reconnect Facebook Pages API token with `pages_manage_posts` + `pages_read_engagement` for automated API metrics.
+  3. Ship Instagram three-doors visual asset + bio link.
+
+---
+
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| **v1.3** | 2026-10-24 | Added §6 Trinity Messenger Surface + Alert Path: Messenger auto-reply/away/keyword canon (`kw_quiz` split from `MIRROR`, FAQ retired, "60 seconds" copy rule), PII-free `public.recent_trinity_leads()` RPC + `read_trinity_leads_for_alert` RLS policy, `Trinity-Lead-Alert` 15m Power Automate flow + OneDrive `TrinityLeadAlert.xlsx` watermark/alert_log ledger (`Δ-020`), and v1.3 non-blocking follow-ups. |
 | **v1.2** | 2026-10-24 | Added §1a archetype→persona mapping and §1b live end-to-end verification; rewrote constraint traps to reflect the armed CHECK constraint; added §1c NULL-footgun migration record; marked checkpoint 3 RESOLVED; corrected the result-page CTA description to the verified 2-CTA structure (superseding "4 competing CTAs"); confirmed the quiz HTML is free of Gumroad/waitlist strings; added the `trinityb01` launch-campaign convention. |
 | **v1.1** | 2026-10-23 | corrected pixel hit-count wording; tightened hygiene probe wording. |
 | **v1.0** | 2026-10-23 | initial compile from PR #83 diff + live schema dump. |
