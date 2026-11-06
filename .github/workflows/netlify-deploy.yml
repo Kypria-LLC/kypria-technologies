@@ -4,19 +4,18 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   trigger-netlify:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Netlify Deploy Hook
+        env:
+          HOOK_URL: ${{ secrets.NETLIFY_DEPLOY_HOOK }}
         run: |
-          curl -X POST -d '{}' ${{ secrets.NETLIFY_DEPLOY_HOOK }}
-        
-      - name: Deployment Status
-        run: |
-          echo "✅ Netlify deploy hook triggered successfully"
-          echo "📦 Check deployment status at: https://app.netlify.com/sites/kypriatechnologies/deploys"
+          if [ -z "$HOOK_URL" ]; then
+            echo "NETLIFY_DEPLOY_HOOK is empty" >&2
+            exit 1
+          fi
+          curl --fail-with-body -sS -X POST -d '{}' "$HOOK_URL"
+          echo "Deploy hook accepted (HTTP 2xx). This does not confirm the build finished."

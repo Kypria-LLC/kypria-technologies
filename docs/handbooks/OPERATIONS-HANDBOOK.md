@@ -1,7 +1,7 @@
 # OPERATIONS HANDBOOK — Kypria Technologies
 
 Space: Code & Automation. Owner of truth: this file, refreshed by probing — never by memory.
-Version 1.2 — compiled 2026-10-23 (EDT), Gate 5 hardened 2026-11-05. Entries carry one of three statuses:
+Version 1.3 — compiled 2026-10-23 (EDT), Gate 5 hardened 2026-11-05, inventory refreshed 2026-11-06. Entries carry one of three statuses:
 - [VERIFIED 2026-10-23] — confirmed live, with the probe used
 - [REPORTED 2026-10-23] — diagnosed in the operator's forensic session; re-verify before acting
 - [OPEN] — known gap, not yet resolved
@@ -15,14 +15,14 @@ command output disagrees with this file, the command wins and this file gets edi
 
 | System | Canonical identity | Responsibility | Verification probe | Status |
 |---|---|---|---|---|
-| GitHub org | Kypria-LLC | Source of truth for site + automation | `gh api repos/Kypria-LLC/kypria-technologies` | [VERIFIED] repo active, last push 2026-10-23 06:42 UTC |
+| GitHub org | Kypria-LLC | Source of truth for site + automation | `gh api repos/Kypria-LLC/kypria-technologies` | [VERIFIED 2026-11-06] repo active; latest commit on main observed 2026-11-05 21:04 UTC |
 | GitHub user | alexandros-thomson (Kostadinos J Kyprianos, Kypria LLC) | Commits, merges | Connector `get_me` | [VERIFIED] id 196420087 |
-| Site repo | Kypria-LLC/kypria-technologies (main) | kypriatechnologies.org static site, PWA, Cloudflare integration | `gh api repos/Kypria-LLC/kypria-technologies/commits/main` | [VERIFIED] head = 153cf039 (PR #83) |
+| Site repo | Kypria-LLC/kypria-technologies (main) | kypriatechnologies.org static site, PWA, Cloudflare integration | `gh api repos/Kypria-LLC/kypria-technologies/commits/main` | [VERIFIED 2026-11-06] main = d153e31f (PR #90) at audit time; not a permanently current HEAD |
 | Legacy mirror | alexandros-thomson/kypriatechnologies | Old personal copy — stale, never deploy from it | compare `updated_at` (2026-04-16) | [VERIFIED STALE] |
 | Automation repo | Kypria-LLC/ops-heartbeats (private) | Cron keepalives (Supabase, API) | `gh api repos/Kypria-LLC/ops-heartbeats` | [VERIFIED] exists, last update 2026-05-16 |
 | Netlify | kypriatechnologies.org, auto-deploy from repo main | Hosting + functions | Netlify API `GET /sites` with token from .env; confirm build-settings origin line says repo, not UI | [REPORTED] probe before any deploy claim |
 | Cloudflare | zone for kypriatechnologies.org | DNS + cache + SSL | Connector `cloudflare_api_key-list-dns-records` per zone | [OPEN] zone map not yet inventoried |
-| Supabase | Org "Kyria" (fnrsrjptqfizkepbaufl), project MythicAssetCatalog ref baizupiweobjkarchsyc, us-east-2, Postgres 17 | Single source of truth for leads/customers | Connector `list_projects`, `list_tables`, `execute_sql` | [VERIFIED] ACTIVE_HEALTHY; 22 public tables incl. `leads` (3 rows) and the empty stripe_* set |
+| Supabase | Org "Kyria" (fnrsrjptqfizkepbaufl), project MythicAssetCatalog ref baizupiweobjkarchsyc, us-east-2, Postgres 17 | Single source of truth for leads/customers | Connector `list_projects`, `list_tables`, `execute_sql` | [VERIFIED 2026-10-23] ACTIVE_HEALTHY; 22 public tables (not re-counted 2026-11-06); `leads`: 5 rows at 2026-11-06 20:09:52 UTC (aggregate COUNT(*), read-only; rows not classified); stripe_* set empty as of 2026-10-23 |
 | Stripe | livemode | Payments, payment links | `GET /v1/payment_links?active=true&expand[]=data.line_items` | [VERIFIED 2026-05-18 per PR #81/#82] re-probe before revenue claims |
 | Meta | App 1161892008605801, Graph v24.0 | Page/IG publishing via Meta Business Suite only | Local browser session (facebook_pages connector returns null — known limitation) | [STALE since 2026-08-24] |
 
@@ -126,19 +126,19 @@ Rule: the gap is always between two adjacent steps. Find the pair, fix that seam
 
 ## 5. Inventory snapshot (VERIFIED 2026-10-23; refresh next session)
 
-- Repo head: 153cf039 "Wire quiz email gate to Supabase lead capture (#83)", 2026-10-23
-  06:42 UTC.
-- Supabase MythicAssetCatalog: ACTIVE_HEALTHY; leads (3 rows, RLS on); stripe_customers,
+- Verified repository HEAD at audit time (2026-11-06): d153e31f "docs(handbooks): add space canon — operations handbook, funnel contract, brand voice (#90)", 2026-11-05 21:04 UTC. Repair branch fix/netlify-deploy-and-funnel-contract-v1.3 matched it at that time.
+- Supabase MythicAssetCatalog: ACTIVE_HEALTHY; leads (5 rows at 2026-11-06 20:09:52 UTC, aggregate count; rows not classified; RLS on as of 2026-10-23); stripe_customers,
   stripe_subscriptions, stripe_payments, payments, stripe_webhook_events all present and
   EMPTY — consistent with baseline: 0 paying customers.
 - Meta pixel shipped in source: 1024027273624000 across all HTML pages (28 fbq-init
   pattern hits including the injector script inject-analytics.sh) at commit 153cf039.
   Registry values 750068155374586 / 1236706014984822 are NOT what the site fires.
   Dataset ownership of the live ID: [OPEN] verify in Events Manager.
-- Live-page probe at ~03:10 EDT still showed the retired Gumroad note that PR #83
-  removed — expected edge-cache lag; confirm gone after purge. [OPEN]
+- Live-page probe at ~03:10 EDT (2026-10-23) still showed the retired Gumroad note that PR #83
+  removed. 2026-11-06 operator curl.exe: no "Gumroad" match in the quiz response; the homepage returned the 3 AI Studio links and the quiz hero. A separate agent fetcher returned older content (Signature C) and was not used. [OBSERVED 2026-11-06, quiz and homepage only]
 
 Changelog
+- 2026-11-06 v1.3: inventory refreshed with dated observations; deploy-freeze claim withdrawn as unsupported.
 - 2026-11-05 v1.2: Gate 5 blacklist rendered as per-line "never use" bullets so any
   single-line grep hit is self-explaining; committed to repo under docs/handbooks/.
 - 2026-10-23 v1.1: fixed Gates cross-reference, added cron schedules, corrected pixel
